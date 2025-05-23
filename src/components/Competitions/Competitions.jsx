@@ -17,7 +17,7 @@ export const Competitions = () => {
         };
 
         fetchCompetitions();
-    }, [competitions]);
+    }, []);
 
     return  (
         <div className="text-white flex justify-center mt-8">
