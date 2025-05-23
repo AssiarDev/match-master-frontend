@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
 import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 export const LoginModal = () => {
   const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +32,8 @@ export const LoginModal = () => {
         // Ici, tu peux rediriger ou stocker le token si nécessaire
         // STOCK MOI CE TOKEN WSHHHH
         // window.localStorage.setItem('token', data.token)
-        window.location.href ='/favoris'
+        // window.location.href ='/favoris'
+        navigate('/favoris')
       } else {
         console.error("Erreur :", data.message);
       }
