@@ -1,34 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, Routes, Link } from "react-router-dom";
+import { Navbar } from "@/components/Forms/Navbar";
+import { NoMatch } from "@/components/NoMatch";
+import { Home } from "@/components/Home/Home";
+import { MatchsDetails } from "@/components/Matchs/Matchs";
+import { Connexion } from "@/components/Connexion/Connexion";
+import { SearchBar } from "@/components/Forms/Searchbar";
+import { TeamsDetails } from "@/components/Teams/TeamsDetails";
+import { RegisterModal } from "@/components/RegisterModal/RegisterModal";
+import { Footer } from "@/components/Footer/Footer";
+import { Live } from "@/components/LiveMatch/Live";
+import { Competitions } from "@/components/Competitions/Competitions";
+import { CompetitionsDetails } from "@/components/Competitions/CompetitionsDetails";
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="flex flex-col min-h-screen">  
+        <header className="h-20 w-full sticky top-0 z-50 left-0 bg-neutral-950 border-none shadow-lg shadow-amber-900/50 flex items-center justify-between">
+          <Link to="/"  className="font-sans text-4xl font-bold text-white mx-2">Match Master</Link>
+          <Navbar />
+          <SearchBar />
+        </header>
+        <div className="mt-10 flex-grow">
+          <Routes>
+              <Route path="/login" element={<Connexion />} />
+              <Route path="/register" element={<RegisterModal />} />
+              <Route path="*" element={<NoMatch />}/>
+              <Route path="/" element={<MatchsDetails />}/>
+              <Route path="/teams/:teamId" element={<TeamsDetails />} />
+              <Route path="/favoris" element={<Home />} />
+              <Route path="/live" element={<Live />} />
+              <Route path="/competitions" element={<Competitions />} />
+              <Route path="/competition/:competitionId" element={<CompetitionsDetails />}/>
+          </Routes>
+        </div>
+        <Footer /> 
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
   )
 }
 
