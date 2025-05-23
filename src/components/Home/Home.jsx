@@ -12,6 +12,7 @@ export const Home = () => {
         const checkAuth = async () => {
             try {
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/user/profile`, {
+                    method: 'GET',
                     credentials: "include", 
                 });
                 const data = await response.json();
