@@ -1,16 +1,17 @@
 import { Route, Routes, Link } from "react-router-dom";
-import { Navbar } from "@/components/Forms/Navbar";
-import { NoMatch } from "@/components/NoMatch";
-import { Home } from "@/components/Home/Home";
-import { MatchsDetails } from "@/components/Matchs/Matchs";
-import { SearchBar } from "@/components/Forms/Searchbar";
-import { TeamsDetails } from "@/components/Teams/TeamsDetails";
-import { RegisterModal } from "@/components/RegisterModal/RegisterModal";
-import { Footer } from "@/components/Footer/Footer";
-import { Live } from "@/components/LiveMatch/Live";
-import { Competitions } from "@/components/Competitions/Competitions";
-import { CompetitionsDetails } from "@/components/Competitions/CompetitionsDetails";
-import { LoginModal } from "@/components/LoginModal/LoginModal";
+import { Navbar } from "./components/Forms/Navbar";
+import { NoMatch } from "./components/NoMatch";
+// import { Home } from "@/components/Home/Home";
+import { Home } from "./components/Home/Home";
+import { MatchsDetails } from "./components/Matchs/Matchs";
+import { SearchBar } from "./components/Forms/Searchbar";
+import { TeamsDetails } from "./components/Teams/TeamsDetails";
+import { RegisterModal } from "./components/RegisterModal/RegisterModal";
+import { Footer } from "./components/Footer/Footer";
+import { Live } from "./components/LiveMatch/Live";
+import { Competitions } from "./components/Competitions/Competitions";
+import { CompetitionsDetails } from "./components/Competitions/CompetitionsDetails";
+import { LoginModal } from "./components/LoginModal/LoginModal";
 
 
 function App() {
