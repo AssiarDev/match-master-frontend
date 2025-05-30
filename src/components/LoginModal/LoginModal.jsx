@@ -29,11 +29,8 @@ export const LoginModal = () => {
       
       if (response.ok) {
         console.log("Connexion réussie :", data);
-        // Ici, tu peux rediriger ou stocker le token si nécessaire
-        // STOCK MOI CE TOKEN WSHHHH
-        // window.localStorage.setItem('token', data.token)
-        // window.location.href ='/favoris'
         navigate('/favoris')
+        window.location.reload();
       } else {
         console.error("Erreur :", data.message);
       }
@@ -56,25 +53,23 @@ export const LoginModal = () => {
             ×
           </button>
 
-          <DialogTitle className="text-xl font-bold text-white">Connexion</DialogTitle>
-          
-          <form onSubmit={handleSubmit} className="mt-4 flex flex-col space-y-3">
-            <input type="text" placeholder="Email" className="border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white"/>
-            <input type="password" placeholder="Mot de passe" className="border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white"/>
-            <button type="submit" className="bg-amber-600 text-neutral-950 py-2 rounded hover:bg-amber-700 cursor-pointer">
-              Se connecter
-            </button>
-          </form>
+            <DialogTitle className="text-xl font-bold text-white">Connexion</DialogTitle>
+              <form onSubmit={handleSubmit} className="mt-4 flex flex-col space-y-3">
+                <input type="text" placeholder="Email" className="border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white"/>
+                <input type="password" placeholder="Mot de passe" className="border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white"/>
+                <button type="submit" className="bg-amber-600 text-neutral-950 py-2 rounded hover:bg-amber-700 cursor-pointer">
+                  Se connecter
+                </button>
+              </form>
 
-          <p className="mt-3 text-sm text-white text-center">
-            Pas encore inscrit ?{" "}
-            <Link to="/register" className="text-amber-600 hover:underline">
-              Créez un compte ici
-            </Link>
-          </p>
-
+              <p className="mt-3 text-sm text-white text-center">
+                Pas encore inscrit ?{" "}
+                <Link to="/register" className="text-amber-600 hover:underline">
+                  Créez un compte ici
+                </Link>
+              </p>
         </DialogPanel>
       </div>
     </Dialog>
-  );
+);
 }

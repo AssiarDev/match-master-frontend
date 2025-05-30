@@ -3,7 +3,6 @@ import { Navbar } from "@/components/Forms/Navbar";
 import { NoMatch } from "@/components/NoMatch";
 import { Home } from "@/components/Home/Home";
 import { MatchsDetails } from "@/components/Matchs/Matchs";
-import { Connexion } from "@/components/Connexion/Connexion";
 import { SearchBar } from "@/components/Forms/Searchbar";
 import { TeamsDetails } from "@/components/Teams/TeamsDetails";
 import { RegisterModal } from "@/components/RegisterModal/RegisterModal";
@@ -11,6 +10,7 @@ import { Footer } from "@/components/Footer/Footer";
 import { Live } from "@/components/LiveMatch/Live";
 import { Competitions } from "@/components/Competitions/Competitions";
 import { CompetitionsDetails } from "@/components/Competitions/CompetitionsDetails";
+import { LoginModal } from "@/components/LoginModal/LoginModal";
 
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
         </header>
         <div className="mt-10 flex-grow">
           <Routes>
-              <Route path="/login" element={<Connexion />} />
+              <Route path="/login" element={<LoginModal />} />
               <Route path="/register" element={<RegisterModal />} />
               <Route path="*" element={<NoMatch />}/>
               <Route path="/" element={<MatchsDetails />}/>
