@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SlArrowDown } from "react-icons/sl"
 
 export const Navbar = () => {
@@ -7,6 +7,7 @@ export const Navbar = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [username, setUsername] = useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -43,7 +44,8 @@ export const Navbar = () => {
 
         setIsAuthenticated(false);
         setTimeout(() => {
-            window.location.href = "/login";
+            navigate('/login')
+            // window.location.href = "/login";
         }, 300);
 
         } catch (error) {
