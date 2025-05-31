@@ -10,7 +10,7 @@ export const RegisterModal = () => {
     e.preventDefault();
 
     const username = e.target[0].value;
-    const email = e.target[1].value;
+    const mail = e.target[1].value;
     const password = e.target[2].value;
     const confirmPassword = e.target[3].value;
 
@@ -20,7 +20,7 @@ export const RegisterModal = () => {
       return;
     }
 
-    const formData = { username, email, password };
+    const formData = { username, mail, password };
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
