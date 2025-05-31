@@ -20,7 +20,7 @@ export const RegisterModal = () => {
       return;
     }
 
-    const formData = { username, mail, password };
+    const formData = { username, mail, password, confirmPassword };
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
