@@ -37,7 +37,7 @@ export const RegisterModal = () => {
 
       if (response.ok) {
         console.log("Inscription réussie :", data);
-        navigate('/login')
+        navigate('/login');
         // window.location.href = "/login"; 
       } else {
         console.error("Erreur :", data.message);
