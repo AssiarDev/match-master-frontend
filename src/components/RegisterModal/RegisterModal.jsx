@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export const RegisterModal = () => {
   const [open, setOpen] = useState(true);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +37,8 @@ export const RegisterModal = () => {
 
       if (response.ok) {
         console.log("Inscription réussie :", data);
-        window.location.href = "/login"; 
+        navigate('/login')
+        // window.location.href = "/login"; 
       } else {
         console.error("Erreur :", data.message);
         setError(data.message);
