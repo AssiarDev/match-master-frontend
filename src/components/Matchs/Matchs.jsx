@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { DatePickerCarousel } from '../DatePicker/DatePickerCaroussel';
 import { MatchCard } from './MatchCard';
 
 export const MatchsDetails = () => {
     const [matchesData, setMatchesData] = useState([]);
-    const [filteredData, setFilteredData] = useState({});
     const [selectedDate, setSelectedDate] = useState(new Date()); // Date sélectionnée par le carousel
     const [error, setError] = useState(null);
 
@@ -35,7 +34,6 @@ export const MatchsDetails = () => {
                 }, {});
 
                 setMatchesData(groupedByCompetition);
-                setFilteredData(groupedByCompetition); // Valeur initiale : aucun filtre
             } catch (error) {
                 console.error('Erreur lors de la récupération des détails des matchs :', error.message);
                 setError(error.message);
@@ -46,26 +44,31 @@ export const MatchsDetails = () => {
     }, []);
 
     useEffect(() => {
-        if (!selectedDate) {
-            setFilteredData(matchesData); // Si aucune date sélectionnée, afficher toutes les données
-            return;
-        }
-    
-        // Filtrer les données en fonction de la date sélectionnée
-        const filtered = Object.entries(matchesData).reduce((acc, [competitionName, competitionData]) => {
-            const filteredMatches = competitionData.matches.filter(match => {
-                const matchDate = new Date(match.utcDate);
-                return matchDate.toDateString() === selectedDate.toDateString(); // Comparer les dates
-            });
-    
-            if (filteredMatches.length > 0) {
-                acc[competitionName] = {...competitionData, matches: filteredMatches}
-            }
-            return acc;
-        }, {});
-    
-        setFilteredData(filtered);
-    }, [selectedDate, matchesData])
+        if (!selectedDate) return;
+    }, [selectedDate])
+
+     // Filtrer les données en fonction de la date sélectionnée
+    const groupedMatches = useMemo(() => {
+        if (!matchesData) return {};    
+
+        return matchesData && Object.keys(matchesData).length > 0
+            ? Object.entries(matchesData).reduce((acc, [competitionName, competitionData]) => {
+                // Stocker les matchs filtrés dans une variable
+                const matchesFiltered = competitionData.matches.filter(match => {
+                    const matchDate = new Date(match.utcDate);
+                    return matchDate.toDateString() === selectedDate.toDateString(); // Comparer les dates
+                });
+
+                // Ajouter la compétition seulement si elle a des matchs disponibles
+                if (matchesFiltered.length > 0) {
+                    acc[competitionName] = { flag: competitionData.flag, matches: matchesFiltered };
+                }
+
+                return acc;
+            }, {})
+            : matchesData;
+    }, [matchesData, selectedDate]);
+
 
     const getCurrentDate = () => {
         const today = selectedDate;
@@ -93,8 +96,8 @@ export const MatchsDetails = () => {
                     </div>
 
                     {/* Affichage des matchs par compétition */}
-                    {Object.entries(filteredData).length > 0 ? (
-                        Object.entries(filteredData).map(([competitionName, competitionData]) => {
+                    {Object.entries(groupedMatches).length > 0 ? (
+                        Object.entries(groupedMatches).map(([competitionName, competitionData]) => {
                             const { flag, matches } = competitionData;
                             return (
                             <div key={competitionName} className="mb-8">

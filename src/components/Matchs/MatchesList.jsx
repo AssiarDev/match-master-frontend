@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useLocation, useParams } from "react-router";
 import { MatchCard } from "./MatchCard";
 import { Filtre } from "../Filtre/Filtre";
@@ -45,19 +45,34 @@ export const MatchesList = () => {
     };
 
     // Logique de filtrage des matchs
-    const filteredMatches = matches
-    .filter(match => {
-        const matchDate = new Date(match.utcDate);
-        const now = new Date();
+    // const filteredMatches = matches
+    // .filter(match => {
+    //     const matchDate = new Date(match.utcDate);
+    //     const now = new Date();
 
-        if (filter === "upcoming") {
-            return matchDate > now; // "À venir"
-        } else if (filter === "finished") {
-            return matchDate <= now; // "Terminé"
-        }
-        return true; // Si aucun filtre, afficher tout
-    })
-    .sort((a, b) => new Date(b.utcDate) - new Date(a.utcDate)); // Tri du plus récent au plus ancien
+    //     if (filter === "upcoming") {
+    //         return matchDate > now; // "À venir"
+    //     } else if (filter === "finished") {
+    //         return matchDate <= now; // "Terminé"
+    //     }
+    //     return true; // Si aucun filtre, afficher tout
+    // })
+    // .sort((a, b) => new Date(b.utcDate) - new Date(a.utcDate)); // Tri du plus récent au plus ancien
+    const filteredMatches = useMemo(() => {
+        return matches
+        .filter(match => {
+            const matchDate = new Date(match.utcDate);
+            const now = new Date();
+
+            if(filter === "upcoming"){
+                return match > now
+            } else if(filter === "finished"){
+                return matchDate <= now
+            }
+            return true
+        })
+        .sort((a, b) => new Date(b.utcDate) - new Date(a.utcDate));
+    }, [matches, filter])
 
 
 
