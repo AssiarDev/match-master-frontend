@@ -44,7 +44,8 @@ export const TeamsDetails = () => {
         }
         fetchStandings()
     }, [selectedLeague])
-    return <div className="w-full flex flex-col justify-center items-center text-white text-2xl font-medium overflow-hidden">
+    return <div className="min-h-screen w-300 flex flex-col mx-auto gap-5">
+         <div className="w-full flex flex-col justify-center items-center text-white text-2xl font-medium overflow-hidden">
          <div className="w-100 flex justify-center items-center h-15 bg-stone-800 border border-stone-800 rounded-lg text-white flex items-center justify-center gap-3">{team.name} <img src={team.emblem} alt={`${team.name} emblem`} className="h-10"/></div>
          <div className="w-full flex mt-5 ml-5">
             <table className="table-auto border-collapse border border-gray-700 text-sm text-gray-200 rounded-lg shadow-lg">
@@ -64,5 +65,7 @@ export const TeamsDetails = () => {
          </div>
 
     </div>
+    </div>
+   
    
 }

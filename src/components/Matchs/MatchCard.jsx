@@ -1,7 +1,7 @@
 export const MatchCard = ({item}) => {
     return <div className="border-gray-700 border rounded-lg shadow-md p-4 m-4 w-80 min-w-[350px]">
         <div className="flex items-center gap-10">
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center flex-grow">
                 <img 
                     src={item.homeTeam.crest} 
                     alt={item.homeTeam.shortName}

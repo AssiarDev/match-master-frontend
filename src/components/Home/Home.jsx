@@ -36,7 +36,8 @@ export const Home = () => {
 
     return (
         <>
-            {<div className="w-full h-screen flex flex-col justify-center items-center overflow-hidden">
+            {
+                 <div className="w-full min-h-screen flex flex-col justify-center items-center overflow-hidden">
             <div className="w-150 h-80 bg-stone-950 border border-stone-800 shadow-xl rounded-lg flex flex-col justify-center items-center gap-2">
             <div className="w-full flex justify-center text-white text-3xl font-medium">
                     <h2>Choissisez votre équipe favorite</h2>
@@ -46,7 +47,7 @@ export const Home = () => {
                 <SelectorLeague />
             </div>
             </div>
-            </div> }
+            </div>}
         </>
     )
 }

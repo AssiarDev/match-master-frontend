@@ -14,6 +14,11 @@ export const LoginModal = () => {
       mail: e.target[0].value,
       password: e.target[1].value,
     };
+
+    // const formData = new FormData();  
+    // formData.append("mail", e.target[0].value);
+    // formData.append("password", e.target[1].value);
+
   
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
@@ -28,7 +33,7 @@ export const LoginModal = () => {
       const data = await response.json();
       
       if (response.ok) {
-        console.log("Connexion réussie :", data);
+        // console.log("Connexion réussie :", data);
         navigate('/favoris')
         window.location.reload();
       } else {

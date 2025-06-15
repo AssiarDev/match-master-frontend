@@ -87,7 +87,8 @@ export const MatchsDetails = () => {
                             <a href="/" className='text-white underline'>Match Master</a> / Score du {getCurrentDate()}
                         </p>
                     </div>
-                    {/* Date Picker Carousel */}
+                    <div className="min-h-screen w-300 flex flex-col mx-auto gap-5">
+                        {/* Date Picker Carousel */}
                     <div className="flex justify-center mb-5">
                         <DatePickerCarousel
                             selectedDate={selectedDate}
@@ -116,6 +117,7 @@ export const MatchsDetails = () => {
                     ) : (
                         <p className="text-gray-400">Aucun match disponible pour cette date.</p>
                     )}
+                    </div>
                 </>
             )}
         </div>
