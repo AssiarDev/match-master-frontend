@@ -1,12 +1,31 @@
-# React + Vite
+# Match Master ⚽
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Match Master est une application web permettant de suivre l'actualité du football : scores, matchs, classements !
 
-Currently, two official plugins are available:
+# 📌 Fonctionnalités
+- 🔥 Suivre les matchs du jour en fonction de la date sélectionnée
+- 🏆 Suivre l'actualité d'une compétition pour rester informé des derniers résultats et événements
+- ⭐ Sélectionner son équipe favorite et suivre son classement ainsi que ses matchs
+- 🔑 Authentification pour une expérience personnalisée et la gestion des préférences utilisateur
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔮 Fonctionnalités à venir
 
-## Expanding the ESLint configuration
+- 📡 **Suivre les matchs en live** avec mises à jour en temps réel
+- 📊 **Détails des statistiques des matchs** pour une analyse approfondie
+- 📰 **Articles sur les équipes ou compétitions** pour en apprendre davantage sur le football
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🌍 Objectif à long terme
+
+L'objectif futur de Match Master est d'élargir ces fonctionnalités à **tous les sports**, offrant une plateforme complète pour suivre l'actualité sportive en un seul endroit.
+
+## 🚀 Stack technique
+
+- **Frontend :** React, Tailwind CSS
+- **Backend :** Node.js, Express
+- **Base de données :** PostgreSQL (locale), Prisma et Neon (prod)
+
+## 🔧 Installation et lancement
+
+```sh
+npm install  # Installer les dépendances
+npm run dev  # Lancer le serveur de développement 
