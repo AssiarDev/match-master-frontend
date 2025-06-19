@@ -5,7 +5,6 @@ export const CompetitionsDetails = () => {
 
     const location = useLocation();
     const competition = location.state?.competition;
-    console.log('competition :', competition)
 
     return (
         <div className="flex flex-col ">
@@ -17,5 +16,5 @@ export const CompetitionsDetails = () => {
                 <CompetitionTabs />
             </div>
         </div>
-    )
-}
+    );
+};

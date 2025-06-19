@@ -1,45 +1,27 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useCompetitions } from "../../hooks/useCompetitions";
+import { CompetitionCard } from "./CompetitionCard";
 
 export const Competitions = () => {
-    const [competitions, setCompetitions] = useState([]);
 
-    useEffect(() => {
-        const fetchCompetitions = async () => {
-            try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/competitions`);
-                if (!response.ok) throw new Error("Erreur lors du chargement des compétitions");
-                const data = await response.json();
-                setCompetitions(data);
-            } catch (error) {
-                console.error("Erreur :", error);
-            }
-        };
+    const { competitions, error} = useCompetitions();
 
-        fetchCompetitions();
-    }, []);
+    if(error){
+        return <p className="text-red-500 text-center">{error}</p>
+    };
 
-    return  (
-        <div className="text-white flex justify-center mt-8">
-            <div className="border border-gray-700 rounded-lg shadow-lg p-6 w-full max-w-3xl">
-                <h1 className="text-2xl font-bold text-center mb-4">Top compétitions</h1>
-                <ul className="space-y-4">
-                    {competitions.map((competition) => (
-                        <li key={competition.id} className="bg-zinc-800 p-3 rounded-md hover:bg-zinc-700 transition">
-                            <Link 
-                                to={`/competition/${competition.id}`}
-                                state={{ competition }} 
-                                className="flex items-center gap-5 text-white text-lg font-semibold hover:underline"
-                            >
-                                <img className="h-10 w-10" src={competition.emblem} alt="" />
-                                {competition.name}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </div>
-    );
-
+    return (
+    <section className="flex justify-center px-4 sm:px-6 mt-6 mb-10">
+      <div className="border border-gray-700 rounded-lg shadow-lg p-5 sm:p-6 w-full max-w-3xl bg-zinc-900">
+        <h1 className="text-xl sm:text-2xl font-bold text-center text-white mb-4">
+          Top compétitions
+        </h1>
+        <ul className="space-y-3 sm:space-y-4">
+          {competitions.map((competition) => (
+            <CompetitionCard key={competition.id} competition={competition} />
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
 
 };

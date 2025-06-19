@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Resume } from "./Resume";
-import { Classement } from "./Classement";
+import { Classement } from "../Classement/Classement";
 import { Matchs } from "./Matchs";
 
 const tabs = [
