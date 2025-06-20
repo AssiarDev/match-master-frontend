@@ -13,7 +13,6 @@ export const useMatches = (competitionId) => {
                     throw new Error('Impossible de récupérer les matchs');
                 };
                 const data = await response.json();
-                console.log('data matches :', data.matches)
                 setMatches(data.matches || []);
             } catch(e){
                 setError(e.message)

@@ -1,11 +1,11 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { useLocation } from "react-router";
 import { useMatches } from "../../hooks/useMatches";
 import { groupMatchesByMonth } from "../../utils/groupMatchesByMonth";
 import { MatchGroupByMonth } from "../Matchs/MatchGroupByMonth";
 
 export const Matchs = () => {
-  const [visibleMatches, setVisibleMatches] = useState(6);
+  // const [visibleMatches, setVisibleMatches] = useState(6);
   const location = useLocation();
   const competition = location.state?.competition.id;
 
@@ -19,9 +19,9 @@ export const Matchs = () => {
   const groupedMatches = groupMatchesByMonth(sortedMatches);
 
 // Afficher les matchs par 6
-  const showMoreMatches = () => {
-    setVisibleMatches((prev) => prev + 6);
-  };
+  // const showMoreMatches = () => {
+  //   setVisibleMatches((prev) => prev + 6);
+  // };
 
   if (loading)
     return <p className="text-white text-center mt-5">Chargement des matchs...</p>;
@@ -37,8 +37,8 @@ export const Matchs = () => {
               key={month}
               month={month}
               matches={matches}
-              visibleMatches={visibleMatches}
-              onShowMore={showMoreMatches}
+              // visibleMatches={visibleMatches}
+              // onShowMore={showMoreMatches}
             />
           ))
         ) : (
