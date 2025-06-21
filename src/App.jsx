@@ -1,9 +1,53 @@
+// import { Route, Routes, Link } from "react-router-dom";
+// import { Navbar } from "./components/Forms/Navbar";
+// import { NoMatch } from "./components/NoMatch";
+// // import { Home } from "@/components/Home/Home";
+// import { Home } from "./components/Home/Home";
+// import { MatchsDetails } from "./components/Matchs/MatchsDetails";
+// import { SearchBar } from "./components/Forms/Searchbar";
+// import { TeamsDetails } from "./components/Teams/TeamsDetails";
+// import { RegisterModal } from "./components/RegisterModal/RegisterModal";
+// import { Footer } from "./components/Footer/Footer";
+// import { Live } from "./components/LiveMatch/Live";
+// import { Competitions } from "./components/Competitions/Competitions";
+// import { CompetitionsDetails } from "./components/Competitions/CompetitionsDetails";
+// import { LoginModal } from "./components/LoginModal/LoginModal";
+
+
+// function App() {
+
+//   return (
+//       <div className="flex flex-col min-h-screen">  
+//         <header className="h-20 w-full sticky top-0 z-50 left-0 bg-neutral-950 border-none shadow-lg shadow-amber-900/50 flex items-center justify-between">
+//           <Link to="/"  className="font-sans text-4xl font-bold text-white mx-2">Match Master</Link>
+//           <Navbar />
+//           <SearchBar />
+//         </header>
+//         <div className="mt-10 flex-grow">
+//           <Routes>
+//               <Route path="/login" element={<LoginModal />} />
+//               <Route path="/register" element={<RegisterModal />} />
+//               <Route path="*" element={<NoMatch />}/>
+//               <Route path="/" element={<MatchsDetails />}/>
+//               <Route path="/teams/:teamId" element={<TeamsDetails />} />
+//               <Route path="/favoris" element={<Home />} />
+//               <Route path="/live" element={<Live />} />
+//               <Route path="/competitions" element={<Competitions />} />
+//               <Route path="/competition/:competitionId" element={<CompetitionsDetails />}/>
+//           </Routes>
+//         </div>
+//         <Footer /> 
+//       </div>
+//   )
+// }
+
+// export default App
+
 import { Route, Routes, Link } from "react-router-dom";
 import { Navbar } from "./components/Forms/Navbar";
 import { NoMatch } from "./components/NoMatch";
-// import { Home } from "@/components/Home/Home";
 import { Home } from "./components/Home/Home";
-import { MatchsDetails } from "./components/Matchs/Matchs";
+import { MatchsDetails } from "./components/Matchs/MatchsDetails";
 import { SearchBar } from "./components/Forms/Searchbar";
 import { TeamsDetails } from "./components/Teams/TeamsDetails";
 import { RegisterModal } from "./components/RegisterModal/RegisterModal";
@@ -13,32 +57,45 @@ import { Competitions } from "./components/Competitions/Competitions";
 import { CompetitionsDetails } from "./components/Competitions/CompetitionsDetails";
 import { LoginModal } from "./components/LoginModal/LoginModal";
 
-
 function App() {
-
   return (
-      <div className="flex flex-col min-h-screen">  
-        <header className="h-20 w-full sticky top-0 z-50 left-0 bg-neutral-950 border-none shadow-lg shadow-amber-900/50 flex items-center justify-between">
-          <Link to="/"  className="font-sans text-4xl font-bold text-white mx-2">Match Master</Link>
-          <Navbar />
-          <SearchBar />
-        </header>
-        <div className="mt-10 flex-grow">
-          <Routes>
-              <Route path="/login" element={<LoginModal />} />
-              <Route path="/register" element={<RegisterModal />} />
-              <Route path="*" element={<NoMatch />}/>
-              <Route path="/" element={<MatchsDetails />}/>
-              <Route path="/teams/:teamId" element={<TeamsDetails />} />
-              <Route path="/favoris" element={<Home />} />
-              <Route path="/live" element={<Live />} />
-              <Route path="/competitions" element={<Competitions />} />
-              <Route path="/competition/:competitionId" element={<CompetitionsDetails />}/>
-          </Routes>
+    <div className="flex flex-col min-h-screen">
+      <header className="h-20 w-full sticky top-0 z-50 bg-neutral-950 shadow-lg shadow-amber-900/50 px-0 sm:px-4">
+        <div className="w-full mx-auto flex items-center justify-between h-full px-4">
+          {/* Logo à gauche */}
+          <Link to="/" className="text-3xl font-bold text-white ml-0 sm:ml-4">
+            Match Master
+          </Link>
+
+          {/* Navbar centrée */}
+          <div className="flex-1 flex justify-center">
+            <Navbar />
+          </div>
+
+          {/* Barre de recherche à droite (cachée en mobile) */}
+          <div className="hidden sm:block">
+            <SearchBar />
+          </div>
         </div>
-        <Footer /> 
-      </div>
-  )
+      </header>
+
+      <main className="mt-10 flex-grow px-2">
+        <Routes>
+          <Route path="/login" element={<LoginModal />} />
+          <Route path="/register" element={<RegisterModal />} />
+          <Route path="*" element={<NoMatch />} />
+          <Route path="/" element={<MatchsDetails />} />
+          <Route path="/teams/:teamId" element={<TeamsDetails />} />
+          <Route path="/favoris" element={<Home />} />
+          <Route path="/live" element={<Live />} />
+          <Route path="/competitions" element={<Competitions />} />
+          <Route path="/competition/:competitionId" element={<CompetitionsDetails />} />
+        </Routes>
+      </main>
+
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
