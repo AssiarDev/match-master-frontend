@@ -6,7 +6,6 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
     const checkAuth = async () => {
       try {
         const res = await fetch(`${import.meta.env.VITE_API_URL}/user/profile`, {
@@ -22,11 +21,12 @@ export const AuthProvider = ({ children }) => {
       }
     };
 
+  useEffect(() => {
     checkAuth();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, setIsAuthenticated, setUser }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, setIsAuthenticated, setUser, checkAuth }}>
       {children}
     </AuthContext.Provider>
   );
