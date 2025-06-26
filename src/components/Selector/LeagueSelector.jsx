@@ -20,16 +20,16 @@ export const SelectorLeague = () => {
     };
 
     return (
-    <div className="flex flex-col gap-3 w-full items-center">
+    <div className="w-full max-w-lg mx-auto px-4 flex flex-col gap-4 items-center mt-6">
         <select 
             value={selectedLeague} 
             onChange={(e) => setSelectedLeague(e.target.value)} 
             disabled={leaguesLoading}
             name="selected league" 
-            className="border border-stone-800 rounded-sm text-white w-80 h-10"
+            className="w-full h-10 rounded border border-stone-800 bg-neutral-900 text-white focus:outline-none focus:border-amber-500"
         >
             {leagues.map((data, i) => (
-                <option key={i} value={data.code} className="text-black">
+                <option key={i} value={data.code} className="text-white">
                     {data.name}
                 </option>
             ))}
@@ -40,13 +40,18 @@ export const SelectorLeague = () => {
             onChange={(e) => setSelectedTeamId(e.target.value)}
             disabled={teamsLoading}
             name="selected teams"  
-            className="border border-stone-800 rounded-sm text-white w-80 h-10"
+            className="w-full h-10 rounded border border-stone-800 bg-neutral-900 text-white focus:outline-none focus:border-amber-500"
         >
             {teams.map((team, i) => (
-                <option key={i} value={team.id} className="text-black">{team.name}</option>
+                <option key={i} value={team.id} className="text-white">{team.name}</option>
             ))}
         </select>
-        <button className="border border-stone-800 bg-orange-700 hover:bg-orange-600 w-60 h-15 rounded-md text-white text-xl cursor-pointer" onClick={handleEnter}>Entrer</button>
+        <button 
+            className="w-full sm:w-60 h-12 rounded-md bg-orange-700 hover:bg-orange-600 text-white text-lg cursor-pointer transition" 
+            onClick={handleEnter}
+        >
+            Entrer
+        </button>
     </div>  
     )
    
