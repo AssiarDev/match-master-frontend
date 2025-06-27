@@ -1,6 +1,6 @@
 export const ClassementLegende = () => {
     return (
-        <div className="p-4 bg-neutral-950-100">
+        <div className="p-4 bg-neutral-950-100 text-white">
             <h2 className="text-sm font-bold mb-2">Légende du Classement</h2>
             <ul className="space-y-2">
                 <li className="flex items-center">
