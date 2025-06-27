@@ -3,23 +3,31 @@ import { useStandings } from "../../hooks/useStandings";
 import { ClassementTable } from "./ClassementTable";
 
 export const Classement = () => {
-    const location = useLocation();
-    const competitionId = location.state?.competition.id;
-    const { standings, loading, error} = useStandings(competitionId);
+  const location = useLocation();
+  const competitionId = location.state?.competition?.id;
+  const { standings, loading, error } = useStandings(competitionId);
 
-    if(loading){
-        return <p className="text-center text-gray-600">Chargement en cours...</p>
-    };
-
-    if(error){
-        return <p className="text-center text-red-500">Erreur : {error}</p>
-    };
-
+  if (loading) {
     return (
-        <div className="px-2 sm:px-4 md:px-8 py-4 w-full flex justify-center">
-            <div className="overflow-x-auto max-w-full">
-                <ClassementTable standings={standings} />
-            </div>
-        </div>
+      <div className="flex justify-center py-10">
+        <p className="text-gray-600">Chargement en cours...</p>
+      </div>
     );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center py-10">
+        <p className="text-red-500">Erreur : {error}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full flex justify-center px-2 sm:px-4 md:px-6 lg:px-8 py-6">
+      <div className="w-full max-w-6xl overflow-x-auto">
+        <ClassementTable standings={standings} />
+      </div>
+    </div>
+  );
 };
