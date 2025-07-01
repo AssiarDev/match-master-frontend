@@ -1,7 +1,13 @@
 import { MatchCard } from "./MatchCard";
 
 export const MatchsPreview = ({ matchs, onShowAll}) => {
-  if(!matchs?.length) return null;
+  if (!matchs?.length) {
+  return (
+    <div className="w-full border border-gray-800 text-white text-center py-6 rounded-lg shadow">
+      <p className="text-gray-500 text-center">La compétition n'a pas encore démarré.</p>
+    </div>
+  );
+}
 
   return (
     <section className="flex flex-col gap-4">

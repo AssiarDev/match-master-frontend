@@ -9,7 +9,7 @@ export const CompetitionCard = ({ competition }) => (
     >
       <img
         className="h-10 w-10 object-contain"
-        src={competition.emblem || "/default-emblem.svg"}
+        src={competition.emblem || 'Aucun logo disponible.'}
         alt={`Logo de ${competition.name}`}
       />
       {competition.name}
