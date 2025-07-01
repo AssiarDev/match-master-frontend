@@ -1,5 +1,6 @@
 import { SelectorLeague } from "./LeagueSelector";
 
+
 export const FavoriteTeamCard = () => {
   return (
     <div className="w-full max-w-xl bg-neutral-900 border border-stone-700 rounded-lg shadow-md p-6 flex flex-col items-center gap-6">
