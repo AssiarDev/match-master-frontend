@@ -40,7 +40,7 @@ export const Navbar = () => {
             <li className="relative">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="flex items-center gap-2 bg-orange-700 hover:bg-orange-600 px-3 py-1 rounded-md"
+                className="flex items-center gap-2 bg-orange-700 hover:bg-orange-600 px-3 py-1 rounded-md cursor-pointer"
               >
                 <FiUser className="text-white" />
                 {user?.username}
@@ -48,7 +48,7 @@ export const Navbar = () => {
               {isMenuOpen && (
                 <div className="absolute right-0 mt-2 bg-gray-800 rounded-md text-sm shadow-lg z-10">
                   <Link
-                    to="/favoris"
+                    to="/favoriteUser"
                     className="block px-4 py-2 hover:bg-gray-700"
                     onClick={() => setIsMenuOpen(false)}
                   >

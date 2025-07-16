@@ -11,6 +11,7 @@ import { Competitions } from "./components/Competitions/Competitions";
 import { CompetitionsDetails } from "./components/Competitions/CompetitionsDetails";
 import { LoginModal } from "./components/LoginModal/LoginModal";
 import { SelectFavoriteTeam } from "./components/Selector/SelectFavoriteTeam";
+import { FavoriteModal } from "./components/FavoriteModal/FavoriteModal";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route path="/live" element={<Live />} />
           <Route path="/competitions" element={<Competitions />} />
           <Route path="/competition/:competitionId" element={<CompetitionsDetails />} />
+          <Route path="/favoriteUser" element={<FavoriteModal />} />
         </Routes>
       </main>
 
