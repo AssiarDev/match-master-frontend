@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useFavorite } from "../../hooks/useFavorite";
 
 export const FavoriteModal = () => {
     const [open, setOpen] = useState(true);
     const navigate = useNavigate();
     const { favorite, error } = useFavorite();
+
+    const hasError = Boolean(error);
 
     return (
         <Dialog open={open} onClose={() => setOpen(false)} className="relative z-50">
@@ -28,11 +30,12 @@ export const FavoriteModal = () => {
                 <DialogTitle className="text-xl font-bold text-white mb-5">Mes favoris</DialogTitle>
 
                 <div>
-                    {favorite.map((fav, index) => {
+                    {hasError ? <p className="text-red-500 text-sm text-center">{error}</p> : favorite.map((fav, index) => {
                         return (
-                            <div key={index} className="flex items-center gap-2 border-white border-b ">
-                                <img src={fav.emblem} alt={fav.name} className="mb-2 h-10 w-10"/>
-                                <p className="mb-2 text-white">{fav.name}</p>
+                            <div key={index} className="flex items-center gap-2 border-white border-b">
+                                <img src={fav.emblem} alt={fav.name} className="mb-2 h-5 w-5"/>
+                                <Link className="mb-2 text-white hover:underline">{fav.name}</Link>
+                                {/* <p className="mb-2 text-white">{fav.name}</p> */}
                             </div>
                         )
                     })}
