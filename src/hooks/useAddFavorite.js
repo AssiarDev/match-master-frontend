@@ -3,14 +3,14 @@ import { useState } from "react";
 export const useAddFavorite = () => {
     const [error, setError] = useState(null);
 
-    const addFavorite = async (userId, clubId) => {
-        const id = parseInt(clubId)
+    const addFavorite = async (userId, id) => {
+        let clubId = parseInt(id)
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/protected/users/favorites`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json"},
                 credentials: "include",
-                body: JSON.stringify({userId, id})
+                body: JSON.stringify({userId, clubId})
             });
 
             if(!response.ok){
@@ -21,7 +21,7 @@ export const useAddFavorite = () => {
             return data;
 
         } catch (e){
-            setError("Une erreur est survenue : ", e)
+            setError(`Une erreur est survenue : ${e}`)
         }
     }
 
