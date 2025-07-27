@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useLeagues } from "../../hooks/useLeagues";
 import { useTeamsByLeague } from "../../hooks/useTeamsByLeague";
-
+import { useAddFavorite } from "../../hooks/useAddFavorite";
+import { useAuth } from "../../context/AuthContext";
 
 export const SelectorLeague = () => {
 
@@ -11,11 +12,15 @@ export const SelectorLeague = () => {
     const { leagues, loading: leaguesLoading } = useLeagues();
     const [selectedTeamId, setSelectedTeamId] = useState('');
     const { teams, loading: teamsLoading } = useTeamsByLeague(selectedLeague);
+    const { user } = useAuth();
+    const { addFavorite } = useAddFavorite();
+    
 
     const handleEnter = () => {
         if(!selectedLeague || !selectedTeamId){
             return alert("Veuillez sélectionner un championnat et une équipe.");
         };
+        addFavorite(user.id, selectedTeamId)
         navigate(`/teams/${selectedTeamId}`, { state: { selectedLeague } });
     };
 
