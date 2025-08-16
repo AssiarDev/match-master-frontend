@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { useFavorite } from "../../hooks/useFavorite";
 import { useDeleteFavorite } from "../../hooks/useDeleteFavorite";
 
@@ -8,7 +8,7 @@ export const FavoriteModal = () => {
     const [open, setOpen] = useState(true);
     const navigate = useNavigate();
     const { favorite, error, refreshFavorites } = useFavorite();
-    const { deleteFavorite } = useDeleteFavorite()
+    const { deleteFavorite } = useDeleteFavorite();
 
     const hasError = Boolean(error);
 
@@ -44,7 +44,13 @@ export const FavoriteModal = () => {
                         return (
                             <div key={index} className="flex justify-center items-center gap-2 border-white border-b mb-2">
                                 <img src={fav.emblem} alt={fav.name} className="mb-2 h-5 w-5"/>
-                                <Link className="mb-2 text-white hover:underline">{fav.name}</Link>
+                                <Link 
+                                    className="mb-2 text-white hover:underline" 
+                                    to={`/teams/${fav.id}`}
+                                    state={{ selectedLeague: fav.leagueId}}
+                                >
+                                    {fav.name}
+                                </Link>
                                 <button
                                     onClick={() => handleDelete(fav.id)} className="ml-auto mr-2 cursor-pointer text-white hover:text-red-500"
                                 >
