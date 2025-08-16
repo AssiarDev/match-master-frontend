@@ -3,14 +3,14 @@ import { useState } from "react";
 export const useAddFavorite = () => {
     const [error, setError] = useState(null);
 
-    const addFavorite = async (userId, id) => {
+    const addFavorite = async (userId, id, competitionId) => {
         let clubId = parseInt(id)
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/protected/users/favorites`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json"},
                 credentials: "include",
-                body: JSON.stringify({userId, clubId})
+                body: JSON.stringify({userId, clubId, competitionId})
             });
 
             if(!response.ok){
