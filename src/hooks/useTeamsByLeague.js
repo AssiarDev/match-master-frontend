@@ -15,7 +15,8 @@ export const useTeamsByLeague = (leagueId) => {
                     .filter(team => team.name)
                     .map(team => ({
                         name: team.name, 
-                        id: team.id
+                        id: team.id,
+                        id_competition: team.id_competition
                     }))
                 setTeams(teams)
             } catch (error){
