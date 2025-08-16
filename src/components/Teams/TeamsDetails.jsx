@@ -1,4 +1,4 @@
-import { useParams, useLocation } from "react-router";
+import { useParams, useLocation } from "react-router-dom";
 import { useTeamDetails } from "../../hooks/useTeamDetails";
 import { TeamView } from "./TeamView";
 
