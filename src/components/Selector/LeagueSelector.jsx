@@ -20,7 +20,11 @@ export const SelectorLeague = () => {
         if(!selectedLeague || !selectedTeamId){
             return alert("Veuillez sélectionner un championnat et une équipe.");
         };
-        addFavorite(user.id, selectedTeamId)
+
+        const selectedTeam = teams.find(team => team.id === parseInt(selectedTeamId));
+        const competitionId = selectedTeam?.id_competition;
+
+        addFavorite(user.id, selectedTeamId, competitionId)
         navigate(`/teams/${selectedTeamId}`, { state: { selectedLeague } });
     };
 
