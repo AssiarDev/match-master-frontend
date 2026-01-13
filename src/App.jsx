@@ -1,8 +1,6 @@
 import { Route, Routes, Link } from "react-router-dom";
-import { Navbar } from "./components/Forms/Navbar";
 import { NoMatch } from "./components/NoMatch";
 import { MatchsDetails } from "./components/Matchs/MatchsDetails";
-import { SearchBar } from "./components/Forms/Searchbar";
 import { TeamsDetails } from "./components/Teams/TeamsDetails";
 import { RegisterModal } from "./components/RegisterModal/RegisterModal";
 import { Footer } from "./components/Footer/Footer";
@@ -12,29 +10,17 @@ import { CompetitionsDetails } from "./components/Competitions/CompetitionsDetai
 import { LoginModal } from "./components/LoginModal/LoginModal";
 import { SelectFavoriteTeam } from "./components/Selector/SelectFavoriteTeam";
 import { FavoriteModal } from "./components/FavoriteModal/FavoriteModal";
+import { Header } from "./components/Header/Header";
+import { useState } from "react";
 
 function App() {
+  const [isMobileMenu, setIsMobileMenu] = useState(false)
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
-      <header className="h-20 w-full sticky top-0 z-50 bg-neutral-950 shadow-lg shadow-amber-900/50 px-0 sm:px-4">
-        <div className="w-full mx-auto flex items-center justify-between h-full px-4">
-          {/* Logo à gauche */}
-          <Link to="/" className="text-3xl font-bold text-white ml-0 sm:ml-4">
-            Match Master
-          </Link>
-
-          {/* Navbar centrée */}
-          <div className="flex-1 flex justify-center">
-            <Navbar />
-          </div>
-
-          {/* Barre de recherche à droite (cachée en mobile) */}
-          <div className="hidden sm:block">
-            <SearchBar />
-          </div>
-        </div>
-      </header>
-
+      <Header
+        isMobileMenu={isMobileMenu}
+        setIsMobileMenu={setIsMobileMenu}
+      />
       <div className="flex flex-col flex-grow">
         <main className="flex flex-grow overflow-y-auto">
         <Routes>
