@@ -20,7 +20,7 @@ export const SearchBar = () => {
         const result = await response.json();
         const teams = result.map(team => ({
             name: team.name,
-            logo: team.emblem
+            logo: team.image_path
           }))
         setTeams(teams)
       } catch (e){
