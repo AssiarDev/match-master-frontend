@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
 export const useCompetitions = () => {
+
     const [competitions, setCompetitions] = useState([]);
     const  [error, setSerror] = useState(null);
 
     useEffect(() => {
         const fetchCompetitions = async () => {
             try {
-
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/competitions`);
                 if(!response.ok){
                     throw new Error('Erreur lors de la reponse.')
@@ -16,6 +16,7 @@ export const useCompetitions = () => {
                 setCompetitions(data);
 
             } catch(e){
+                console.error("Erreur fetch competitions :", e);
                 setSerror(e.message);
             }
         }
