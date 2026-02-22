@@ -8,7 +8,7 @@ export const useMatches = (competitionId) => {
     useEffect(() => {
         const fetchMatches = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/competitions/${competitionId}/matches`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/schedules/teams/${competitionId}`);
                 if (!response.ok){
                     throw new Error('Impossible de récupérer les matchs');
                 };
