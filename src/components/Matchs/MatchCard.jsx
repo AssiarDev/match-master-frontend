@@ -1,9 +1,43 @@
+const normalizeScores = (rawScores) => {
+  if (!rawScores) return [];
+  if (Array.isArray(rawScores)) return rawScores;
+  if (Array.isArray(rawScores.data)) return rawScores.data;
+
+  return [];
+};
+
+const extractFinalScore = (rawScores) => {
+  const scores = normalizeScores(rawScores);
+
+  let home = 0;
+  let away = 0;
+
+  scores.forEach(s => {
+    if (!s || !s.score) return;
+
+    const side = s.score.participant;
+    const goals = typeof s.score.goals === "number" ? s.score.goals : 0;
+
+    if (side === "home") {
+      home = Math.max(home, goals);
+    }
+
+    if (side === "away") {
+      away = Math.max(away, goals);
+    }
+  });
+
+  return { home, away };
+};
+
 
 export const MatchCard = ({ item }) => {
   if (!item) return null;
 
   const home = item.participants?.find(p => p.meta?.location === "home");
   const away = item.participants?.find(p => p.meta?.location === "away");
+
+  const { home: homeScore, away: awayScore } = extractFinalScore(item.scores);
 
   const formattedDate = new Date(item.starting_at).toLocaleDateString("fr-FR", {
     weekday: "short",
@@ -16,10 +50,9 @@ export const MatchCard = ({ item }) => {
     minute: "2-digit",
   });
 
-  const homeScore = item.scores?.ft_score?.home;
-  const awayScore = item.scores?.ft_score?.away;
+  const finishedStates = [5, 6, 7];
+  const isFinished = finishedStates.includes(item.state_id);
 
-  const isFinished = item.state === "finished";
 
   return (
     <div className="border border-gray-700 rounded-xl shadow-md p-4 w-full max-w-sm min-w-[300px] bg-zinc-900 text-white transition duration-300 hover:shadow-lg hover:border-orange-800">
