@@ -9,9 +9,10 @@ export const ScorersSection = ({ scorers }) => {
         {scorers.length > 0 ? (
           scorers.map((scorer) => (
             <ScorersCard
-              key={scorer.player.id}
-              playerName={scorer.player.name}
-              goals={scorer.goals}
+              key={scorer.id}
+              playerName={scorer.player_name}
+              goals={scorer.total}
+              image={scorer.player_image}
             />
           ))
         ) : (
