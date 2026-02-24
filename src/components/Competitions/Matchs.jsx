@@ -1,27 +1,20 @@
-// import { useState } from "react";
 import { useLocation } from "react-router";
 import { useMatches } from "../../hooks/useMatches";
 import { groupMatchesByMonth } from "../../utils/groupMatchesByMonth";
 import { MatchGroupByMonth } from "../Matchs/MatchGroupByMonth";
 
 export const Matchs = () => {
-  // const [visibleMatches, setVisibleMatches] = useState(6);
   const location = useLocation();
   const competition = location.state?.competition.id;
 
   const { matches, loading, error } = useMatches(competition);
 
-// Tri des matchs du plus récent au plus ancien
+  /** Tri des matchs du plus récent au plus ancien */ 
   const sortedMatches = matches ? [...matches].sort(
-    (a, b) => new Date(b.utcDate) - new Date(a.utcDate)
+    (a, b) => new Date(b.starting_at) - new Date(a.starting_at)
   ) : [];
 
   const groupedMatches = groupMatchesByMonth(sortedMatches);
-
-// Afficher les matchs par 6
-  // const showMoreMatches = () => {
-  //   setVisibleMatches((prev) => prev + 6);
-  // };
 
   if (loading)
     return <p className="text-white text-center mt-5">Chargement des matchs...</p>;
@@ -37,8 +30,6 @@ export const Matchs = () => {
               key={month}
               month={month}
               matches={matches}
-              // visibleMatches={visibleMatches}
-              // onShowMore={showMoreMatches}
             />
           ))
         ) : (

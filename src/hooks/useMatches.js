@@ -8,12 +8,19 @@ export const useMatches = (competitionId) => {
     useEffect(() => {
         const fetchMatches = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/schedules/teams/${competitionId}`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/competitions/${competitionId}/matches`);
+
                 if (!response.ok){
                     throw new Error('Impossible de récupérer les matchs');
                 };
+
                 const data = await response.json();
-                setMatches(data.matches || []);
+                
+                const stages = Array.isArray(data) ? data : [data];
+                const allRounds = stages.flatMap(stage => stage.rounds || []);
+                const allFixtures = allRounds.flatMap(round => round.fixtures || []);
+
+                setMatches(allFixtures || []);
             } catch(e){
                 setError(e.message)
             } finally {
