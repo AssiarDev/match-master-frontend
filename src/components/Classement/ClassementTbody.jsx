@@ -11,7 +11,7 @@ export const ClassementTbody = ({ item, teamId = null }) => {
     );
   }
 
-  const isSelected = teamId ? item.team.id === Number(teamId) : false;
+  const isSelected = teamId ? item.team_id === Number(teamId) : false;
 
   let borderColor = '';
   if (item.position <= 4) borderColor = 'border-l-4 border-blue-500';
@@ -30,18 +30,18 @@ export const ClassementTbody = ({ item, teamId = null }) => {
         <td className="px-2 py-2 text-center">{item.position}</td>
 
         <td className="px-2 py-2 text-left flex items-center gap-2 whitespace-nowrap">
-          <img src={item.team.crest} alt={item.team.name} className="h-5" />
-          {item.team.shortName}
+          <img src={item.team_image} alt={item.team_name} className="h-5" />
+          {item.team_name}
         </td>
 
         <td className="px-2 py-2 text-center">{item.points}</td>
-        <td className="px-2 py-2 text-center hidden sm:table-cell">{item.playedGames}</td>
+        <td className="px-2 py-2 text-center hidden sm:table-cell">{item.played}</td>
         <td className="px-2 py-2 text-center hidden sm:table-cell">{item.won}</td>
         <td className="px-2 py-2 text-center hidden sm:table-cell">{item.draw}</td>
         <td className="px-2 py-2 text-center hidden sm:table-cell">{item.lost}</td>
-        <td className="px-2 py-2 text-center hidden md:table-cell">{item.goalsFor}</td>
-        <td className="px-2 py-2 text-center hidden md:table-cell">{item.goalsAgainst}</td>
-        <td className="px-2 py-2 text-center hidden md:table-cell">{item.goalDifference}</td>
+        <td className="px-2 py-2 text-center hidden md:table-cell">{item.goals_for}</td>
+        <td className="px-2 py-2 text-center hidden md:table-cell">{item.goals_against}</td>
+        <td className="px-2 py-2 text-center hidden md:table-cell">{item.goal_diff}</td>
       </tr>
     </tbody>
   );
