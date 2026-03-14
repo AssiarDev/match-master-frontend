@@ -12,14 +12,17 @@ export const useFilteredMatchesByTeam = (leagueId, teamId, filter) => {
 
                 if(!response.ok) throw new Error('Erreur API');
                 const data = await response.json();
-                console.log('Raw API response :', data)
 
-                const filtered = data.matches.filter(
-                    (match) =>
-                    match.homeTeam.id === Number(teamId) ||
-                    match.awayTeam.id === Number(teamId)
+                const stages = Array.isArray(data) ? data : [data];
+
+                const allRounds = stages.flatMap(stage => stage.rounds || []);
+
+                const allFixtures = allRounds.flatMap(round => round.fixtures || []);
+
+                const filtered = allFixtures.filter(fixture =>
+                  fixture.participants?.some(p => p.id === Number(teamId))
                 );
-                console.log(filtered)
+
                 setMatches(filtered)
             } catch(e) {
                 console.error('Une erreur esr survenue :', e.message)
@@ -32,12 +35,12 @@ export const useFilteredMatchesByTeam = (leagueId, teamId, filter) => {
     const now = new Date();
     return matches
       .filter((match) => {
-        const matchDate = new Date(match.utcDate);
+        const matchDate = new Date(match.starting_at);
         if (filter === "upcoming") return matchDate > now;
         if (filter === "finished") return matchDate <= now;
         return true;
       })
-      .sort((a, b) => new Date(b.utcDate) - new Date(a.utcDate));
+      .sort((a, b) => new Date(b.starting_at) - new Date(a.starting_at));
     }, [matches, filter]);
 
   return filteredMatches;
