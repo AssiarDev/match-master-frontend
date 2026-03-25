@@ -28,7 +28,7 @@ export const useLogin = () => {
 
       if (response.ok) {
         await checkAuth()
-        onSuccess?.(); // Appelle un callback si fourni (ex: fermer modal)
+        onSuccess?.(); 
         navigate("/favoris");
       } else {
         setError(data?.message || "Identifiants invalides");
