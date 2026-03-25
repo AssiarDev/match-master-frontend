@@ -19,12 +19,12 @@ export const useTeamsByLeague = (leagueId) => {
                 }
 
                 const teams = result
-                .filter(team => team.name)
-                .map(team => ({
-                    id: team.id,
-                    name: team.name,
-                    image: team.image,
-                    shortName: team.shortName,
+                .filter(item => item.team?.name)
+                .map(item => ({
+                    id: item.team.id,
+                    name: item.team.name,
+                    image: item.team.image_path,
+                    shortName: item.team.short_code,
                 }));
 
                 setTeams(teams)
