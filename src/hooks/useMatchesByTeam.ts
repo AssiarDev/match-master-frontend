@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useMemo } from 'react'
 import type { Match } from '../types'
+import { useFetch } from './useFetch'
 
 interface RawMatchData {
   matches: Array<{
@@ -12,32 +13,18 @@ interface RawMatchData {
 }
 
 export const useMatchesByTeam = (leagueId?: number | string, teamId?: number | string) => {
-  const [matches, setMatches] = useState<Match[]>([])
+  const { data } = useFetch<RawMatchData>(
+    leagueId && teamId
+      ? `${import.meta.env.VITE_API_URL}/competitions/${leagueId}/matches`
+      : null
+  )
 
-  useEffect(() => {
-    if (!leagueId || !teamId) return
-
-    const fetchMatches = async () => {
-      try {
-        const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/competitions/${leagueId}/matches`
-        )
-        if (!res.ok) throw new Error('Erreur API')
-
-        const data: RawMatchData = await res.json()
-        const teamMatches = data.matches.filter(
-          match =>
-            match.homeTeam.id === Number(teamId) ||
-            match.awayTeam.id === Number(teamId)
-        )
-        setMatches(teamMatches as unknown as Match[])
-      } catch (err) {
-        console.error('useMatchesByTeam :', (err as Error).message)
-      }
-    }
-
-    fetchMatches()
-  }, [leagueId, teamId])
-
-  return matches
+  return useMemo<Match[]>(() => {
+    if (!data?.matches) return []
+    return data.matches.filter(
+      match =>
+        match.homeTeam.id === Number(teamId) ||
+        match.awayTeam.id === Number(teamId)
+    ) as unknown as Match[]
+  }, [data, teamId])
 }

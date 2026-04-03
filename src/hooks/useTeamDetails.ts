@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import type { StandingEntry } from '../types'
+import { useFetch } from './useFetch'
 
 interface TeamDetail {
   id: number
@@ -10,34 +10,15 @@ interface TeamDetail {
 }
 
 export const useTeamDetails = (teamId?: number | string, leagueId?: number | string) => {
-  const [team, setTeam] = useState<TeamDetail | null>(null)
-  const [standings, setStandings] = useState<StandingEntry[]>([])
-  const [loading, setLoading] = useState(true)
+  const enabled = Boolean(teamId && leagueId)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [teamRes, standingsRes] = await Promise.all([
-          fetch(`${import.meta.env.VITE_API_URL}/teams/${teamId}`),
-          fetch(`${import.meta.env.VITE_API_URL}/standings/${leagueId}`),
-        ])
+  const { data: team, loading } = useFetch<TeamDetail>(
+    enabled ? `${import.meta.env.VITE_API_URL}/teams/${teamId}` : null
+  )
 
-        if (!teamRes.ok || !standingsRes.ok) throw new Error('Erreur serveur')
+  const { data: standingsData } = useFetch<StandingEntry[]>(
+    enabled ? `${import.meta.env.VITE_API_URL}/standings/${leagueId}` : null
+  )
 
-        const teamData: TeamDetail = await teamRes.json()
-        const standingsData: StandingEntry[] = await standingsRes.json()
-
-        setTeam(teamData)
-        setStandings(standingsData)
-      } catch (e) {
-        console.error('Erreur:', (e as Error).message)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    if (teamId && leagueId) fetchData()
-  }, [teamId, leagueId])
-
-  return { team, standings, loading }
+  return { team, standings: standingsData ?? [], loading }
 }

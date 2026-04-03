@@ -1,31 +1,16 @@
-import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import type { Favorite } from '../types'
+import { useFetch } from './useFetch'
 
 export const useFavorite = () => {
-  const [favorite, setFavorite] = useState<Favorite[]>([])
   const { user } = useAuth()
-  const [error, setError] = useState<string | null>(null)
 
-  const fetchFavorite = async () => {
-    if (!user?.id) return
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/protected/users/${user.id}/favorites`,
-        { credentials: 'include' }
-      )
-      if (!response.ok) throw new Error('Erreur lors de la reponse.')
+  const { data, error, refresh } = useFetch<Favorite[]>(
+    user?.id
+      ? `${import.meta.env.VITE_API_URL}/protected/users/${user.id}/favorites`
+      : null,
+    { fetchOptions: { credentials: 'include' } }
+  )
 
-      const data: Favorite[] = await response.json()
-      setFavorite(data)
-    } catch (e) {
-      setError((e as Error).message)
-    }
-  }
-
-  useEffect(() => {
-    fetchFavorite()
-  }, [user])
-
-  return { favorite, error, refreshFavorites: fetchFavorite }
+  return { favorite: data ?? [], error, refreshFavorites: refresh }
 }
