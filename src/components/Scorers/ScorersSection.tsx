@@ -1,0 +1,29 @@
+import type { Scorer } from '../../types'
+import { ScorersCard } from './ScorersCard'
+
+interface ScorersSectionProps {
+  scorers: Scorer[]
+}
+
+export const ScorersSection = ({ scorers }: ScorersSectionProps) => {
+  return (
+    <section className="flex flex-col gap-4">
+      <h1 className="font-bold text-lg sm:text-xl">Meilleurs buteurs</h1>
+
+      <div className="p-4 border border-gray-800 rounded-lg flex flex-col gap-2">
+        {scorers.length > 0 ? (
+          scorers.map((scorer) => (
+            <ScorersCard
+              key={scorer.id}
+              playerName={scorer.player_name}
+              goals={scorer.total}
+              image={scorer.player_image}
+            />
+          ))
+        ) : (
+          <p className="text-gray-500 text-sm">Aucun buteur disponible.</p>
+        )}
+      </div>
+    </section>
+  )
+}
