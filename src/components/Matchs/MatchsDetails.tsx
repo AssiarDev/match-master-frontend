@@ -1,11 +1,23 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DatePickerCarousel } from '../DatePicker/DatePickerCaroussel'
 import { CompetitionGroup } from '../Competitions/CompetitionGroup'
 import { useMatchByDate } from '../../hooks/useMatchByDate'
+import { useLocation } from 'react-router'
+import { Toast } from '../Toast/Toast'
 
 export const MatchsDetails = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const { matchesByDate, error } = useMatchByDate(selectedDate)
+  const location = useLocation()
+  const message = location.state?.message
+  const [showToast, setShowToast] = useState(!!message)
+
+  useEffect(() => {
+    if (!message) return
+    window.history.replaceState({}, '')
+    const timer = setTimeout(() => setShowToast(false), 4000)
+    return () => clearTimeout(timer)
+  }, [])
 
   const formattedDate = selectedDate.toLocaleDateString('fr-FR', {
     weekday: 'long',
@@ -15,6 +27,7 @@ export const MatchsDetails = () => {
   })
 
   return (
+    <>
     <div className="w-full max-w-6xl mx-auto flex flex-col gap-6 py-8">
       {error ? (
         <p className="text-red-500 text-center">
@@ -53,5 +66,7 @@ export const MatchsDetails = () => {
         </>
       )}
     </div>
+    {message && <Toast message={message} show={showToast} />}
+    </>
   )
 }
