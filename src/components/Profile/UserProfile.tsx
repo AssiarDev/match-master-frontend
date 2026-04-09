@@ -1,8 +1,10 @@
 import { useAuth } from "@/context/AuthContext"
 import { FiUser } from "react-icons/fi"
-import { Link } from "react-router"
 import { useLogout } from "@/hooks/useLogout"
 import { useDeleteProfile } from "@/hooks/useDeleteProfile"
+import { useState } from "react"
+import { EditUsernameModal } from "./EditUsernameModal"
+import { EditPasswordModal } from "./EditPasswordModal"
 
 const cardClass = "border border-gray-700 rounded-xl shadow-md p-4 w-full bg-zinc-900 text-white transition duration-300 hover:shadow-lg hover:border-orange-800 flex flex-col gap-4"
 
@@ -11,6 +13,8 @@ export const UserProfile = () => {
     const { user } = useAuth()
     const logout = useLogout()
     const deleteProfile = useDeleteProfile()
+    const [isUsernameOpen, setIsUsernameOpen] = useState(false)
+    const [isPasswordOpen, setIsPasswordOpen] = useState(false)
 
     return (
         <div className="flex flex-col gap-5 w-full max-w-5xl mx-auto">
@@ -26,11 +30,15 @@ export const UserProfile = () => {
                 <div className={cardClass}>
                     <div className="flex justify-between">
                         <h3 className="font-bold">Username</h3>
-                        <Link to='' className="text-orange-500 hover:underline">Modifier</Link>
+                        <button onClick={() => setIsUsernameOpen(true)} className="text-orange-500 hover:underline">
+                            Modifier
+                        </button>
                     </div>
                     <div className="flex justify-between">
                         <h3 className="font-bold">Mot de passe</h3>
-                        <Link to='' className="text-orange-500 hover:underline">Modifier</Link>
+                        <button onClick={() => setIsPasswordOpen(true)} className="text-orange-500 hover:underline">
+                            Modifier
+                        </button>
                     </div>
                     <div className="flex justify-between">
                         <h3 className="font-bold">Date d'inscription</h3>
@@ -62,6 +70,8 @@ export const UserProfile = () => {
             <div className="flex justify-center">
                 <button onClick={() => deleteProfile(user?.id)} className="text-red-500 hover:underline cursor-pointer">Supprimer mon compte</button>
             </div>
+            {isUsernameOpen && <EditUsernameModal onClose={() => setIsUsernameOpen(false)}/>}
+            {isPasswordOpen && <EditPasswordModal onClose={() => setIsPasswordOpen(false)}/>}
         </div>
     )
 }

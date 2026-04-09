@@ -34,11 +34,18 @@ export const Navbar = () => {
               {isMenuOpen && (
                 <div className="absolute right-0 mt-2 bg-gray-800 rounded-md text-sm shadow-lg z-10">
                   <Link
+                    to="/user-profile"
+                    className="block px-4 py-2 hover:bg-gray-700"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Mon profil
+                  </Link>
+                  <Link
                     to="/favoriteUser"
                     className="block px-4 py-2 hover:bg-gray-700"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Favoris
+                    Mes favoris
                   </Link>
                   <button
                     onClick={logout}
