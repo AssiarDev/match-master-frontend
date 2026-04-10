@@ -3,7 +3,13 @@ import { FormEvent, useState } from "react"
 import { useUpdateInfoUser } from "@/hooks/useUpdateInfoUser"
 import { useAuth } from "@/context/AuthContext"
 
-export const EditPasswordModal = ({ onClose }: { onClose: () => void}) => {
+export const EditPasswordModal = ({ 
+    onClose, 
+    onSuccess 
+}: { 
+    onClose: () => void
+    onSuccess: (message: string) => void
+}) => {
     const [open, setOpen] = useState(true)
     const { error, updateUser, loading } = useUpdateInfoUser()
     const { user } = useAuth()
@@ -15,7 +21,10 @@ export const EditPasswordModal = ({ onClose }: { onClose: () => void}) => {
         const newPassword = (form[1] as HTMLInputElement).value
         const confirmPassword = (form[2] as HTMLInputElement).value
         const success = await updateUser(user!.id, undefined, currentPassword, newPassword, confirmPassword)
-        if (success) onClose()
+        if (success) {
+            onClose()
+            onSuccess('Mot de passe mis à jour avec succès')
+        }
     }
 
     const hasError = Boolean(error)

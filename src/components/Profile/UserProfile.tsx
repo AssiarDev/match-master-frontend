@@ -5,6 +5,7 @@ import { useDeleteProfile } from "@/hooks/useDeleteProfile"
 import { useState } from "react"
 import { EditUsernameModal } from "./EditUsernameModal"
 import { EditPasswordModal } from "./EditPasswordModal"
+import { Toast } from "../Toast/Toast"
 
 const cardClass = "border border-gray-700 rounded-xl shadow-md p-4 w-full bg-zinc-900 text-white transition duration-300 hover:shadow-lg hover:border-orange-800 flex flex-col gap-4"
 
@@ -15,6 +16,14 @@ export const UserProfile = () => {
     const deleteProfile = useDeleteProfile()
     const [isUsernameOpen, setIsUsernameOpen] = useState(false)
     const [isPasswordOpen, setIsPasswordOpen] = useState(false)
+    const [toastMessage, setToastMessage] = useState('')
+    const [showToast, setShowToast] = useState(false)
+
+    const handleSuccess = (message: string) => {
+        setToastMessage(message)
+        setShowToast(true)
+        setTimeout(() => setShowToast(false), 4000)
+    }
 
     return (
         <div className="flex flex-col gap-5 w-full max-w-5xl mx-auto">
@@ -71,7 +80,8 @@ export const UserProfile = () => {
                 <button onClick={() => deleteProfile(user?.id)} className="text-red-500 hover:underline cursor-pointer">Supprimer mon compte</button>
             </div>
             {isUsernameOpen && <EditUsernameModal onClose={() => setIsUsernameOpen(false)}/>}
-            {isPasswordOpen && <EditPasswordModal onClose={() => setIsPasswordOpen(false)}/>}
+            {isPasswordOpen && <EditPasswordModal onSuccess={handleSuccess} onClose={() => setIsPasswordOpen(false)}/>}
+            {toastMessage && <Toast message={toastMessage} show={showToast} />}
         </div>
     )
 }
