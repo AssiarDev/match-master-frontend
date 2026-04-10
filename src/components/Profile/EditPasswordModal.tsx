@@ -65,6 +65,11 @@ export const EditPasswordModal = ({
                             hasError ? 'border-red-500 focus:border-red-500' : 'focus:border-amber-500'
                         }`}
                     />
+                    <ul className="text-xs text-gray-400 space-y-1">
+                        <li>• 8 caractères minimum</li>
+                        <li>• 1 majuscule requise</li>
+                        <li>• 1 caractère spécial requis</li>
+                    </ul>
                     <input
                         type="password"
                         required
