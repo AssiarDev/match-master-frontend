@@ -72,6 +72,7 @@ export interface Stage {
 
 export interface LeagueMatchGroup {
   flag?: string
+  leagueId?: number
   matches: Match[]
 }
 
