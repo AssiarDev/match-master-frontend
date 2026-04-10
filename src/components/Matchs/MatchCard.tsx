@@ -1,4 +1,5 @@
 import type { Match, ScoreDetail, ScoresWrapper, MatchParticipant } from '../../types'
+import { FavoriteButton } from '../Favorite/FavoriteButton'
 
 interface NormalizedScore {
   home: number
@@ -30,9 +31,10 @@ const extractFinalScore = (rawScores: Match['scores']): NormalizedScore => {
 
 interface MatchCardProps {
   item: Match
+  leagueId?: number
 }
 
-export const MatchCard = ({ item }: MatchCardProps) => {
+export const MatchCard = ({ item, leagueId }: MatchCardProps) => {
   if (!item) return null
 
   const home: MatchParticipant | undefined = item.participants?.find(
@@ -68,6 +70,7 @@ export const MatchCard = ({ item }: MatchCardProps) => {
             className="w-14 h-14 rounded-full object-contain"
           />
           <p className="text-sm font-medium mt-2">{home?.short_code || home?.name}</p>
+          {home && <FavoriteButton teamId={home?.id} teamName={home?.name} competitionId={leagueId} />}
         </div>
 
         <div className="flex flex-col items-center">
@@ -83,6 +86,7 @@ export const MatchCard = ({ item }: MatchCardProps) => {
             className="w-14 h-14 rounded-full object-contain"
           />
           <p className="text-sm font-medium mt-2">{away?.short_code || away?.name}</p>
+          {away && <FavoriteButton teamId={away?.id} teamName={away?.name} competitionId={leagueId} />}
         </div>
       </div>
 
