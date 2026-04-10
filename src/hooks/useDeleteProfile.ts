@@ -18,7 +18,6 @@ export const useDeleteProfile = () => {
                 throw new Error('Echec tentative de suppression du compte')
             }
             const data = await response.json()
-            console.log('data :', data)
 
             setIsAuthenticated(false)
             setUser(null)
