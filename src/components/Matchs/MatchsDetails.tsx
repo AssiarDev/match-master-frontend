@@ -56,6 +56,7 @@ export const MatchsDetails = () => {
                 name={name}
                 flag={data.flag}
                 matches={data.matches}
+                leagueId={data.leagueId}
               />
             ))
           ) : (
