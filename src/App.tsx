@@ -9,7 +9,6 @@ import { Live } from './components/LiveMatch/Live'
 import { Competitions } from './components/Competitions/Competitions'
 import { CompetitionsDetails } from './components/Competitions/CompetitionsDetails'
 import { LoginModal } from './components/LoginModal/LoginModal'
-import { SelectFavoriteTeam } from './components/Selector/SelectFavoriteTeam'
 import { FavoriteModal } from './components/FavoriteModal/FavoriteModal'
 import { Header } from './components/Header/Header'
 import { UserProfile } from './components/Profile/UserProfile'
@@ -31,7 +30,6 @@ function App() {
             <Route path="*" element={<NoMatch />} />
             <Route path="/" element={<MatchsDetails />} />
             <Route path="/teams/:teamId" element={<TeamsDetails />} />
-            <Route path="/favoris" element={<SelectFavoriteTeam />} />
             <Route path="/live" element={<Live />} />
             <Route path="/competitions" element={<Competitions />} />
             <Route path="/competition/:competitionId" element={<CompetitionsDetails />} />

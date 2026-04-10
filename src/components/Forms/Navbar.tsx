@@ -19,9 +19,6 @@ export const Navbar = () => {
           <li>
             <Link to="/competitions" className="hover:underline">Compétitions</Link>
           </li>
-          <li>
-            <Link to="/favoris" className="hover:underline">Favoris</Link>
-          </li>
           {isAuthenticated ? (
             <li className="relative">
               <button
