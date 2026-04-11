@@ -12,6 +12,7 @@ import { LoginModal } from './components/LoginModal/LoginModal'
 import { SelectFavoriteTeam } from './components/Selector/SelectFavoriteTeam'
 import { FavoriteModal } from './components/FavoriteModal/FavoriteModal'
 import { Header } from './components/Header/Header'
+import { UserProfile } from './components/Profile/UserProfile'
 
 function App() {
   const [isMobileMenu, setIsMobileMenu] = useState(false)
@@ -35,6 +36,7 @@ function App() {
             <Route path="/competitions" element={<Competitions />} />
             <Route path="/competition/:competitionId" element={<CompetitionsDetails />} />
             <Route path="/favoriteUser" element={<FavoriteModal />} />
+            <Route path='/user-profile' element={<UserProfile />}/>
           </Routes>
         </main>
         <Footer />
