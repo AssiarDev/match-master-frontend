@@ -25,7 +25,7 @@ export const useLogin = () => {
       if (response.ok) {
         await checkAuth()
         onSuccess?.()
-        navigate('/favoris')
+        navigate('/')
       }
     } catch (err) {
       setError('Erreur de connexion au serveur')

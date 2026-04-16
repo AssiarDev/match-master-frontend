@@ -4,10 +4,11 @@ import { MatchCard } from '../Matchs/MatchCard'
 interface CompetitionGroupProps {
   name: string
   flag?: string
+  leagueId?: number
   matches: Match[]
 }
 
-export const CompetitionGroup = ({ name, flag, matches }: CompetitionGroupProps) => (
+export const CompetitionGroup = ({ name, flag, leagueId, matches }: CompetitionGroupProps) => (
   <div className="mb-8">
     <div className="flex gap-3 text-center mb-4">
       <h2 className="text-2xl font-bold text-white">{name}</h2>
@@ -15,7 +16,7 @@ export const CompetitionGroup = ({ name, flag, matches }: CompetitionGroupProps)
     </div>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-2">
       {matches.map((match) => (
-        <MatchCard key={match.id} item={match} />
+        <MatchCard key={match.id} item={match} leagueId={leagueId}/>
       ))}
     </div>
   </div>
