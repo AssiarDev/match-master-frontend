@@ -3,6 +3,7 @@ import { CompetitionTabs } from './CompetitionTabs'
 import type { Competition } from '../../types'
 import { FavoriteButton } from '../Favorite/FavoriteButton'
 
+/** Competition detail page: logo, name, favorite button, and tabbed content (Resume, Classement, Matchs). */
 export const CompetitionsDetails = () => {
   const location = useLocation()
   const competition: Competition = location.state?.competition

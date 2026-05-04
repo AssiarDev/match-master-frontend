@@ -5,6 +5,10 @@ interface ClassementTbodyProps {
   teamId?: number | string | null
 }
 
+/**
+ * One row of the standings table.
+ * Highlights the row if `teamId` matches and applies a colored left border based on position.
+ */
 export const ClassementTbody = ({ item, teamId = null }: ClassementTbodyProps) => {
   if (!item) {
     return (

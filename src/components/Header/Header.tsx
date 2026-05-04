@@ -9,6 +9,7 @@ interface HeaderProps {
   setIsMobileMenu: (value: boolean) => void
 }
 
+/** Sticky application header: logo, desktop Navbar, SearchBar, and mobile BurgerMenu/MobileMenu. */
 export const Header = ({ isMobileMenu, setIsMobileMenu }: HeaderProps) => {
   return (
     <header className="h-20 w-full sticky top-0 z-50 shadow-lg shadow-amber-900/50">

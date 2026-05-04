@@ -6,6 +6,7 @@ import { useDeleteFavorite } from '../../hooks/useDeleteFavorite'
 import { useLeagueFavorite } from '../../hooks/useLeagueFavorite'
 import { useDeleteLeagueFavorite } from '../../hooks/useDeleteLeagueFavorite'
 
+/** Modal displaying the user's favorite clubs and leagues, with navigation links and delete actions for each. */
 export const FavoriteModal = () => {
   const [open, setOpen] = useState(true)
   const navigate = useNavigate()

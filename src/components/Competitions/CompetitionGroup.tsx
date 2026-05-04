@@ -8,6 +8,7 @@ interface CompetitionGroupProps {
   matches: Match[]
 }
 
+/** Groups and displays match cards under a competition name and flag on the home page. */
 export const CompetitionGroup = ({ name, flag, leagueId, matches }: CompetitionGroupProps) => (
   <div className="mb-8">
     <div className="flex gap-3 text-center mb-4">

@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useRegister } from '../../hooks/useRegister'
 import type { FormEvent } from 'react'
 
+/** Modal dialog for user registration. Validates password confirmation and redirects to login on success. */
 export const RegisterModal = () => {
   const [open, setOpen] = useState(true)
   const { register, loading, error } = useRegister()

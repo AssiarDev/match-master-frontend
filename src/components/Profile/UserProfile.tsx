@@ -9,6 +9,7 @@ import { Toast } from "../Toast/Toast"
 
 const cardClass = "border border-gray-700 rounded-xl shadow-md p-4 w-full bg-zinc-900 text-white transition duration-300 hover:shadow-lg hover:border-orange-800 flex flex-col gap-4"
 
+/** User profile page: displays account info, notification/theme settings, logout, and account deletion. */
 export const UserProfile = () => {
 
     const { user } = useAuth()

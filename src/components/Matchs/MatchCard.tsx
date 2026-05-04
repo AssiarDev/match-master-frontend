@@ -34,6 +34,10 @@ interface MatchCardProps {
   leagueId?: number
 }
 
+/**
+ * Card displaying a match with home/away teams, score (if finished), and favorite buttons.
+ * Score normalization handles both array and wrapped API response shapes.
+ */
 export const MatchCard = ({ item, leagueId }: MatchCardProps) => {
   if (!item) return null
 

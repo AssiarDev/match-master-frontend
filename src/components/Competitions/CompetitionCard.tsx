@@ -5,6 +5,7 @@ interface CompetitionCardProps {
   competition: Competition
 }
 
+/** List item card for a competition. Links to the competition detail page, passing competition data via route state. */
 export const CompetitionCard = ({ competition }: CompetitionCardProps) => (
   <li className="bg-zinc-800 p-3 rounded-md hover:bg-zinc-700 transition">
     <Link

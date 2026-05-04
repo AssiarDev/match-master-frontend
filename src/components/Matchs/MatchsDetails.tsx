@@ -5,6 +5,7 @@ import { useMatchByDate } from '../../hooks/useMatchByDate'
 import { useLocation } from 'react-router'
 import { Toast } from '../Toast/Toast'
 
+/** Home page: date picker carousel + matches grouped by competition for the selected date. Shows a toast on redirect messages. */
 export const MatchsDetails = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const { matchesByDate, error } = useMatchByDate(selectedDate)

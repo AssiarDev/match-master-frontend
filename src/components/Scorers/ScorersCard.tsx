@@ -4,6 +4,7 @@ interface ScorersCardProps {
   image?: string
 }
 
+/** One row in the top scorers list: player photo, name, and goal count. */
 export const ScorersCard = ({ playerName, goals, image }: ScorersCardProps) => {
   return (
     <div className="flex items-center justify-between border-b border-gray-800 pb-2">

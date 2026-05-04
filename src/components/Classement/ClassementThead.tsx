@@ -1,3 +1,4 @@
+/** Header row of the standings table (position, team, points, played, W/D/L, GF/GA/GD). */
 export const ClassmentThead = () => {
   return (
     <thead className="bg-stone-800 text-white text-xs sm:text-sm">

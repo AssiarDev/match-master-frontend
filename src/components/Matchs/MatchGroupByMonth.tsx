@@ -7,6 +7,7 @@ interface MatchGroupByMonthProps {
   matches?: Match[]
 }
 
+/** Displays matches for a given month with a "show more" button (6 items at a time). */
 export const MatchGroupByMonth = ({ month, matches = [] }: MatchGroupByMonthProps) => {
   const [visibleMatches, setVisibleMatches] = useState(6)
 

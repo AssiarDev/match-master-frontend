@@ -6,6 +6,7 @@ interface MatchsPreviewProps {
   onShowAll: (e: React.MouseEvent<HTMLAnchorElement>) => void
 }
 
+/** Horizontal scrollable preview of the latest finished matches. Includes a link to the full match list. */
 export const MatchsPreview = ({ matchs, onShowAll }: MatchsPreviewProps) => {
   if (!matchs?.length) {
     return (

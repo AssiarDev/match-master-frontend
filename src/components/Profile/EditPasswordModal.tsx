@@ -3,7 +3,8 @@ import { FormEvent, useState } from "react"
 import { useUpdateInfoUser } from "@/hooks/useUpdateInfoUser"
 import { useAuth } from "@/context/AuthContext"
 
-export const EditPasswordModal = ({ 
+/** Modal dialog to change the authenticated user's password. Calls `onSuccess` with a confirmation message on success. */
+export const EditPasswordModal = ({
     onClose, 
     onSuccess 
 }: { 

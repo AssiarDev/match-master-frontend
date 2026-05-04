@@ -31,6 +31,10 @@ const NextButton = ({ onClick }: ArrowButtonProps) => (
   </button>
 )
 
+/**
+ * Horizontal carousel showing a 30-day window centered on today.
+ * Highlights the selected date and calls `onDateChange` on click.
+ */
 export const DatePickerCarousel = ({ selectedDate, onDateChange }: DatePickerCarouselProps) => {
   const days = Array.from({ length: 30 }, (_, i) => {
     const day = new Date()

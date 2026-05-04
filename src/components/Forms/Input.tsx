@@ -8,6 +8,7 @@ interface InputProps {
   type?: string
 }
 
+/** Styled text input with a search icon. */
 export const Input = ({ placeholder, value, onChange, type }: InputProps) => {
   return (
     <div className="relative text-white">

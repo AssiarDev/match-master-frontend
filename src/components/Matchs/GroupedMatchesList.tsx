@@ -5,6 +5,7 @@ interface GroupedMatchesListProps {
   groupedMatches: Record<string, Match[]>
 }
 
+/** Renders a list of month groups from a pre-grouped matches map. Shows an empty state if no matches. */
 export const GroupedMatchesList = ({ groupedMatches }: GroupedMatchesListProps) => {
   if (!groupedMatches || Object.keys(groupedMatches).length === 0) {
     return (

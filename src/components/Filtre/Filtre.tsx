@@ -10,6 +10,7 @@ interface FiltreProps {
   onFilterChange: (value: FilterValue) => void
 }
 
+/** Toggle filter buttons to switch between upcoming and finished matches. */
 export const Filtre = ({ activeFilter, onFilterChange }: FiltreProps) => {
   const options: FilterOption[] = [
     { label: 'À venir', value: 'upcoming' },

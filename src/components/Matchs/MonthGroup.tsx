@@ -6,6 +6,7 @@ interface MonthgroupProps {
   matches?: Match[]
 }
 
+/** Renders a labeled section of match cards for a given month. */
 export const Monthgroup = ({ label, matches = [] }: MonthgroupProps) => {
   return (
     <section className="w-full px-4">

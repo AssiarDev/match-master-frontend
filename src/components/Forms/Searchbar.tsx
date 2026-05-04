@@ -9,6 +9,7 @@ interface TeamResult {
 
 const apiURL = import.meta.env.VITE_API_URL
 
+/** Team search bar with live filtering. Fetches all teams on mount and filters by name as the user types. */
 export const SearchBar = () => {
   const [query, setQuery] = useState('')
   const [teams, setTeams] = useState<TeamResult[]>([])

@@ -5,6 +5,7 @@ interface ScorersSectionProps {
   scorers: Scorer[]
 }
 
+/** Section listing the top scorers of a competition using ScorersCard rows. */
 export const ScorersSection = ({ scorers }: ScorersSectionProps) => {
   return (
     <section className="flex flex-col gap-4">

@@ -3,6 +3,7 @@ import { FormEvent, useState } from "react"
 import { useUpdateInfoUser } from "@/hooks/useUpdateInfoUser"
 import { useAuth } from "@/context/AuthContext"
 
+/** Modal dialog to change the authenticated user's username. Calls `onClose` on success. */
 export const EditUsernameModal = ({ onClose }: { onClose: () => void}) => {
     const [open, setOpen] = useState(true)
     const { error, updateUser, loading } = useUpdateInfoUser()

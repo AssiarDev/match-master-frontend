@@ -5,6 +5,7 @@ interface BurgerMenuProps {
   onToggle: () => void
 }
 
+/** Toggle button for the mobile navigation menu (hamburger / close icon). */
 export const BurgerMenu = ({ isOpen, onToggle }: BurgerMenuProps) => {
   return (
     <button

@@ -1,3 +1,4 @@
+/** Color-coded legend explaining the standings border indicators (Champions League, relegation, etc.). */
 export const ClassementLegende = () => {
   return (
     <div className="p-4 bg-neutral-950-100 text-white">

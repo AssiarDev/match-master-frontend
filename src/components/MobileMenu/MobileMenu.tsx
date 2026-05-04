@@ -7,6 +7,7 @@ interface MobileMenuProps {
   onClose: () => void
 }
 
+/** Slide-in mobile navigation menu with links and auth-aware user actions. */
 export const MobileMenu = ({ onClose }: MobileMenuProps) => {
   const { isAuthenticated, user } = useAuth()
   const logout = useLogout()

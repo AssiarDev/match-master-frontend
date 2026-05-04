@@ -14,6 +14,11 @@ interface FavoriteButtonProps {
     competitionId?: number
 }
 
+/**
+ * Star button to add or remove a club or league from the user's favorites.
+ * Redirects to login if the user is not authenticated.
+ * Behavior is conditioned on `competitionId`: league logic when present, club logic otherwise.
+ */
 export const FavoriteButton = ({ teamId, teamName, competitionId }: FavoriteButtonProps) => {
     const { isAuthenticated, user } = useAuth()
     const navigate = useNavigate()

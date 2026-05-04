@@ -4,6 +4,7 @@ import { FiUser } from 'react-icons/fi'
 import { useAuth } from '../../context/AuthContext'
 import { useLogout } from '../../hooks/useLogout'
 
+/** Desktop navigation bar with links to Live, Competitions, and user account menu (profile, favorites, logout). */
 export const Navbar = () => {
   const { isAuthenticated, user } = useAuth()
   const [isMenuOpen, setIsMenuOpen] = useState(false)

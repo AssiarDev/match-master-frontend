@@ -14,6 +14,7 @@ const tabs: Tab[] = [
   { id: 'matchs', label: 'Matchs' },
 ]
 
+/** Tab navigation for a competition detail page: Résumé, Classement, Matchs. */
 export const CompetitionTabs = () => {
   const [activeTab, setActiveTab] = useState('resume')
 

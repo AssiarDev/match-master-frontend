@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useLogin } from '../../hooks/useLogin'
 import type { FormEvent } from 'react'
 
+/** Modal dialog for user login. Redirects to home on success, or closes if opened in-context. */
 export const LoginModal = () => {
   const [open, setOpen] = useState(true)
   const navigate = useNavigate()

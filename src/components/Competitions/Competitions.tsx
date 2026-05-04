@@ -1,6 +1,7 @@
 import { useCompetitions } from '../../hooks/useCompetitions'
 import { CompetitionCard } from './CompetitionCard'
 
+/** Displays the list of available competitions as a card list. */
 export const Competitions = () => {
   const { competitions, error } = useCompetitions()
 

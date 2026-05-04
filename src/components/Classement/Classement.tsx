@@ -2,6 +2,7 @@ import { useLocation } from 'react-router'
 import { useStandings } from '../../hooks/useStandings'
 import { ClassementTable } from './ClassementTable'
 
+/** Fetches and displays the standings table for the current competition (read from route state). */
 export const Classement = () => {
   const location = useLocation()
   const competitionId = location.state?.competition?.id

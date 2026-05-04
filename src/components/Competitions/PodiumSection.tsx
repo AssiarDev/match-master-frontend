@@ -7,6 +7,7 @@ interface PodiumSectionProps {
   onShowAll: (e: React.MouseEvent<HTMLAnchorElement>) => void
 }
 
+/** Displays the top 3 teams of a competition standings with a link to the full standings tab. */
 export const PodiumSection = ({ podiumTeams, onShowAll }: PodiumSectionProps) => {
   if (!podiumTeams?.length) return null
 

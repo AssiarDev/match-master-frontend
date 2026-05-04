@@ -7,6 +7,7 @@ import { useFilteredMatchesByTeam } from '../../hooks/useFilteredMatchesByTeam'
 
 type FilterValue = 'upcoming' | 'finished'
 
+/** Fetches, filters (upcoming/finished), groups by month, and displays a team's matches. */
 export const MatchesList = () => {
   const location = useLocation()
   const selectedLeague = location.state?.selectedLeague

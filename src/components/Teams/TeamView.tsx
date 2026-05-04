@@ -16,6 +16,7 @@ interface TeamViewProps {
   teamId?: string
 }
 
+/** Renders a team detail page: badge + name header, standings table with legend, and match list. */
 export const TeamView = ({ team, standings, teamId }: TeamViewProps) => (
   <div className="w-full max-w-6xl mx-auto flex flex-col gap-8 px-4 py-6">
     <div className="flex justify-center items-center gap-3 bg-stone-800 border border-stone-700 rounded-lg px-4 py-3 text-white text-xl sm:text-2xl font-semibold">
