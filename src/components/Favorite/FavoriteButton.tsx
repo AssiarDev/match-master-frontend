@@ -3,10 +3,13 @@ import { useNavigate } from "react-router"
 import { useFavorite } from "@/hooks/useFavorite"
 import { useAddFavorite } from "@/hooks/useAddFavorite"
 import { useDeleteFavorite } from "@/hooks/useDeleteFavorite"
+import { useAddLeagueFavorite } from "@/hooks/useAddLeagueFavorite"
+import { useLeagueFavorite } from "@/hooks/useLeagueFavorite"
+import { useDeleteLeagueFavorite } from "@/hooks/useDeleteLeagueFavorite"
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 
 interface FavoriteButtonProps {
-    teamId: number
+    teamId?: number
     teamName: string
     competitionId?: number
 }
@@ -17,8 +20,11 @@ export const FavoriteButton = ({ teamId, teamName, competitionId }: FavoriteButt
     const { favorite, refreshFavorites } = useFavorite()
     const { deleteFavorite } = useDeleteFavorite()
     const { addFavorite } = useAddFavorite()
+    const { addLeagueFavorite } = useAddLeagueFavorite()
+    const { leagueFavorite, refreshLeagueFavorites } = useLeagueFavorite()
+    const { deleteLeagueFavorite } = useDeleteLeagueFavorite()
 
-    const isFavorite = favorite.some(fav => fav.id === teamId)
+    const isFavorite = competitionId ? leagueFavorite.some(fav => fav.id === competitionId) : favorite.some(fav => fav.id === teamId)
 
     const handleClick = async () => {
         if (!isAuthenticated || !user) {
@@ -27,11 +33,12 @@ export const FavoriteButton = ({ teamId, teamName, competitionId }: FavoriteButt
         }
 
         if (isFavorite) {
-            await deleteFavorite(teamId)
+            competitionId ? await deleteLeagueFavorite(competitionId) : await deleteFavorite(teamId!)
         } else {
-            await addFavorite(user.id, teamId, competitionId ?? 0)
+            competitionId ? await addLeagueFavorite(user.id, competitionId) : await addFavorite(user.id, teamId!, competitionId ?? 0)
         }
         refreshFavorites()
+        refreshLeagueFavorites()
     }
 
     return (
