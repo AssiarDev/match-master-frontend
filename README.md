@@ -28,7 +28,7 @@ L'objectif futur de Match Master est d'élargir ces fonctionnalités à **tous l
 
 ### Prérequis
 - Node.js >= 18
-- Le backend [match-master-backend](https://github.com/AssiarDev/match-master-backend) lancé localement
+- Le backend [match-master-backend](https://github.com/AssiarDev/match-master) lancé localement
 
 ### Variables d'environnement
 Créer un fichier `.env` à la racine :
