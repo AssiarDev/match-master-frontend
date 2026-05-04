@@ -1,6 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 
+/**
+ * Deletes the authenticated user's account.
+ * On success, clears the auth context and redirects to home.
+ *
+ * @returns `deleteProfile(userId)` function
+ */
 export const useDeleteProfile = () => {
     const { setIsAuthenticated, setUser } = useAuth()
     const navigate = useNavigate()

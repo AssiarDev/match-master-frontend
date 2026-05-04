@@ -8,6 +8,13 @@ const extractFixtures = (data: Stage | Stage[]): Match[] => {
   return allRounds.flatMap(round => round.fixtures ?? [])
 }
 
+/**
+ * Fetches all matches for a competition, flattening stages and rounds.
+ * The request is skipped if no competitionId is provided.
+ *
+ * @param competitionId - ID of the competition
+ * @returns `{ matches, loading, error }`
+ */
 export const useMatches = (competitionId?: number | string) => {
   const { data, loading, error } = useFetch<Stage | Stage[]>(
     competitionId

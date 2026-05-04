@@ -2,6 +2,12 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
+/**
+ * Handles user login. Updates the auth context and redirects to home on success.
+ * Accepts an optional `onSuccess` callback triggered after successful authentication.
+ *
+ * @returns `{ login, loading, error }`
+ */
 export const useLogin = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')

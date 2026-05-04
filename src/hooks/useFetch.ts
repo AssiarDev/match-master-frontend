@@ -11,6 +11,15 @@ interface UseFetchResult<T> {
   refresh: () => Promise<void>
 }
 
+/**
+ * Generic hook for GET requests.
+ * The request is triggered automatically and can be re-fired via `refresh`.
+ * Passing `null` or `undefined` as the url disables the request.
+ *
+ * @param url - URL of the resource to fetch (null/undefined = inactive)
+ * @param options - Native fetch options (e.g. credentials, headers)
+ * @returns `{ data, loading, error, refresh }`
+ */
 export const useFetch = <T>(
   url: string | null | undefined,
   options: UseFetchOptions = {}

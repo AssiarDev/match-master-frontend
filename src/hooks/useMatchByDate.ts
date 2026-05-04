@@ -4,6 +4,13 @@ import { useFetch } from './useFetch'
 const formatDate = (date: Date | string): string =>
   new Date(date).toISOString().split('T')[0]
 
+/**
+ * Fetches matches for a given date, grouped by league.
+ * The request is skipped if no date is provided.
+ *
+ * @param selectedDate - Date to fetch matches for (Date, ISO string, or null)
+ * @returns `{ matchesByDate, loading, error }`
+ */
 export const useMatchByDate = (selectedDate?: Date | string | null) => {
   const formattedDate = selectedDate ? formatDate(selectedDate) : null
 

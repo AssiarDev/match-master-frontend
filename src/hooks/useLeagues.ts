@@ -8,6 +8,12 @@ interface RawCompetition {
   emblem?: string
 }
 
+/**
+ * Fetches competitions and maps them to the `League` format (name, code, logo).
+ * Filters out entries without a name.
+ *
+ * @returns `{ leagues, loading }`
+ */
 export const useLeagues = () => {
   const { data, loading } = useFetch<RawCompetition[]>(
     `${import.meta.env.VITE_API_URL}/competitions`

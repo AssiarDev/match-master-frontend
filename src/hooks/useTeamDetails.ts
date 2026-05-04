@@ -9,6 +9,14 @@ interface TeamDetail {
   [key: string]: unknown
 }
 
+/**
+ * Fetches team details and league standings simultaneously.
+ * Both requests are skipped unless both teamId and leagueId are provided.
+ *
+ * @param teamId - ID of the team
+ * @param leagueId - ID of the league
+ * @returns `{ team, standings, loading }`
+ */
 export const useTeamDetails = (teamId?: number | string, leagueId?: number | string) => {
   const enabled = Boolean(teamId && leagueId)
 

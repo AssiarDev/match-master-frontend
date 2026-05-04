@@ -2,6 +2,13 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
+/**
+ * Handles user registration. Validates password confirmation,
+ * updates the auth context and redirects to login on success.
+ * Accepts an optional `onSuccess` callback.
+ *
+ * @returns `{ register, loading, error }`
+ */
 export const useRegister = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')

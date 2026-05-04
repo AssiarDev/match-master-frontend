@@ -1,5 +1,10 @@
 import { useState } from 'react'
 
+/**
+ * Removes a club from the authenticated user's favorites.
+ *
+ * @returns `{ deleteFavorite, error }`
+ */
 export const useDeleteFavorite = () => {
   const [error, setError] = useState<string | null>(null)
 

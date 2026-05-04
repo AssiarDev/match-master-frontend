@@ -4,6 +4,16 @@ import { useFetch } from './useFetch'
 
 type MatchFilter = 'upcoming' | 'finished' | 'all'
 
+/**
+ * Fetches and filters matches for a specific team within a league.
+ * Supports filtering by match status: 'upcoming', 'finished', or 'all'.
+ * Results are sorted by date descending.
+ *
+ * @param leagueId - ID of the league
+ * @param teamId - ID of the team
+ * @param filter - Match filter: 'upcoming' | 'finished' | 'all' (default: 'all')
+ * @returns Filtered and sorted `Match[]`
+ */
 export const useFilteredMatchesByTeam = (
   leagueId?: number | string,
   teamId?: number | string,

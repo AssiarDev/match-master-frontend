@@ -11,6 +11,13 @@ interface RawTeamItem {
   }
 }
 
+/**
+ * Fetches and maps teams for a given league.
+ * The request is skipped if no leagueId is provided.
+ *
+ * @param leagueId - ID of the league
+ * @returns `{ teams, loading }`
+ */
 export const useTeamsByLeague = (leagueId?: number | string) => {
   const { data, loading } = useFetch<RawTeamItem[]>(
     leagueId ? `${import.meta.env.VITE_API_URL}/competitions/${leagueId}/teams` : null

@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+/**
+ * Adds a league to the authenticated user's favorites.
+ *
+ * @returns `{ addLeagueFavorite, error }`
+ */
 export const useAddLeagueFavorite = () => {
     const [error, setError] = useState<string | null>(null)
 

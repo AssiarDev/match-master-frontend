@@ -2,6 +2,13 @@ import { useMemo } from 'react'
 import type { Match, Stage } from '../types'
 import { useFetch } from './useFetch'
 
+/**
+ * Fetches the 5 most recent finished matches (state_id === 5) for a competition,
+ * sorted by date descending.
+ *
+ * @param competitionId - ID of the competition
+ * @returns `Match[]` (max 5 results)
+ */
 export const useResumeMatchs = (competitionId?: number | string) => {
   const { data } = useFetch<Stage | Stage[]>(
     competitionId

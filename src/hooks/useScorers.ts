@@ -8,6 +8,13 @@ interface ScorerPage extends Array<Scorer> {
   }
 }
 
+/**
+ * Fetches all top scorers for a competition, handling pagination automatically.
+ * The request is skipped if no competitionId is provided.
+ *
+ * @param competitionId - ID of the competition
+ * @returns `{ scorers, error }`
+ */
 export const useScorers = (competitionId?: number | string) => {
   const [scorers, setScorers] = useState<Scorer[]>([])
   const [error, setError] = useState<string | null>(null)

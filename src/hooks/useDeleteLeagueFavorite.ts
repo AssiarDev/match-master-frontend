@@ -1,5 +1,10 @@
 import { useState } from 'react'
 
+/**
+ * Removes a league from the authenticated user's favorites.
+ *
+ * @returns `{ deleteLeagueFavorite, error }`
+ */
 export const useDeleteLeagueFavorite = () => {
   const [error, setError] = useState<string | null>(null)
 

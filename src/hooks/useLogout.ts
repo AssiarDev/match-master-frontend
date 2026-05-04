@@ -1,6 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
+/**
+ * Logs out the authenticated user.
+ * Clears the auth context and redirects to the login page.
+ *
+ * @returns `logout()` function
+ */
 export const useLogout = () => {
   const { setIsAuthenticated, setUser } = useAuth()
   const navigate = useNavigate()

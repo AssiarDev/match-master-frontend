@@ -12,6 +12,14 @@ interface RawMatchData {
   }>
 }
 
+/**
+ * Fetches matches for a specific team within a league.
+ * The request is skipped if either leagueId or teamId is missing.
+ *
+ * @param leagueId - ID of the league
+ * @param teamId - ID of the team
+ * @returns Filtered `Match[]`
+ */
 export const useMatchesByTeam = (leagueId?: number | string, teamId?: number | string) => {
   const { data } = useFetch<RawMatchData>(
     leagueId && teamId

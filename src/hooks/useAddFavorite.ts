@@ -1,5 +1,10 @@
 import { useState } from 'react'
 
+/**
+ * Adds a club to the authenticated user's favorites.
+ *
+ * @returns `{ addFavorite, error }`
+ */
 export const useAddFavorite = () => {
   const [error, setError] = useState<string | null>(null)
 

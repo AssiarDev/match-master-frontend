@@ -1,6 +1,12 @@
 import { useAuth } from "@/context/AuthContext"
 import { useState } from "react"
 
+/**
+ * Updates the authenticated user's profile (username and/or password).
+ * Refreshes the auth context on success.
+ *
+ * @returns `{ updateUser, loading, error }`
+ */
 export const useUpdateInfoUser = () => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)

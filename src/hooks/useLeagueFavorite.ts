@@ -2,6 +2,11 @@ import { useAuth } from "@/context/AuthContext";
 import { useFetch } from "./useFetch";
 import { Favorite } from "@/types";
 
+/**
+ * Fetches the authenticated user's league favorites.
+ *
+ * @returns `{ leagueFavorite, error, refreshLeagueFavorites }`
+ */
 export const useLeagueFavorite = () => {
   const { user } = useAuth()
 
