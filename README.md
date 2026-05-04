@@ -26,6 +26,38 @@ L'objectif futur de Match Master est d'élargir ces fonctionnalités à **tous l
 
 ## 🔧 Installation et lancement
 
+### Prérequis
+- Node.js >= 18
+- Le backend [match-master-backend](https://github.com/AssiarDev/match-master-backend) lancé localement
+
+### Variables d'environnement
+Créer un fichier `.env` à la racine :
+```env
+VITE_API_URL=http://localhost:3000
+```
+
+### Commandes
 ```sh
-npm install  # Installer les dépendances
-npm run dev  # Lancer le serveur de développement 
+npm install       # Installer les dépendances
+npm run dev       # Lancer le serveur de développement
+npm run build     # Build de production
+npm run preview   # Prévisualiser le build
+npm run lint      # Vérifier le code
+```
+
+## 📁 Structure du projet
+
+```
+src/
+├── components/     # Composants React organisés par domaine
+│   ├── Competitions/
+│   ├── Favorite/
+│   ├── FavoriteModal/
+│   ├── Matchs/
+│   ├── Teams/
+│   └── ...
+├── context/        # Contextes React (Auth)
+├── hooks/          # Hooks personnalisés (fetch, favoris, matchs...)
+├── types/          # Interfaces et types TypeScript
+└── utils/          # Fonctions utilitaires
+```
