@@ -29,6 +29,24 @@ L'objectif futur de Match Master est d'élargir ces fonctionnalités à **tous l
 ### Prérequis
 - Node.js >= 18
 - Le backend [match-master-backend](https://github.com/AssiarDev/match-master) lancé localement
+- [Cocogitto](https://docs.cocogitto.io/) pour les commits conventionnels
+
+#### Installer cocogitto
+
+**macOS**
+```sh
+brew install cocogitto
+```
+
+**Windows**
+```sh
+winget install cocogitto
+```
+
+Puis activer le hook git dans le repo :
+```sh
+cog install-hook commit-msg
+```
 
 ### Variables d'environnement
 Créer un fichier `.env` à la racine :

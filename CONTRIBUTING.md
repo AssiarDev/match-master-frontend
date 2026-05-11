@@ -2,10 +2,53 @@
 
 ## Workflow Git
 
-- Créer une branche depuis `develop` : `feat/nom-feature`, `fix/nom-bug`, `chore/nom-tâche`
+Ce projet utilise le **trunk-based development** : on travaille sur `main` directement ou via des branches courtes (< 2 jours).
+
+- Créer une branche depuis `main` : `feat/nom-feature`, `fix/nom-bug`, `chore/nom-tâche`
 - Un commit par changement logique
-- Ouvrir une Pull Request vers `develop`
-- Après validation, `develop` est mergée sur `main`
+- Ouvrir une Pull Request vers `main`
+- Pas de branche `develop`
+
+## Conventional Commits
+
+Tous les commits doivent respecter le format [Conventional Commits](https://www.conventionalcommits.org/) — enforced par un hook git via [cocogitto](https://docs.cocogitto.io/).
+
+```
+type(scope): description
+```
+
+| Type | Usage |
+|---|---|
+| `feat` | Nouvelle fonctionnalité |
+| `fix` | Correction de bug |
+| `chore` | Tâche de maintenance |
+| `refactor` | Refactoring sans changement de comportement |
+| `docs` | Documentation |
+| `style` | Formatage, style |
+| `test` | Tests |
+| `build` | Build system |
+| `ci` | CI/CD |
+| `perf` | Performance |
+
+### Installer le hook localement
+
+```bash
+cog install-hook commit-msg
+```
+
+## Releases
+
+Les releases sont gérées par cocogitto depuis `main` :
+
+```bash
+# Version automatique selon les commits
+npm run release
+
+# Ou manuellement
+npm run release:patch   # 0.0.x
+npm run release:minor   # 0.x.0
+npm run release:major   # x.0.0
+```
 
 ## Conventions de nommage
 
