@@ -1,0 +1,24 @@
+[changelog]
+path = "CHANGELOG.md"
+template = "remote"
+remote = "github.com"
+repository = "match-master-frontend"
+owner = "AssiarDev"
+
+[git_hooks.commit-msg]
+script = """#!/bin/sh
+cog verify --file $1
+"""
+
+[commit_types]
+# Types autorisés (Conventional Commits standard)
+feat = { changelog_title = "Features" }
+fix = { changelog_title = "Bug Fixes" }
+chore = { changelog_title = "Miscellaneous Chores" }
+refactor = { changelog_title = "Code Refactoring" }
+perf = { changelog_title = "Performance Improvements" }
+docs = { changelog_title = "Documentation" }
+style = { changelog_title = "Styles" }
+test = { changelog_title = "Tests" }
+build = { changelog_title = "Build System" }
+ci = { changelog_title = "Continuous Integration" }

@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "release": "cog bump --auto",
+    "release:patch": "cog bump --patch",
+    "release:minor": "cog bump --minor",
+    "release:major": "cog bump --major"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
