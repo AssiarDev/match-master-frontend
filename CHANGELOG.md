@@ -1,3 +1,5 @@
+# Changelog
+- - -
 ## Unreleased ([2add653..8006bb9](https://github.com/AssiarDev/match-master-frontend/compare/2add653..8006bb9))
 #### Features
 - add league favorites support in favorite button and favorite modal - ([c6a1ee9](https://github.com/AssiarDev/match-master-frontend/commit/c6a1ee926312b0cd12cfedd78d0a160d5f65e453)) - AssiarDev
