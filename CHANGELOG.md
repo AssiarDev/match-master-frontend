@@ -1,5 +1,23 @@
 # Changelog
 - - -
+## [0.2.0](https://github.com/AssiarDev/match-master-frontend/compare/4a2d0ca9f11055645760534388cc524def264fc5..0.2.0) - 2026-05-15
+#### Bug Fixes
+- **(ci)** manually push version bump commit and tags after cocogitto release - ([9af09a0](https://github.com/AssiarDev/match-master-frontend/commit/9af09a01f1dd9dee593b9127a555adf8d692626e)) - AssiarDev
+- **(ci)** pass GITHUB_TOKEN to checkout to allow cocogitto to push tags - ([b7893e6](https://github.com/AssiarDev/match-master-frontend/commit/b7893e6b7865f8cbc00f6e8175a7d6408b8c5aab)) - AssiarDev
+#### Continuous Integration
+- add automatic release job to github actions workflow - ([e4448e4](https://github.com/AssiarDev/match-master-frontend/commit/e4448e4bcd235a0b77a09c5cebf4c1fea404cd13)) - AssiarDev
+- check conventional commits from latest tag only - ([4a2d0ca](https://github.com/AssiarDev/match-master-frontend/commit/4a2d0ca9f11055645760534388cc524def264fc5)) - AssiarDev
+#### Documentation
+- update README and CONTRIBUTING for Docker dev setup - ([dcd8909](https://github.com/AssiarDev/match-master-frontend/commit/dcd8909beb315407c73b27b41b0a5a5e0f847176)) - AssiarDev
+- add cocogitto installation for mac and windows - ([54e32f1](https://github.com/AssiarDev/match-master-frontend/commit/54e32f162175f9bea5b0f31562c378a93dfb2048)) - AssiarDev
+#### Features
+- add RGPD compliance (cookie banner, privacy policy, registration consent) - ([a2bf2a4](https://github.com/AssiarDev/match-master-frontend/commit/a2bf2a493f4dc7d1603fd0bc5a745978058f7f50)) - AssiarDev
+#### Miscellaneous Chores
+- **(version)** 0.1.1 - ([a26bc4b](https://github.com/AssiarDev/match-master-frontend/commit/a26bc4bb513b504f0188b857473ab084aa375d81)) - AssiarDev
+- dockerize frontend with nginx and update documentation - ([6837c12](https://github.com/AssiarDev/match-master-frontend/commit/6837c12ef49d15670f5d7747336b3ff69446056d)) - AssiarDev
+
+- - -
+
 ## [0.1.1](https://github.com/AssiarDev/match-master-frontend/compare/4a2d0ca9f11055645760534388cc524def264fc5..0.1.1) - 2026-05-15
 #### Documentation
 - add cocogitto installation for mac and windows - ([54e32f1](https://github.com/AssiarDev/match-master-frontend/commit/54e32f162175f9bea5b0f31562c378a93dfb2048)) - AssiarDev
