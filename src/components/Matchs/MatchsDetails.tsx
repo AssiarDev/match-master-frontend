@@ -1,14 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { DatePickerCarousel } from '../DatePicker/DatePickerCaroussel'
 import { CompetitionGroup } from '../Competitions/CompetitionGroup'
 import { useMatchByDate } from '../../hooks/useMatchByDate'
+import { useLiveStream } from '../../hooks/useLiveStream'
 import { useLocation } from 'react-router'
 import { Toast } from '../Toast/Toast'
+import { INPLAY_STATES } from '@/utils/constants'
 
-/** Home page: date picker carousel + matches grouped by competition for the selected date. Shows a toast on redirect messages. */
+/** Home page: date picker carousel + matches grouped by competition for the selected date. 
+ * Live matches are automatically rendered as LiveMatchCard via the SSE stream. 
+ * Shows a toast on redirect messages. 
+ */
 export const MatchsDetails = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const { matchesByDate, error } = useMatchByDate(selectedDate)
+  const { matches: liveMatches } = useLiveStream()
+
+  const liveMap = useMemo(
+    () => new Map(
+      liveMatches
+        .filter(m => m.state?.developer_name && INPLAY_STATES.has(m.state.developer_name))
+        .map(m => [m.id, m])
+    ),
+    [liveMatches]
+  )
   const location = useLocation()
   const message = location.state?.message
   const [showToast, setShowToast] = useState(!!message)
@@ -25,11 +40,12 @@ export const MatchsDetails = () => {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+    timeZone: 'Europe/Paris'
   })
 
   return (
     <>
-    <div className="w-full max-w-6xl mx-auto flex flex-col gap-6 py-8">
+    <div className="w-full max-w-6xl mx-auto flex flex-col gap-10 sm:gap-6 py-6 sm:py-8 px-3 sm:px-4">
       {error ? (
         <p className="text-red-500 text-center">
           Une erreur s'est produite : {error}
@@ -58,6 +74,7 @@ export const MatchsDetails = () => {
                 flag={data.flag}
                 matches={data.matches}
                 leagueId={data.leagueId}
+                liveMap={liveMap}
               />
             ))
           ) : (

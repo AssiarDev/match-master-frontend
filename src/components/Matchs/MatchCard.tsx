@@ -50,13 +50,15 @@ export const MatchCard = ({ item, leagueId }: MatchCardProps) => {
 
   const { home: homeScore, away: awayScore } = extractFinalScore(item.scores)
 
-  const formattedDate = new Date(item.starting_at).toLocaleDateString('fr-FR', {
+  const startDate = new Date(item.starting_at_timestamp * 1000)
+
+  const formattedDate = startDate.toLocaleDateString('fr-FR', {
     weekday: 'short',
     day: '2-digit',
     month: 'short',
   })
 
-  const formattedTime = new Date(item.starting_at).toLocaleTimeString('fr-FR', {
+  const formattedTime = startDate.toLocaleTimeString('fr-FR', {
     hour: '2-digit',
     minute: '2-digit',
   })
@@ -65,44 +67,43 @@ export const MatchCard = ({ item, leagueId }: MatchCardProps) => {
   const isFinished = finishedStates.includes(item.state_id)
 
   return (
-    <div className="border border-gray-700 rounded-xl shadow-md p-4 w-full max-w-sm min-w-[300px] bg-zinc-900 text-white transition duration-300 hover:shadow-lg hover:border-orange-800">
-      <div className="flex items-center justify-between mb-4 gap-4">
-        <div className="flex flex-col items-center flex-1">
-          <img
-            src={home?.image_path}
-            alt={home?.short_code}
-            className="w-14 h-14 rounded-full object-contain"
-          />
-          <p className="text-sm font-medium mt-2">{home?.short_code || home?.name}</p>
-          {home && <FavoriteButton teamId={home?.id} teamName={home?.name} competitionId={leagueId} />}
-        </div>
+    <div className="border border-gray-700 rounded-xl shadow-md p-3 sm:p-4 w-full bg-zinc-900 text-white">
 
-        <div className="flex flex-col items-center">
-          <p className="text-sm text-gray-400 mb-1">{formattedDate}</p>
-          <p className="text-sm text-gray-400">{formattedTime}</p>
-          <p className="text-lg font-semibold mt-2">VS</p>
-        </div>
-
-        <div className="flex flex-col items-center flex-1">
-          <img
-            src={away?.image_path}
-            alt={away?.short_code}
-            className="w-14 h-14 rounded-full object-contain"
-          />
-          <p className="text-sm font-medium mt-2">{away?.short_code || away?.name}</p>
-          {away && <FavoriteButton teamId={away?.id} teamName={away?.name} competitionId={leagueId} />}
-        </div>
+      {/* Date + heure + statut */}
+      <div className="flex items-center gap-2 mb-3">
+        <span className="text-xs text-gray-400">
+          {formattedDate} · {formattedTime}
+        </span>
+        <span className={`ml-auto text-xs font-medium ${isFinished ? 'text-gray-500' : 'text-yellow-400'}`}>
+          {isFinished ? 'Terminé' : 'À venir'}
+        </span>
       </div>
 
-      <div className="text-center mt-2">
-        <h3 className="text-sm font-semibold text-gray-400">Score</h3>
-        {isFinished ? (
-          <p className="text-2xl font-bold">
-            {homeScore} - {awayScore}
-          </p>
-        ) : (
-          <p className="text-md text-yellow-400 font-medium">À venir</p>
-        )}
+      {/* Équipes + scores */}
+      <div className="flex flex-col gap-2">
+
+        {/* Équipe domicile */}
+        <div className="flex items-center gap-3">
+          {home && <FavoriteButton teamId={home.id} teamName={home.name} competitionId={leagueId} />}
+          {home?.image_path
+            ? <img src={home.image_path} alt={home.short_code ?? home.name} className="w-7 h-7 rounded-full object-contain shrink-0" />
+            : <div className="w-7 h-7 rounded-full bg-gray-700 shrink-0" />
+          }
+          <span className="flex-1 text-sm font-medium truncate">{home?.name || home?.short_code}</span>
+          {isFinished && <span className="text-lg font-bold tabular-nums">{homeScore}</span>}
+        </div>
+
+        {/* Équipe extérieure */}
+        <div className="flex items-center gap-3">
+          {away && <FavoriteButton teamId={away.id} teamName={away.name} competitionId={leagueId} />}
+          {away?.image_path
+            ? <img src={away.image_path} alt={away.short_code ?? away.name} className="w-7 h-7 rounded-full object-contain shrink-0" />
+            : <div className="w-7 h-7 rounded-full bg-gray-700 shrink-0" />
+          }
+          <span className="flex-1 text-sm font-medium truncate">{away?.name || away?.short_code}</span>
+          {isFinished && <span className="text-lg font-bold tabular-nums">{awayScore}</span>}
+        </div>
+
       </div>
     </div>
   )
