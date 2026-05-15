@@ -1,5 +1,15 @@
 # Changelog
 - - -
+## [0.1.1](https://github.com/AssiarDev/match-master-frontend/compare/4a2d0ca9f11055645760534388cc524def264fc5..0.1.1) - 2026-05-15
+#### Documentation
+- add cocogitto installation for mac and windows - ([54e32f1](https://github.com/AssiarDev/match-master-frontend/commit/54e32f162175f9bea5b0f31562c378a93dfb2048)) - AssiarDev
+#### Continuous Integration
+- check conventional commits from latest tag only - ([4a2d0ca](https://github.com/AssiarDev/match-master-frontend/commit/4a2d0ca9f11055645760534388cc524def264fc5)) - AssiarDev
+#### Miscellaneous Chores
+- dockerize frontend with nginx and update documentation - ([6837c12](https://github.com/AssiarDev/match-master-frontend/commit/6837c12ef49d15670f5d7747336b3ff69446056d)) - AssiarDev
+
+- - -
+
 ## [0.1.0](https://github.com/AssiarDev/match-master-frontend/compare/2add653d853357b065d2b36087fec11679d60ca3..0.1.0) - 2026-05-11
 #### Features
 - add league favorites support in favorite button and favorite modal - ([c6a1ee9](https://github.com/AssiarDev/match-master-frontend/commit/c6a1ee926312b0cd12cfedd78d0a160d5f65e453)) - AssiarDev
