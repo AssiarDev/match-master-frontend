@@ -12,6 +12,11 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+  server: {
+    watch: {
+      usePolling: true
+    }
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

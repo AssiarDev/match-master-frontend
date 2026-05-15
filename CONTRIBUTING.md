@@ -1,8 +1,42 @@
 # Guide de contribution — Match Master Frontend
 
+## Installation
+
+### Prérequis
+- [Docker](https://www.docker.com/) et Docker Compose
+- Le backend [match-master-backend](https://github.com/AssiarDev/match-master) lancé localement
+- [Cocogitto](https://docs.cocogitto.io/) pour les commits conventionnels
+
+#### Installer cocogitto
+
+**macOS**
+```sh
+brew install cocogitto
+```
+
+**Windows**
+```sh
+winget install cocogitto
+```
+
+Puis activer le hook git dans le repo :
+```sh
+cog install-hook commit-msg
+```
+
+### Variables d'environnement
+Copier le fichier d'exemple et renseigner les valeurs :
+```sh
+cp .env.example .env
+```
+
+| Variable       | Description           | Exemple                 |
+|----------------|-----------------------|-------------------------|
+| `VITE_API_URL` | URL de l'API backend  | `http://localhost:3000` |
+
 ## Workflow Git
 
-Ce projet utilise le **trunk-based development** : on travaille sur `main` directement ou via des branches courtes (< 2 jours).
+Ce projet utilise le **trunk-based development** : on crée une branche courte (< 2 jours) depuis `main`, puis on ouvre une Pull Request.
 
 - Créer une branche depuis `main` : `feat/nom-feature`, `fix/nom-bug`, `chore/nom-tâche`
 - Un commit par changement logique
@@ -30,25 +64,9 @@ type(scope): description
 | `ci` | CI/CD |
 | `perf` | Performance |
 
-### Installer le hook localement
-
-```bash
-cog install-hook commit-msg
-```
-
 ## Releases
 
-Les releases sont gérées par cocogitto depuis `main` :
-
-```bash
-# Version automatique selon les commits
-npm run release
-
-# Ou manuellement
-npm run release:patch   # 0.0.x
-npm run release:minor   # 0.x.0
-npm run release:major   # x.0.0
-```
+Les releases sont gérées automatiquement par le job CI au merge sur `main`, via cocogitto. La version est déterminée à partir des commits conventionnels.
 
 ## Conventions de nommage
 
