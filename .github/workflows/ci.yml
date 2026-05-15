@@ -21,3 +21,23 @@ jobs:
 
       - name: Check conventional commits
         run: cog check --from-latest-tag
+
+  release:
+    runs-on: ubuntu-latest
+    needs: conventional-commits
+    if: github.event_name == 'push'
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Bump version
+        uses: cocogitto/cocogitto-action@v3
+        with:
+          check: false
+          git-user: "github-actions"
+          git-user-email: "github-actions@github.com"
+          release: true
