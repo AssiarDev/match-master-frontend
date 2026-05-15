@@ -42,3 +42,8 @@ jobs:
           git-user: "github-actions"
           git-user-email: "github-actions@github.com"
           release: true
+
+      - name: Push version bump
+        run: |
+          git push
+          git push --tags
