@@ -1,5 +1,11 @@
 # Changelog
 - - -
+## [0.3.0](https://github.com/AssiarDev/match-master-frontend/compare/b02bccd4a2f6d1df694b3066a9a8fe2bac5571c1..0.3.0) - 2026-05-15
+#### Features
+- display live scores via SSE on /live page and home page - ([b02bccd](https://github.com/AssiarDev/match-master-frontend/commit/b02bccd4a2f6d1df694b3066a9a8fe2bac5571c1)) - AssiarDev
+
+- - -
+
 ## [0.2.0](https://github.com/AssiarDev/match-master-frontend/compare/4a2d0ca9f11055645760534388cc524def264fc5..0.2.0) - 2026-05-15
 #### Bug Fixes
 - **(ci)** manually push version bump commit and tags after cocogitto release - ([9af09a0](https://github.com/AssiarDev/match-master-frontend/commit/9af09a01f1dd9dee593b9127a555adf8d692626e)) - AssiarDev
