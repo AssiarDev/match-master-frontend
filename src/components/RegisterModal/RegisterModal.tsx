@@ -7,6 +7,7 @@ import type { FormEvent } from 'react'
 /** Modal dialog for user registration. Validates password confirmation and redirects to login on success. */
 export const RegisterModal = () => {
   const [open, setOpen] = useState(true)
+  const [consentChecked, setConsentChecked] = useState(false)
   const { register, loading, error } = useRegister()
   const navigate = useNavigate()
 
@@ -56,6 +57,11 @@ export const RegisterModal = () => {
               placeholder="Mot de passe"
               className="border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white"
             />
+            <ul className="text-xs text-gray-400 space-y-1">
+              <li>• 8 caractères minimum</li>
+              <li>• 1 majuscule requise</li>
+              <li>• 1 caractère spécial requis</li>
+            </ul>
             <input
               type="password"
               placeholder="Confirmez le mot de passe"
@@ -64,12 +70,32 @@ export const RegisterModal = () => {
               }`}
             />
 
+            <label className="flex items-start gap-2 text-sm text-gray-300 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={consentChecked}
+                onChange={(e) => setConsentChecked(e.target.checked)}
+                className="mt-0.5 accent-amber-500 cursor-pointer"
+              />
+              <span>
+                J'accepte la{' '}
+                <Link
+                  to="/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-amber-500 hover:underline"
+                >
+                  politique de confidentialité
+                </Link>
+              </span>
+            </label>
+
             {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
             <button
               type="submit"
-              disabled={loading}
-              className="bg-amber-600 text-neutral-950 py-2 rounded hover:bg-amber-700 cursor-pointer"
+              disabled={loading || !consentChecked}
+              className="bg-amber-600 text-neutral-950 py-2 rounded hover:bg-amber-700 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Inscription... ' : "S'inscrire"}
             </button>

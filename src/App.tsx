@@ -12,6 +12,8 @@ import { LoginModal } from './components/LoginModal/LoginModal'
 import { FavoriteModal } from './components/FavoriteModal/FavoriteModal'
 import { Header } from './components/Header/Header'
 import { UserProfile } from './components/Profile/UserProfile'
+import { PrivacyPolicy } from './components/Legal/PrivacyPolicy'
+import { CookieBanner } from './components/CookieBanner/CookieBanner'
 
 function App() {
   const [isMobileMenu, setIsMobileMenu] = useState(false)
@@ -35,9 +37,11 @@ function App() {
             <Route path="/competition/:competitionId" element={<CompetitionsDetails />} />
             <Route path="/favoriteUser" element={<FavoriteModal />} />
             <Route path='/user-profile' element={<UserProfile />}/>
+            <Route path='/privacy' element={<PrivacyPolicy />}/>
           </Routes>
         </main>
         <Footer />
+        <CookieBanner />
       </div>
     </div>
   )
