@@ -27,7 +27,7 @@ L'objectif futur de Match Master est d'élargir ces fonctionnalités à **tous l
 ## 🔧 Installation et lancement
 
 ### Prérequis
-- Node.js >= 18
+- [Docker](https://www.docker.com/) et Docker Compose
 - Le backend [match-master-backend](https://github.com/AssiarDev/match-master) lancé localement
 - [Cocogitto](https://docs.cocogitto.io/) pour les commits conventionnels
 
@@ -49,12 +49,22 @@ cog install-hook commit-msg
 ```
 
 ### Variables d'environnement
-Créer un fichier `.env` à la racine :
-```env
-VITE_API_URL=http://localhost:3000
+Copier le fichier d'exemple et renseigner les valeurs :
+```sh
+cp .env.example .env
 ```
 
-### Commandes
+### Lancement avec Docker
+
+```sh
+docker compose up --build
+```
+
+Le frontend est accessible sur **http://localhost**.
+
+> `--build` est nécessaire uniquement lors du premier lancement ou après modification du code / des variables d'environnement.
+
+### Commandes de développement (sans Docker)
 ```sh
 npm install       # Installer les dépendances
 npm run dev       # Lancer le serveur de développement
