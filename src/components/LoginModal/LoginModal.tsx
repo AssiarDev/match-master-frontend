@@ -29,7 +29,7 @@ export const LoginModal = () => {
           <button
             onClick={() => {
               setOpen(false)
-              navigate('/')
+              navigate(-1)
             }}
             aria-label="Fermer le modal"
             className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl cursor-pointer"

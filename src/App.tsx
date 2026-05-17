@@ -11,9 +11,11 @@ import { CompetitionsDetails } from './components/Competitions/CompetitionsDetai
 import { LoginModal } from './components/LoginModal/LoginModal'
 import { FavoriteModal } from './components/FavoriteModal/FavoriteModal'
 import { Header } from './components/Header/Header'
+import { MobileMenu } from './components/MobileMenu/MobileMenu'
 import { UserProfile } from './components/Profile/UserProfile'
 import { PrivacyPolicy } from './components/Legal/PrivacyPolicy'
 import { CookieBanner } from './components/CookieBanner/CookieBanner'
+import { PrivateRoute } from './components/PrivateRoute'
 
 function App() {
   const [isMobileMenu, setIsMobileMenu] = useState(false)
@@ -24,6 +26,7 @@ function App() {
         isMobileMenu={isMobileMenu}
         setIsMobileMenu={setIsMobileMenu}
       />
+      <MobileMenu isOpen={isMobileMenu} onClose={() => setIsMobileMenu(false)} />
       <div className="flex flex-col flex-grow">
         <main className="flex flex-grow overflow-y-auto">
           <Routes>
@@ -35,8 +38,10 @@ function App() {
             <Route path="/live" element={<Live />} />
             <Route path="/competitions" element={<Competitions />} />
             <Route path="/competition/:competitionId" element={<CompetitionsDetails />} />
-            <Route path="/favoriteUser" element={<FavoriteModal />} />
-            <Route path='/user-profile' element={<UserProfile />}/>
+            <Route element={<PrivateRoute />}>
+              <Route path="/favoriteUser" element={<FavoriteModal />} />
+              <Route path='/user-profile' element={<UserProfile />}/>
+            </Route>
             <Route path='/privacy' element={<PrivacyPolicy />}/>
           </Routes>
         </main>

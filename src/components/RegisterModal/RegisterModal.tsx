@@ -32,7 +32,7 @@ export const RegisterModal = () => {
           <button
             onClick={() => {
               setOpen(false)
-              navigate('/')
+              navigate(-1)
             }}
             className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl cursor-pointer"
           >

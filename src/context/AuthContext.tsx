@@ -5,6 +5,7 @@ import type { User } from '../types'
 /**
  * Shape of the authentication context.
  * - `isAuthenticated`: whether the user has an active session
+ * - `loading`: true while the initial session check is in progress
  * - `user`: the authenticated user, or null if not logged in
  * - `setIsAuthenticated`: manually update the auth state (used on login/logout)
  * - `setUser`: manually update the user object (used on login/logout)
@@ -12,6 +13,7 @@ import type { User } from '../types'
  */
 interface AuthContextValue {
   isAuthenticated: boolean
+  loading: boolean
   user: User | null
   setIsAuthenticated: (value: boolean) => void
   setUser: (user: User | null) => void
@@ -27,6 +29,7 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined)
  */
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [user, setUser] = useState<User | null>(null)
 
   const checkAuth = async () => {
@@ -41,6 +44,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } catch {
       setIsAuthenticated(false)
       setUser(null)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -49,7 +54,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, setIsAuthenticated, setUser, checkAuth }}>
+    <AuthContext.Provider value={{ isAuthenticated, loading, user, setIsAuthenticated, setUser, checkAuth }}>
       {children}
     </AuthContext.Provider>
   )

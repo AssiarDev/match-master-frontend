@@ -24,8 +24,8 @@ export const PodiumSection = ({ podiumTeams, onShowAll }: PodiumSectionProps) =>
         </a>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="min-w-[340px] w-full text-sm sm:text-base">
+      <div>
+        <table className="w-full text-sm sm:text-base">
           <ClassmentThead />
           {podiumTeams.map((team) => (
             <ClassementTbody key={team.position} item={team} />

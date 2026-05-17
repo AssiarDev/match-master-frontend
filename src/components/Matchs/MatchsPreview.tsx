@@ -29,7 +29,7 @@ export const MatchsPreview = ({ matchs, onShowAll }: MatchsPreviewProps) => {
         </a>
       </div>
 
-      <div className="flex overflow-x-auto gap-4 py-2 px-1 scrollbar-thin">
+      <div className="flex overflow-x-auto gap-4 py-2 px-1 scrollbar-hide">
         {matchs.map((match) => (
           <div key={match.id} className="min-w-[280px] flex-shrink-0">
             <MatchCard item={match} />
