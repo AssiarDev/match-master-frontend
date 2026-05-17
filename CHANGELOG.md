@@ -1,5 +1,11 @@
 # Changelog
 - - -
+## [0.3.1](https://github.com/AssiarDev/match-master-frontend/compare/1a6008fce1309fd14547e88582c684b9c1f405dc..0.3.1) - 2026-05-17
+#### Bug Fixes
+- **(ui)** improve mobile navigation and fix layout issues - ([1a6008f](https://github.com/AssiarDev/match-master-frontend/commit/1a6008fce1309fd14547e88582c684b9c1f405dc)) - AssiarDev
+
+- - -
+
 ## [0.3.0](https://github.com/AssiarDev/match-master-frontend/compare/b02bccd4a2f6d1df694b3066a9a8fe2bac5571c1..0.3.0) - 2026-05-15
 #### Features
 - display live scores via SSE on /live page and home page - ([b02bccd](https://github.com/AssiarDev/match-master-frontend/commit/b02bccd4a2f6d1df694b3066a9a8fe2bac5571c1)) - AssiarDev
