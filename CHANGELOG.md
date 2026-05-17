@@ -1,5 +1,11 @@
 # Changelog
 - - -
+## [0.3.2](https://github.com/AssiarDev/match-master-frontend/compare/c3a6200fcc2ec79b5da548e7c4ca9643ca885397..0.3.2) - 2026-05-17
+#### Bug Fixes
+- **(auth)** add Netlify proxy to fix cross-domain cookie on mobile - ([c3a6200](https://github.com/AssiarDev/match-master-frontend/commit/c3a6200fcc2ec79b5da548e7c4ca9643ca885397)) - AssiarDev
+
+- - -
+
 ## [0.3.1](https://github.com/AssiarDev/match-master-frontend/compare/1a6008fce1309fd14547e88582c684b9c1f405dc..0.3.1) - 2026-05-17
 #### Bug Fixes
 - **(ui)** improve mobile navigation and fix layout issues - ([1a6008f](https://github.com/AssiarDev/match-master-frontend/commit/1a6008fce1309fd14547e88582c684b9c1f405dc)) - AssiarDev
