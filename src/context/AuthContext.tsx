@@ -17,7 +17,7 @@ interface AuthContextValue {
   user: User | null
   setIsAuthenticated: (value: boolean) => void
   setUser: (user: User | null) => void
-  checkAuth: () => Promise<void>
+  checkAuth: () => Promise<boolean>
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined)
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState<User | null>(null)
 
-  const checkAuth = async () => {
+  const checkAuth = async (): Promise<boolean> => {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/user/profile`, {
         credentials: 'include',
@@ -41,9 +41,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const data = await res.json()
       setIsAuthenticated(data.isAuthenticated)
       setUser(data.user)
+      return data.isAuthenticated
     } catch {
       setIsAuthenticated(false)
       setUser(null)
+      return false
     } finally {
       setLoading(false)
     }

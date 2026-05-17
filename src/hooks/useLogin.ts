@@ -29,7 +29,8 @@ export const useLogin = () => {
       if (!response.ok) throw new Error('Echec tentative de connexion')
 
       if (response.ok) {
-        await checkAuth()
+        const authenticated = await checkAuth()
+        if (!authenticated) throw new Error('Session non établie après connexion')
         onSuccess?.()
         navigate('/')
       }
