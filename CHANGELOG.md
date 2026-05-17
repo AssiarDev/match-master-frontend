@@ -1,5 +1,11 @@
 # Changelog
 - - -
+## [0.3.4](https://github.com/AssiarDev/match-master-frontend/compare/872dbd224e41843b59a6e3c0d458d8bc6d580451..0.3.4) - 2026-05-17
+#### Bug Fixes
+- **(auth)** surface silent login failure when session cookie is not set - ([872dbd2](https://github.com/AssiarDev/match-master-frontend/commit/872dbd224e41843b59a6e3c0d458d8bc6d580451)) - AssiarDev
+
+- - -
+
 ## [0.3.3](https://github.com/AssiarDev/match-master-frontend/compare/34def4f344d2cd13ec27cfca2bbb7faad413cbe7..0.3.3) - 2026-05-17
 #### Bug Fixes
 - **(proxy)** move API redirect to _redirects to fix catch-all override - ([34def4f](https://github.com/AssiarDev/match-master-frontend/commit/34def4f344d2cd13ec27cfca2bbb7faad413cbe7)) - AssiarDev
