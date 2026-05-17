@@ -1,5 +1,11 @@
 # Changelog
 - - -
+## [0.3.3](https://github.com/AssiarDev/match-master-frontend/compare/34def4f344d2cd13ec27cfca2bbb7faad413cbe7..0.3.3) - 2026-05-17
+#### Bug Fixes
+- **(proxy)** move API redirect to _redirects to fix catch-all override - ([34def4f](https://github.com/AssiarDev/match-master-frontend/commit/34def4f344d2cd13ec27cfca2bbb7faad413cbe7)) - AssiarDev
+
+- - -
+
 ## [0.3.2](https://github.com/AssiarDev/match-master-frontend/compare/c3a6200fcc2ec79b5da548e7c4ca9643ca885397..0.3.2) - 2026-05-17
 #### Bug Fixes
 - **(auth)** add Netlify proxy to fix cross-domain cookie on mobile - ([c3a6200](https://github.com/AssiarDev/match-master-frontend/commit/c3a6200fcc2ec79b5da548e7c4ca9643ca885397)) - AssiarDev
