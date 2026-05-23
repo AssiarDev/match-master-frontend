@@ -67,9 +67,27 @@ jobs:
       - name: Check typos
         uses: crate-ci/typos@v1
 
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test:ci
+
   release:
     runs-on: ubuntu-latest
-    needs: [typecheck, format, typos]
+    needs: [typecheck, format, typos, test]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
       contents: write
