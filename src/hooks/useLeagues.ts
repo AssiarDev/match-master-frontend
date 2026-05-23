@@ -1,11 +1,11 @@
-import { useMemo } from 'react'
-import type { League } from '../types'
-import { useFetch } from './useFetch'
+import { useMemo } from "react";
+import type { League } from "../types";
+import { useFetch } from "./useFetch";
 
 interface RawCompetition {
-  name?: string
-  id: number
-  emblem?: string
+  name?: string;
+  id: number;
+  emblem?: string;
 }
 
 /**
@@ -16,19 +16,19 @@ interface RawCompetition {
  */
 export const useLeagues = () => {
   const { data, loading } = useFetch<RawCompetition[]>(
-    `${import.meta.env.VITE_API_URL}/competitions`
-  )
+    `${import.meta.env.VITE_API_URL}/competitions`,
+  );
 
   const leagues = useMemo<League[]>(() => {
-    if (!data) return []
+    if (!data) return [];
     return data
-      .filter(league => league.name)
-      .map(league => ({
+      .filter((league) => league.name)
+      .map((league) => ({
         name: league.name as string,
         code: league.id,
         logo: league.emblem,
-      }))
-  }, [data])
+      }));
+  }, [data]);
 
-  return { leagues, loading }
-}
+  return { leagues, loading };
+};

@@ -3,6 +3,7 @@
 Match Master est une application web permettant de suivre l'actualité du football : scores, matchs, classements !
 
 ## 📌 Fonctionnalités
+
 - 🔥 Suivre les matchs du jour en fonction de la date sélectionnée
 - 🏆 Suivre l'actualité d'une compétition pour rester informé des derniers résultats et événements
 - ⭐ Sélectionner son équipe favorite et suivre son classement ainsi que ses matchs
@@ -27,18 +28,23 @@ L'objectif futur de Match Master est d'élargir ces fonctionnalités à **tous l
 ## 🔧 Lancement rapide
 
 #### Production
+
 ```sh
 docker compose up --build
 ```
+
 Accessible sur **http://localhost**.
 
 #### Développement (avec live reload)
+
 ```sh
 docker compose --profile dev up
 ```
+
 Accessible sur **http://localhost:5173**.
 
 #### Sans Docker
+
 ```sh
 npm install && npm run dev
 ```

@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react'
-import { hasConsented, setConsent } from '../utils/consent'
+import { useState, useEffect } from "react";
+import { hasConsented, setConsent } from "../utils/consent";
 
 export const useCookieConsent = () => {
-  const [showBanner, setShowBanner] = useState(false)
+  const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    if (!hasConsented()) setShowBanner(true)
-  }, [])
+    if (!hasConsented()) setShowBanner(true);
+  }, []);
 
   const accept = () => {
-    setConsent('accepted')
-    setShowBanner(false)
-  }
+    setConsent("accepted");
+    setShowBanner(false);
+  };
 
   const refuse = () => {
-    setConsent('refused')
-    setShowBanner(false)
-  }
+    setConsent("refused");
+    setShowBanner(false);
+  };
 
-  return { showBanner, accept, refuse }
-}
+  return { showBanner, accept, refuse };
+};

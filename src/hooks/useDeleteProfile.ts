@@ -8,31 +8,32 @@ import { useAuth } from "@/context/AuthContext";
  * @returns `deleteProfile(userId)` function
  */
 export const useDeleteProfile = () => {
-    const { setIsAuthenticated, setUser } = useAuth()
-    const navigate = useNavigate()
+  const { setIsAuthenticated, setUser } = useAuth();
+  const navigate = useNavigate();
 
-    const deleteProfile = async (userId: number | undefined) => {
+  const deleteProfile = async (userId: number | undefined) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/users/${userId}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        },
+      );
 
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
-                method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include',
-            })
+      if (!response.ok) {
+        throw new Error("Echec tentative de suppression du compte");
+      }
+      const data = await response.json();
 
-            if(!response.ok) {
-                throw new Error('Echec tentative de suppression du compte')
-            }
-            const data = await response.json()
-
-            setIsAuthenticated(false)
-            setUser(null)
-            navigate('/', { state: data})
-
-        } catch (error){
-            console.error('Suppression du compte échouée :', error)
-        }
+      setIsAuthenticated(false);
+      setUser(null);
+      navigate("/", { state: data });
+    } catch (error) {
+      console.error("Suppression du compte échouée :", error);
     }
+  };
 
-    return deleteProfile
-}
+  return deleteProfile;
+};

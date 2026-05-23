@@ -1,21 +1,21 @@
-import { useState } from 'react'
-import { useLocation, useParams } from 'react-router'
-import { Filtre } from '../Filtre/Filtre'
-import { groupMatchesByMonth } from '../../utils/groupMatchesByMonth'
-import { GroupedMatchesList } from './GroupedMatchesList'
-import { useFilteredMatchesByTeam } from '../../hooks/useFilteredMatchesByTeam'
+import { useState } from "react";
+import { useLocation, useParams } from "react-router";
+import { Filtre } from "../Filtre/Filtre";
+import { groupMatchesByMonth } from "../../utils/groupMatchesByMonth";
+import { GroupedMatchesList } from "./GroupedMatchesList";
+import { useFilteredMatchesByTeam } from "../../hooks/useFilteredMatchesByTeam";
 
-type FilterValue = 'upcoming' | 'finished'
+type FilterValue = "upcoming" | "finished";
 
 /** Fetches, filters (upcoming/finished), groups by month, and displays a team's matches. */
 export const MatchesList = () => {
-  const location = useLocation()
-  const selectedLeague = location.state?.selectedLeague
-  const { teamId } = useParams<{ teamId: string }>()
-  const [filter, setFilter] = useState<FilterValue>('upcoming')
+  const location = useLocation();
+  const selectedLeague = location.state?.selectedLeague;
+  const { teamId } = useParams<{ teamId: string }>();
+  const [filter, setFilter] = useState<FilterValue>("upcoming");
 
-  const allMatches = useFilteredMatchesByTeam(selectedLeague, teamId, filter)
-  const grouped = groupMatchesByMonth(allMatches)
+  const allMatches = useFilteredMatchesByTeam(selectedLeague, teamId, filter);
+  const grouped = groupMatchesByMonth(allMatches);
 
   return (
     <div className="w-full px-2 sm:px-4 md:px-6 flex flex-col gap-6 mt-6 max-w-6xl mx-auto">
@@ -24,5 +24,5 @@ export const MatchesList = () => {
       </div>
       <GroupedMatchesList groupedMatches={grouped} />
     </div>
-  )
-}
+  );
+};

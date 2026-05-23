@@ -15,5 +15,5 @@ export const ClassmentThead = () => {
         <th className="px-2 py-2 text-center hidden md:table-cell">DIF</th>
       </tr>
     </thead>
-  )
-}
+  );
+};

@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
-import type { Scorer } from '../types'
+import { useState, useEffect } from "react";
+import type { Scorer } from "../types";
 
 interface ScorerPage extends Array<Scorer> {
   pagination?: {
-    has_more: boolean
-    next_page: number | null
-  }
+    has_more: boolean;
+    next_page: number | null;
+  };
 }
 
 /**
@@ -16,40 +16,40 @@ interface ScorerPage extends Array<Scorer> {
  * @returns `{ scorers, error }`
  */
 export const useScorers = (competitionId?: number | string) => {
-  const [scorers, setScorers] = useState<Scorer[]>([])
-  const [error, setError] = useState<string | null>(null)
+  const [scorers, setScorers] = useState<Scorer[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!competitionId) return
+    if (!competitionId) return;
 
     const fetchAllPages = async () => {
       try {
-        let page: number | null = 1
-        let allScorers: Scorer[] = []
-        let hasMore = true
+        let page: number | null = 1;
+        let allScorers: Scorer[] = [];
+        let hasMore = true;
 
         while (hasMore) {
           const response = await fetch(
-            `${import.meta.env.VITE_API_URL}/scorers/${competitionId}?page=${page}`
-          )
-          if (!response.ok) throw new Error('Erreur API buteurs')
+            `${import.meta.env.VITE_API_URL}/scorers/${competitionId}?page=${page}`,
+          );
+          if (!response.ok) throw new Error("Erreur API buteurs");
 
-          const result: ScorerPage = await response.json()
-          allScorers = [...allScorers, ...(result ?? [])]
+          const result: ScorerPage = await response.json();
+          allScorers = [...allScorers, ...(result ?? [])];
 
-          const pagination = result.pagination
-          hasMore = pagination?.has_more ?? false
-          page = pagination?.next_page ?? null
+          const pagination = result.pagination;
+          hasMore = pagination?.has_more ?? false;
+          page = pagination?.next_page ?? null;
         }
-        setScorers(allScorers)
+        setScorers(allScorers);
       } catch (e) {
-        console.error('useScorers :', (e as Error).message)
-        setError((e as Error).message)
+        console.error("useScorers :", (e as Error).message);
+        setError((e as Error).message);
       }
-    }
+    };
 
-    fetchAllPages()
-  }, [competitionId])
+    fetchAllPages();
+  }, [competitionId]);
 
-  return { scorers, error }
-}
+  return { scorers, error };
+};

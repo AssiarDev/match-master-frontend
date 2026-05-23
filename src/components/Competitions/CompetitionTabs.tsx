@@ -1,22 +1,22 @@
-import { useState } from 'react'
-import { Resume } from './Resume'
-import { Classement } from '../Classement/Classement'
-import { Matchs } from './Matchs'
+import { useState } from "react";
+import { Resume } from "./Resume";
+import { Classement } from "../Classement/Classement";
+import { Matchs } from "./Matchs";
 
 interface Tab {
-  id: string
-  label: string
+  id: string;
+  label: string;
 }
 
 const tabs: Tab[] = [
-  { id: 'resume', label: 'Résumé' },
-  { id: 'classement', label: 'Classement' },
-  { id: 'matchs', label: 'Matchs' },
-]
+  { id: "resume", label: "Résumé" },
+  { id: "classement", label: "Classement" },
+  { id: "matchs", label: "Matchs" },
+];
 
 /** Tab navigation for a competition detail page: Résumé, Classement, Matchs. */
 export const CompetitionTabs = () => {
-  const [activeTab, setActiveTab] = useState('resume')
+  const [activeTab, setActiveTab] = useState("resume");
 
   return (
     <div className="mt-4">
@@ -26,7 +26,7 @@ export const CompetitionTabs = () => {
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`text-white px-4 py-2 rounded-md hover:bg-zinc-800 cursor-pointer ${
-              activeTab === tab.id ? 'bg-amber-950/50' : ''
+              activeTab === tab.id ? "bg-amber-950/50" : ""
             }`}
           >
             {tab.label}
@@ -34,10 +34,10 @@ export const CompetitionTabs = () => {
         ))}
       </div>
       <div className="p-4 text-white">
-        {activeTab === 'resume' && <Resume setActiveTab={setActiveTab} />}
-        {activeTab === 'classement' && <Classement />}
-        {activeTab === 'matchs' && <Matchs />}
+        {activeTab === "resume" && <Resume setActiveTab={setActiveTab} />}
+        {activeTab === "classement" && <Classement />}
+        {activeTab === "matchs" && <Matchs />}
       </div>
     </div>
-  )
-}
+  );
+};

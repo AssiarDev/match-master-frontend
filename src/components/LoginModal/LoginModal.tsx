@@ -1,24 +1,29 @@
-import { useState } from 'react'
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useLogin } from '../../hooks/useLogin'
-import type { FormEvent } from 'react'
+import { useState } from "react";
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react";
+import { Link, useNavigate } from "react-router-dom";
+import { useLogin } from "../../hooks/useLogin";
+import type { FormEvent } from "react";
 
 /** Modal dialog for user login. Redirects to home on success, or closes if opened in-context. */
 export const LoginModal = () => {
-  const [open, setOpen] = useState(true)
-  const navigate = useNavigate()
-  const { login, loading, error } = useLogin()
+  const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
+  const { login, loading, error } = useLogin();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const form = e.currentTarget
-    const mail = (form[0] as HTMLInputElement).value
-    const password = (form[1] as HTMLInputElement).value
-    login(mail, password, () => setOpen(false))
-  }
+    e.preventDefault();
+    const form = e.currentTarget;
+    const mail = (form[0] as HTMLInputElement).value;
+    const password = (form[1] as HTMLInputElement).value;
+    login(mail, password, () => setOpen(false));
+  };
 
-  const hasError = Boolean(error)
+  const hasError = Boolean(error);
 
   return (
     <Dialog open={open} onClose={setOpen} className="relative z-50">
@@ -28,8 +33,8 @@ export const LoginModal = () => {
         <DialogPanel className="relative bg-neutral-950 border-none shadow-lg shadow-amber-900/50 rounded-lg w-96 p-6">
           <button
             onClick={() => {
-              setOpen(false)
-              navigate(-1)
+              setOpen(false);
+              navigate(-1);
             }}
             aria-label="Fermer le modal"
             className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl cursor-pointer"
@@ -37,15 +42,22 @@ export const LoginModal = () => {
             ×
           </button>
 
-          <DialogTitle className="text-xl font-bold text-white">Connexion</DialogTitle>
+          <DialogTitle className="text-xl font-bold text-white">
+            Connexion
+          </DialogTitle>
 
-          <form onSubmit={handleSubmit} className="mt-4 flex flex-col space-y-3">
+          <form
+            onSubmit={handleSubmit}
+            className="mt-4 flex flex-col space-y-3"
+          >
             <input
               type="email"
               required
               placeholder="Email"
               className={`border p-2 rounded focus:ring bg-neutral-900 text-white ${
-                hasError ? 'border-red-500 focus:border-red-500' : 'focus:border-amber-500'
+                hasError
+                  ? "border-red-500 focus:border-red-500"
+                  : "focus:border-amber-500"
               }`}
             />
             <input
@@ -53,7 +65,9 @@ export const LoginModal = () => {
               required
               placeholder="Mot de passe"
               className={`border p-2 rounded focus:ring bg-neutral-900 text-white ${
-                hasError ? 'border-red-500 focus:border-red-500' : 'focus:border-amber-500'
+                hasError
+                  ? "border-red-500 focus:border-red-500"
+                  : "focus:border-amber-500"
               }`}
             />
             {error && <p className="text-red-400 text-sm">{error}</p>}
@@ -62,12 +76,12 @@ export const LoginModal = () => {
               disabled={loading}
               className="bg-amber-600 text-neutral-950 py-2 rounded hover:bg-amber-700 cursor-pointer disabled:opacity-50"
             >
-              {loading ? 'Connexion...' : 'Se connecter'}
+              {loading ? "Connexion..." : "Se connecter"}
             </button>
           </form>
 
           <p className="mt-3 text-sm text-white text-center">
-            Pas encore inscrit ?{' '}
+            Pas encore inscrit ?{" "}
             <Link to="/register" className="text-amber-600 hover:underline">
               Créez un compte ici
             </Link>
@@ -75,5 +89,5 @@ export const LoginModal = () => {
         </DialogPanel>
       </div>
     </Dialog>
-  )
-}
+  );
+};

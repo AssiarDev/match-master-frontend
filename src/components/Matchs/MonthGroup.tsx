@@ -1,9 +1,9 @@
-import type { Match } from '../../types'
-import { MatchCard } from './MatchCard'
+import type { Match } from "../../types";
+import { MatchCard } from "./MatchCard";
 
 interface MonthgroupProps {
-  label: string
-  matches?: Match[]
+  label: string;
+  matches?: Match[];
 }
 
 /** Renders a labeled section of match cards for a given month. */
@@ -18,5 +18,5 @@ export const Monthgroup = ({ label, matches = [] }: MonthgroupProps) => {
         ))}
       </div>
     </section>
-  )
-}
+  );
+};

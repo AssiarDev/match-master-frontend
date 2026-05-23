@@ -1,9 +1,9 @@
-import type { Match } from '../../types'
-import { MatchCard } from './MatchCard'
+import type { Match } from "../../types";
+import { MatchCard } from "./MatchCard";
 
 interface MatchsPreviewProps {
-  matchs: Match[]
-  onShowAll: (e: React.MouseEvent<HTMLAnchorElement>) => void
+  matchs: Match[];
+  onShowAll: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 /** Horizontal scrollable preview of the latest finished matches. Includes a link to the full match list. */
@@ -11,9 +11,11 @@ export const MatchsPreview = ({ matchs, onShowAll }: MatchsPreviewProps) => {
   if (!matchs?.length) {
     return (
       <div className="w-full border border-gray-800 text-white text-center py-6 rounded-lg shadow">
-        <p className="text-gray-500 text-center">La compétition n'a pas encore démarré.</p>
+        <p className="text-gray-500 text-center">
+          La compétition n'a pas encore démarré.
+        </p>
       </div>
-    )
+    );
   }
 
   return (
@@ -37,5 +39,5 @@ export const MatchsPreview = ({ matchs, onShowAll }: MatchsPreviewProps) => {
         ))}
       </div>
     </section>
-  )
-}
+  );
+};

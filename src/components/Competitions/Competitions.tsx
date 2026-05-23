@@ -1,12 +1,12 @@
-import { useCompetitions } from '../../hooks/useCompetitions'
-import { CompetitionCard } from './CompetitionCard'
+import { useCompetitions } from "../../hooks/useCompetitions";
+import { CompetitionCard } from "./CompetitionCard";
 
 /** Displays the list of available competitions as a card list. */
 export const Competitions = () => {
-  const { competitions, error } = useCompetitions()
+  const { competitions, error } = useCompetitions();
 
   if (error) {
-    return <p className="text-red-500 text-center">{error}</p>
+    return <p className="text-red-500 text-center">{error}</p>;
   }
 
   return (
@@ -22,5 +22,5 @@ export const Competitions = () => {
         </ul>
       </div>
     </section>
-  )
-}
+  );
+};

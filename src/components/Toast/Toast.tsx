@@ -1,9 +1,9 @@
-import { Transition } from '@headlessui/react'
+import { Transition } from "@headlessui/react";
 
 type ToastProps = {
-  message: string
-  show: boolean
-}
+  message: string;
+  show: boolean;
+};
 
 /** Animated bottom-right toast notification using Headless UI Transition. */
 export const Toast = ({ message, show }: ToastProps) => {
@@ -23,5 +23,5 @@ export const Toast = ({ message, show }: ToastProps) => {
         </div>
       </Transition>
     </div>
-  )
-}
+  );
+};

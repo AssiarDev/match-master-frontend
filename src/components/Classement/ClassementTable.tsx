@@ -1,9 +1,9 @@
-import type { StandingEntry } from '../../types'
-import { ClassementTbody } from './ClassementTbody'
-import { ClassmentThead } from './ClassementThead'
+import type { StandingEntry } from "../../types";
+import { ClassementTbody } from "./ClassementTbody";
+import { ClassmentThead } from "./ClassementThead";
 
 interface ClassementTableProps {
-  standings: StandingEntry[]
+  standings: StandingEntry[];
 }
 
 /** Full standings table: renders a thead and one tbody row per entry. */
@@ -14,4 +14,4 @@ export const ClassementTable = ({ standings }: ClassementTableProps) => (
       <ClassementTbody key={item.position} item={item} />
     ))}
   </table>
-)
+);

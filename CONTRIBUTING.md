@@ -3,6 +3,7 @@
 ## Installation
 
 ### Prérequis
+
 - [Docker](https://www.docker.com/) et Docker Compose
 - Le backend [match-master-backend](https://github.com/AssiarDev/match-master) lancé localement
 - [Cocogitto](https://docs.cocogitto.io/) pour les commits conventionnels
@@ -10,29 +11,34 @@
 #### Installer cocogitto
 
 **macOS**
+
 ```sh
 brew install cocogitto
 ```
 
 **Windows**
+
 ```sh
 winget install cocogitto
 ```
 
 Puis activer le hook git dans le repo :
+
 ```sh
 cog install-hook commit-msg
 ```
 
 ### Variables d'environnement
+
 Copier le fichier d'exemple et renseigner les valeurs :
+
 ```sh
 cp .env.example .env
 ```
 
-| Variable       | Description           | Exemple                 |
-|----------------|-----------------------|-------------------------|
-| `VITE_API_URL` | URL de l'API backend  | `http://localhost:3000` |
+| Variable       | Description          | Exemple                 |
+| -------------- | -------------------- | ----------------------- |
+| `VITE_API_URL` | URL de l'API backend | `http://localhost:3000` |
 
 ## Workflow Git
 
@@ -51,18 +57,18 @@ Tous les commits doivent respecter le format [Conventional Commits](https://www.
 type(scope): description
 ```
 
-| Type | Usage |
-|---|---|
-| `feat` | Nouvelle fonctionnalité |
-| `fix` | Correction de bug |
-| `chore` | Tâche de maintenance |
+| Type       | Usage                                       |
+| ---------- | ------------------------------------------- |
+| `feat`     | Nouvelle fonctionnalité                     |
+| `fix`      | Correction de bug                           |
+| `chore`    | Tâche de maintenance                        |
 | `refactor` | Refactoring sans changement de comportement |
-| `docs` | Documentation |
-| `style` | Formatage, style |
-| `test` | Tests |
-| `build` | Build system |
-| `ci` | CI/CD |
-| `perf` | Performance |
+| `docs`     | Documentation                               |
+| `style`    | Formatage, style                            |
+| `test`     | Tests                                       |
+| `build`    | Build system                                |
+| `ci`       | CI/CD                                       |
+| `perf`     | Performance                                 |
 
 ## Releases
 
@@ -70,13 +76,13 @@ Les releases sont gérées automatiquement par le job CI au merge sur `main`, vi
 
 ## Conventions de nommage
 
-| Élément | Convention | Exemple |
-|---|---|---|
-| Composants | PascalCase | `FavoriteButton.tsx` |
-| Hooks | camelCase préfixé `use` | `useLeagueFavorite.ts` |
-| Types/Interfaces | PascalCase | `interface Competition` |
-| Variables/Fonctions | camelCase | `handleClick`, `isFavorite` |
-| Fichiers non-composants | camelCase | `authContext.ts` |
+| Élément                 | Convention              | Exemple                     |
+| ----------------------- | ----------------------- | --------------------------- |
+| Composants              | PascalCase              | `FavoriteButton.tsx`        |
+| Hooks                   | camelCase préfixé `use` | `useLeagueFavorite.ts`      |
+| Types/Interfaces        | PascalCase              | `interface Competition`     |
+| Variables/Fonctions     | camelCase               | `handleClick`, `isFavorite` |
+| Fichiers non-composants | camelCase               | `authContext.ts`            |
 
 ## Ajouter un hook
 

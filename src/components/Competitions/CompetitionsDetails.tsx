@@ -1,12 +1,12 @@
-import { useLocation } from 'react-router'
-import { CompetitionTabs } from './CompetitionTabs'
-import type { Competition } from '../../types'
-import { FavoriteButton } from '../Favorite/FavoriteButton'
+import { useLocation } from "react-router";
+import { CompetitionTabs } from "./CompetitionTabs";
+import type { Competition } from "../../types";
+import { FavoriteButton } from "../Favorite/FavoriteButton";
 
 /** Competition detail page: logo, name, favorite button, and tabbed content (Resume, Classement, Matchs). */
 export const CompetitionsDetails = () => {
-  const location = useLocation()
-  const competition: Competition = location.state?.competition
+  const location = useLocation();
+  const competition: Competition = location.state?.competition;
 
   return (
     <div className="w-full flex flex-col">
@@ -19,9 +19,12 @@ export const CompetitionsDetails = () => {
           />
         </div>
         <h1 className="text-white uppercase font-bold">{competition.name}</h1>
-        <FavoriteButton teamName={competition.name} competitionId={competition.id} />
+        <FavoriteButton
+          teamName={competition.name}
+          competitionId={competition.id}
+        />
       </div>
       <CompetitionTabs />
     </div>
-  )
-}
+  );
+};

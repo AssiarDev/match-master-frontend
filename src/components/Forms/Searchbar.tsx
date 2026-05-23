@@ -1,48 +1,52 @@
-import { useEffect, useState } from 'react'
-import type { ChangeEvent } from 'react'
-import { Input } from './Input'
+import { useEffect, useState } from "react";
+import type { ChangeEvent } from "react";
+import { Input } from "./Input";
 
 interface TeamResult {
-  name: string
-  logo: string
+  name: string;
+  logo: string;
 }
 
-const apiURL = import.meta.env.VITE_API_URL
+const apiURL = import.meta.env.VITE_API_URL;
 
 /** Team search bar with live filtering. Fetches all teams on mount and filters by name as the user types. */
 export const SearchBar = () => {
-  const [query, setQuery] = useState('')
-  const [teams, setTeams] = useState<TeamResult[]>([])
-  const [filteredTeam, setFilteredTeam] = useState<TeamResult[]>([])
+  const [query, setQuery] = useState("");
+  const [teams, setTeams] = useState<TeamResult[]>([]);
+  const [filteredTeam, setFilteredTeam] = useState<TeamResult[]>([]);
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value)
-  }
+    setQuery(e.target.value);
+  };
 
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await fetch(`${apiURL}/teams`)
-        const result: Array<{ name: string; image_path: string }> = await response.json()
-        const mapped = result.map(team => ({ name: team.name, logo: team.image_path }))
-        setTeams(mapped)
+        const response = await fetch(`${apiURL}/teams`);
+        const result: Array<{ name: string; image_path: string }> =
+          await response.json();
+        const mapped = result.map((team) => ({
+          name: team.name,
+          logo: team.image_path,
+        }));
+        setTeams(mapped);
       } catch (e) {
-        console.error('Error fetching data:', e)
+        console.error("Error fetching data:", e);
       }
-    }
-    fetchTeams()
-  }, [])
+    };
+    fetchTeams();
+  }, []);
 
   useEffect(() => {
     if (query.length > 0) {
-      const filtered = teams.filter(team =>
-        team.name.toLowerCase().includes(query.toLowerCase())
-      )
-      setFilteredTeam(filtered)
+      const filtered = teams.filter((team) =>
+        team.name.toLowerCase().includes(query.toLowerCase()),
+      );
+      setFilteredTeam(filtered);
     } else {
-      setFilteredTeam([])
+      setFilteredTeam([]);
     }
-  }, [query, teams])
+  }, [query, teams]);
 
   return (
     <div>
@@ -66,5 +70,5 @@ export const SearchBar = () => {
         </ul>
       )}
     </div>
-  )
-}
+  );
+};

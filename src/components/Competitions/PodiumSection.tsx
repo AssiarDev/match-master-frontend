@@ -1,15 +1,18 @@
-import type { StandingEntry } from '../../types'
-import { ClassementTbody } from '../Classement/ClassementTbody'
-import { ClassmentThead } from '../Classement/ClassementThead'
+import type { StandingEntry } from "../../types";
+import { ClassementTbody } from "../Classement/ClassementTbody";
+import { ClassmentThead } from "../Classement/ClassementThead";
 
 interface PodiumSectionProps {
-  podiumTeams: StandingEntry[]
-  onShowAll: (e: React.MouseEvent<HTMLAnchorElement>) => void
+  podiumTeams: StandingEntry[];
+  onShowAll: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 /** Displays the top 3 teams of a competition standings with a link to the full standings tab. */
-export const PodiumSection = ({ podiumTeams, onShowAll }: PodiumSectionProps) => {
-  if (!podiumTeams?.length) return null
+export const PodiumSection = ({
+  podiumTeams,
+  onShowAll,
+}: PodiumSectionProps) => {
+  if (!podiumTeams?.length) return null;
 
   return (
     <section className="flex flex-col gap-4">
@@ -33,5 +36,5 @@ export const PodiumSection = ({ podiumTeams, onShowAll }: PodiumSectionProps) =>
         </table>
       </div>
     </section>
-  )
-}
+  );
+};

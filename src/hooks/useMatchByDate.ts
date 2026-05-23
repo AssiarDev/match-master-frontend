@@ -1,8 +1,8 @@
-import type { MatchesByLeague } from '../types'
-import { useFetch } from './useFetch'
+import type { MatchesByLeague } from "../types";
+import { useFetch } from "./useFetch";
 
 const formatDate = (date: Date | string): string =>
-  new Date(date).toISOString().split('T')[0]
+  new Date(date).toISOString().split("T")[0];
 
 /**
  * Fetches matches for a given date, grouped by league.
@@ -12,13 +12,13 @@ const formatDate = (date: Date | string): string =>
  * @returns `{ matchesByDate, loading, error }`
  */
 export const useMatchByDate = (selectedDate?: Date | string | null) => {
-  const formattedDate = selectedDate ? formatDate(selectedDate) : null
+  const formattedDate = selectedDate ? formatDate(selectedDate) : null;
 
   const { data, loading, error } = useFetch<{ data?: MatchesByLeague }>(
     formattedDate
       ? `${import.meta.env.VITE_API_URL}/competitions/matches?date=${formattedDate}`
-      : null
-  )
+      : null,
+  );
 
-  return { matchesByDate: data?.data ?? {}, loading, error }
-}
+  return { matchesByDate: data?.data ?? {}, loading, error };
+};

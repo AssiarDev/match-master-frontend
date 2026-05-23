@@ -1,7 +1,7 @@
 interface ScorersCardProps {
-  playerName?: string
-  goals?: number
-  image?: string
+  playerName?: string;
+  goals?: number;
+  image?: string;
 }
 
 /** One row in the top scorers list: player photo, name, and goal count. */
@@ -22,5 +22,5 @@ export const ScorersCard = ({ playerName, goals, image }: ScorersCardProps) => {
       </div>
       <span className="font-bold">{goals} ⚽</span>
     </div>
-  )
-}
+  );
+};

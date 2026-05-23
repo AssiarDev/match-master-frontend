@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
-import { Navbar } from '../Forms/Navbar'
-import { BurgerMenu } from '../BurgerMenu/BurgerMenu'
-import { SearchBar } from '../Forms/Searchbar'
+import { Link } from "react-router-dom";
+import { Navbar } from "../Forms/Navbar";
+import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
+import { SearchBar } from "../Forms/Searchbar";
 
 interface HeaderProps {
-  isMobileMenu: boolean
-  setIsMobileMenu: (value: boolean) => void
+  isMobileMenu: boolean;
+  setIsMobileMenu: (value: boolean) => void;
 }
 
 /** Sticky application header: logo, desktop Navbar, SearchBar, and mobile BurgerMenu toggle. */
@@ -31,5 +31,5 @@ export const Header = ({ isMobileMenu, setIsMobileMenu }: HeaderProps) => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};

@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom'
-import type { Competition } from '../../types'
+import { Link } from "react-router-dom";
+import type { Competition } from "../../types";
 
 interface CompetitionCardProps {
-  competition: Competition
+  competition: Competition;
 }
 
 /** List item card for a competition. Links to the competition detail page, passing competition data via route state. */
@@ -15,10 +15,10 @@ export const CompetitionCard = ({ competition }: CompetitionCardProps) => (
     >
       <img
         className="h-10 w-10 object-contain"
-        src={competition.image_path || 'Aucun logo disponible.'}
+        src={competition.image_path || "Aucun logo disponible."}
         alt={`Logo de ${competition.name}`}
       />
       {competition.name}
     </Link>
   </li>
-)
+);

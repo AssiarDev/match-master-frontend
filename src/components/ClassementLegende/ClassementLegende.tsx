@@ -26,5 +26,5 @@ export const ClassementLegende = () => {
         </li>
       </ul>
     </div>
-  )
-}
+  );
+};

@@ -1,8 +1,8 @@
-import { FiMenu, FiX } from 'react-icons/fi'
+import { FiMenu, FiX } from "react-icons/fi";
 
 interface BurgerMenuProps {
-  isOpen: boolean
-  onToggle: () => void
+  isOpen: boolean;
+  onToggle: () => void;
 }
 
 /** Toggle button for the mobile navigation menu (hamburger / close icon). */
@@ -15,5 +15,5 @@ export const BurgerMenu = ({ isOpen, onToggle }: BurgerMenuProps) => {
     >
       {isOpen ? <FiX /> : <FiMenu />}
     </button>
-  )
-}
+  );
+};

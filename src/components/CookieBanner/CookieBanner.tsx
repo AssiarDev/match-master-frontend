@@ -1,9 +1,9 @@
-import { Transition } from '@headlessui/react'
-import { Link } from 'react-router-dom'
-import { useCookieConsent } from '../../hooks/useCookieConsent'
+import { Transition } from "@headlessui/react";
+import { Link } from "react-router-dom";
+import { useCookieConsent } from "../../hooks/useCookieConsent";
 
 export const CookieBanner = () => {
-  const { showBanner, accept, refuse } = useCookieConsent()
+  const { showBanner, accept, refuse } = useCookieConsent();
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none">
@@ -19,8 +19,8 @@ export const CookieBanner = () => {
         <div className="pointer-events-auto bg-zinc-900 border-t border-amber-900/50 shadow-lg shadow-amber-900/30 px-4 py-4">
           <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
             <p className="text-sm text-gray-300 leading-relaxed">
-              Nous utilisons un cookie de session strictement nécessaire à votre connexion. Aucun
-              cookie de suivi n'est utilisé.{' '}
+              Nous utilisons un cookie de session strictement nécessaire à votre
+              connexion. Aucun cookie de suivi n'est utilisé.{" "}
               <Link to="/privacy" className="text-amber-400 hover:underline">
                 En savoir plus
               </Link>
@@ -43,5 +43,5 @@ export const CookieBanner = () => {
         </div>
       </Transition>
     </div>
-  )
-}
+  );
+};

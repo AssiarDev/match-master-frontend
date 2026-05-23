@@ -1,19 +1,19 @@
-import type { StandingEntry } from '../../types'
-import { ClassmentThead } from '../Classement/ClassementThead'
-import { ClassementTbody } from '../Classement/ClassementTbody'
-import { ClassementLegende } from '../ClassementLegende/ClassementLegende'
-import { MatchesList } from '../Matchs/MatchesList'
+import type { StandingEntry } from "../../types";
+import { ClassmentThead } from "../Classement/ClassementThead";
+import { ClassementTbody } from "../Classement/ClassementTbody";
+import { ClassementLegende } from "../ClassementLegende/ClassementLegende";
+import { MatchesList } from "../Matchs/MatchesList";
 
 interface TeamDetail {
-  id: number
-  name: string
-  image_path?: string
+  id: number;
+  name: string;
+  image_path?: string;
 }
 
 interface TeamViewProps {
-  team: TeamDetail
-  standings: StandingEntry[]
-  teamId?: string
+  team: TeamDetail;
+  standings: StandingEntry[];
+  teamId?: string;
 }
 
 /** Renders a team detail page: badge + name header, standings table with legend, and match list. */
@@ -42,4 +42,4 @@ export const TeamView = ({ team, standings, teamId }: TeamViewProps) => (
 
     <MatchesList />
   </div>
-)
+);

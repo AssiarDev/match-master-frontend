@@ -1,11 +1,11 @@
-import logo from '../../assets/search.png'
-import type { ChangeEvent } from 'react'
+import logo from "../../assets/search.png";
+import type { ChangeEvent } from "react";
 
 interface InputProps {
-  placeholder?: string
-  value: string
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
-  type?: string
+  placeholder?: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  type?: string;
 }
 
 /** Styled text input with a search icon. */
@@ -25,5 +25,5 @@ export const Input = ({ placeholder, value, onChange, type }: InputProps) => {
         className="h-5 w-5 absolute right-3 top-1/2 transform -translate-y-1/2"
       />
     </div>
-  )
-}
+  );
+};

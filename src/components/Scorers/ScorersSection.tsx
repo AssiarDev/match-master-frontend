@@ -1,8 +1,8 @@
-import type { Scorer } from '../../types'
-import { ScorersCard } from './ScorersCard'
+import type { Scorer } from "../../types";
+import { ScorersCard } from "./ScorersCard";
 
 interface ScorersSectionProps {
-  scorers: Scorer[]
+  scorers: Scorer[];
 }
 
 /** Section listing the top scorers of a competition using ScorersCard rows. */
@@ -26,5 +26,5 @@ export const ScorersSection = ({ scorers }: ScorersSectionProps) => {
         )}
       </div>
     </section>
-  )
-}
+  );
+};

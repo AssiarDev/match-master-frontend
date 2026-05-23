@@ -8,14 +8,14 @@ import { Favorite } from "@/types";
  * @returns `{ leagueFavorite, error, refreshLeagueFavorites }`
  */
 export const useLeagueFavorite = () => {
-  const { user } = useAuth()
+  const { user } = useAuth();
 
   const { data, error, refresh } = useFetch<Favorite[]>(
     user?.id
       ? `${import.meta.env.VITE_API_URL}/protected/users/${user.id}/favorites-leagues`
       : null,
-    { fetchOptions: { credentials: 'include' } }
-  )
+    { fetchOptions: { credentials: "include" } },
+  );
 
-  return { leagueFavorite: data ?? [], error, refreshLeagueFavorites: refresh }
-}
+  return { leagueFavorite: data ?? [], error, refreshLeagueFavorites: refresh };
+};

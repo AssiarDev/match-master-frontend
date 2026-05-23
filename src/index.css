@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @utility scrollbar-hide {
   -ms-overflow-style: none;

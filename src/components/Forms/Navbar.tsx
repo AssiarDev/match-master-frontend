@@ -1,24 +1,28 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { FiUser } from 'react-icons/fi'
-import { useAuth } from '../../context/AuthContext'
-import { useLogout } from '../../hooks/useLogout'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FiUser } from "react-icons/fi";
+import { useAuth } from "../../context/AuthContext";
+import { useLogout } from "../../hooks/useLogout";
 
 /** Desktop navigation bar with links to Live, Competitions, and user account menu (profile, favorites, logout). */
 export const Navbar = () => {
-  const { isAuthenticated, user } = useAuth()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const logout = useLogout()
+  const { isAuthenticated, user } = useAuth();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const logout = useLogout();
 
   return (
     <nav className="text-white px-4 py-3 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto">
         <ul className="flex gap-6 text-xl items-center">
           <li>
-            <Link to="/live" className="hover:underline">Live</Link>
+            <Link to="/live" className="hover:underline">
+              Live
+            </Link>
           </li>
           <li>
-            <Link to="/competitions" className="hover:underline">Compétitions</Link>
+            <Link to="/competitions" className="hover:underline">
+              Compétitions
+            </Link>
           </li>
           {isAuthenticated ? (
             <li className="relative">
@@ -56,11 +60,13 @@ export const Navbar = () => {
             </li>
           ) : (
             <li>
-              <Link to="/login" className="hover:underline">Se connecter</Link>
+              <Link to="/login" className="hover:underline">
+                Se connecter
+              </Link>
             </li>
           )}
         </ul>
       </div>
     </nav>
-  )
-}
+  );
+};

@@ -1,32 +1,32 @@
-import { Route, Routes } from 'react-router-dom'
-import { useState } from 'react'
-import { NoMatch } from './components/NoMatch'
-import { MatchsDetails } from './components/Matchs/MatchsDetails'
-import { TeamsDetails } from './components/Teams/TeamsDetails'
-import { RegisterModal } from './components/RegisterModal/RegisterModal'
-import { Footer } from './components/Footer/Footer'
-import { Live } from './components/LiveMatch/Live'
-import { Competitions } from './components/Competitions/Competitions'
-import { CompetitionsDetails } from './components/Competitions/CompetitionsDetails'
-import { LoginModal } from './components/LoginModal/LoginModal'
-import { FavoriteModal } from './components/FavoriteModal/FavoriteModal'
-import { Header } from './components/Header/Header'
-import { MobileMenu } from './components/MobileMenu/MobileMenu'
-import { UserProfile } from './components/Profile/UserProfile'
-import { PrivacyPolicy } from './components/Legal/PrivacyPolicy'
-import { CookieBanner } from './components/CookieBanner/CookieBanner'
-import { PrivateRoute } from './components/PrivateRoute'
+import { Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import { NoMatch } from "./components/NoMatch";
+import { MatchsDetails } from "./components/Matchs/MatchsDetails";
+import { TeamsDetails } from "./components/Teams/TeamsDetails";
+import { RegisterModal } from "./components/RegisterModal/RegisterModal";
+import { Footer } from "./components/Footer/Footer";
+import { Live } from "./components/LiveMatch/Live";
+import { Competitions } from "./components/Competitions/Competitions";
+import { CompetitionsDetails } from "./components/Competitions/CompetitionsDetails";
+import { LoginModal } from "./components/LoginModal/LoginModal";
+import { FavoriteModal } from "./components/FavoriteModal/FavoriteModal";
+import { Header } from "./components/Header/Header";
+import { MobileMenu } from "./components/MobileMenu/MobileMenu";
+import { UserProfile } from "./components/Profile/UserProfile";
+import { PrivacyPolicy } from "./components/Legal/PrivacyPolicy";
+import { CookieBanner } from "./components/CookieBanner/CookieBanner";
+import { PrivateRoute } from "./components/PrivateRoute";
 
 function App() {
-  const [isMobileMenu, setIsMobileMenu] = useState(false)
+  const [isMobileMenu, setIsMobileMenu] = useState(false);
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
-      <Header
-        isMobileMenu={isMobileMenu}
-        setIsMobileMenu={setIsMobileMenu}
+      <Header isMobileMenu={isMobileMenu} setIsMobileMenu={setIsMobileMenu} />
+      <MobileMenu
+        isOpen={isMobileMenu}
+        onClose={() => setIsMobileMenu(false)}
       />
-      <MobileMenu isOpen={isMobileMenu} onClose={() => setIsMobileMenu(false)} />
       <div className="flex flex-col flex-grow">
         <main className="flex flex-grow overflow-y-auto">
           <Routes>
@@ -37,19 +37,22 @@ function App() {
             <Route path="/teams/:teamId" element={<TeamsDetails />} />
             <Route path="/live" element={<Live />} />
             <Route path="/competitions" element={<Competitions />} />
-            <Route path="/competition/:competitionId" element={<CompetitionsDetails />} />
+            <Route
+              path="/competition/:competitionId"
+              element={<CompetitionsDetails />}
+            />
             <Route element={<PrivateRoute />}>
               <Route path="/favoriteUser" element={<FavoriteModal />} />
-              <Route path='/user-profile' element={<UserProfile />}/>
+              <Route path="/user-profile" element={<UserProfile />} />
             </Route>
-            <Route path='/privacy' element={<PrivacyPolicy />}/>
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
         </main>
         <Footer />
         <CookieBanner />
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

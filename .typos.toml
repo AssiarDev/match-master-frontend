@@ -1,0 +1,21 @@
+[files]
+# Markdown files contain French prose — too many false positives
+extend-exclude = ["*.md"]
+
+[default.extend-words]
+# French UI strings and component names — intentional French spelling
+matchs = "matchs"
+Matchs = "Matchs"
+Legende = "Legende"
+informations = "informations"
+cours = "cours"
+accepte = "accepte"
+mis = "mis"
+Responsable = "Responsable"
+projet = "projet"
+collectons = "collectons"
+Adresse = "Adresse"
+adresse = "adresse"
+authentification = "authentification"
+# Ordinal abbreviation in enum values (e.g. 2ND_HALF, INPLAY_2ND_HALF)
+ND = "ND"

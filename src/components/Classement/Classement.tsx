@@ -1,20 +1,20 @@
-import { useLocation } from 'react-router'
-import { useStandings } from '../../hooks/useStandings'
-import { ClassementTable } from './ClassementTable'
+import { useLocation } from "react-router";
+import { useStandings } from "../../hooks/useStandings";
+import { ClassementTable } from "./ClassementTable";
 
 /** Fetches and displays the standings table for the current competition (read from route state). */
 export const Classement = () => {
-  const location = useLocation()
-  const competitionId = location.state?.competition?.id
+  const location = useLocation();
+  const competitionId = location.state?.competition?.id;
 
-  const { standings, loading, error } = useStandings(competitionId)
+  const { standings, loading, error } = useStandings(competitionId);
 
   if (loading) {
     return (
       <div className="flex justify-center py-10">
         <p className="text-gray-600">Chargement en cours...</p>
       </div>
-    )
+    );
   }
 
   if (error) {
@@ -22,7 +22,7 @@ export const Classement = () => {
       <div className="flex justify-center py-10">
         <p className="text-red-500">Erreur : {error}</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -31,5 +31,5 @@ export const Classement = () => {
         <ClassementTable standings={standings} />
       </div>
     </div>
-  )
-}
+  );
+};
