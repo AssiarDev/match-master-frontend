@@ -1,6 +1,6 @@
 # Changelog
 
----
+- - -
 
 ## [0.3.4](https://github.com/AssiarDev/match-master-frontend/compare/872dbd224e41843b59a6e3c0d458d8bc6d580451..0.3.4) - 2026-05-17
 
@@ -8,7 +8,7 @@
 
 - **(auth)** surface silent login failure when session cookie is not set - ([872dbd2](https://github.com/AssiarDev/match-master-frontend/commit/872dbd224e41843b59a6e3c0d458d8bc6d580451)) - AssiarDev
 
----
+- - -
 
 ## [0.3.3](https://github.com/AssiarDev/match-master-frontend/compare/34def4f344d2cd13ec27cfca2bbb7faad413cbe7..0.3.3) - 2026-05-17
 
@@ -16,7 +16,7 @@
 
 - **(proxy)** move API redirect to \_redirects to fix catch-all override - ([34def4f](https://github.com/AssiarDev/match-master-frontend/commit/34def4f344d2cd13ec27cfca2bbb7faad413cbe7)) - AssiarDev
 
----
+- - -
 
 ## [0.3.2](https://github.com/AssiarDev/match-master-frontend/compare/c3a6200fcc2ec79b5da548e7c4ca9643ca885397..0.3.2) - 2026-05-17
 
@@ -24,7 +24,7 @@
 
 - **(auth)** add Netlify proxy to fix cross-domain cookie on mobile - ([c3a6200](https://github.com/AssiarDev/match-master-frontend/commit/c3a6200fcc2ec79b5da548e7c4ca9643ca885397)) - AssiarDev
 
----
+- - -
 
 ## [0.3.1](https://github.com/AssiarDev/match-master-frontend/compare/1a6008fce1309fd14547e88582c684b9c1f405dc..0.3.1) - 2026-05-17
 
@@ -32,7 +32,7 @@
 
 - **(ui)** improve mobile navigation and fix layout issues - ([1a6008f](https://github.com/AssiarDev/match-master-frontend/commit/1a6008fce1309fd14547e88582c684b9c1f405dc)) - AssiarDev
 
----
+- - -
 
 ## [0.3.0](https://github.com/AssiarDev/match-master-frontend/compare/b02bccd4a2f6d1df694b3066a9a8fe2bac5571c1..0.3.0) - 2026-05-15
 
@@ -40,7 +40,7 @@
 
 - display live scores via SSE on /live page and home page - ([b02bccd](https://github.com/AssiarDev/match-master-frontend/commit/b02bccd4a2f6d1df694b3066a9a8fe2bac5571c1)) - AssiarDev
 
----
+- - -
 
 ## [0.2.0](https://github.com/AssiarDev/match-master-frontend/compare/4a2d0ca9f11055645760534388cc524def264fc5..0.2.0) - 2026-05-15
 
@@ -68,7 +68,7 @@
 - **(version)** 0.1.1 - ([a26bc4b](https://github.com/AssiarDev/match-master-frontend/commit/a26bc4bb513b504f0188b857473ab084aa375d81)) - AssiarDev
 - dockerize frontend with nginx and update documentation - ([6837c12](https://github.com/AssiarDev/match-master-frontend/commit/6837c12ef49d15670f5d7747336b3ff69446056d)) - AssiarDev
 
----
+- - -
 
 ## [0.1.1](https://github.com/AssiarDev/match-master-frontend/compare/4a2d0ca9f11055645760534388cc524def264fc5..0.1.1) - 2026-05-15
 
@@ -84,7 +84,7 @@
 
 - dockerize frontend with nginx and update documentation - ([6837c12](https://github.com/AssiarDev/match-master-frontend/commit/6837c12ef49d15670f5d7747336b3ff69446056d)) - AssiarDev
 
----
+- - -
 
 ## [0.1.0](https://github.com/AssiarDev/match-master-frontend/compare/2add653d853357b065d2b36087fec11679d60ca3..0.1.0) - 2026-05-11
 
@@ -131,7 +131,7 @@
 - remove unused log - ([5a7211d](https://github.com/AssiarDev/match-master-frontend/commit/5a7211d0e470700c26f18bbe3a53ac07c2f391c5)) - AssiarDev
 - remove unused coment - ([1817d6c](https://github.com/AssiarDev/match-master-frontend/commit/1817d6c5c3775bbfc6d7641644c0eae484b85f4e)) - AssiarDev
 
----
+- - -
 
 ## Unreleased ([2add653..8006bb9](https://github.com/AssiarDev/match-master-frontend/compare/2add653..8006bb9))
 
