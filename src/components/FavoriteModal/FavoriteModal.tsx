@@ -54,7 +54,7 @@ export const FavoriteModal = () => {
             aria-label="Fermer le modal"
             className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl cursor-pointer"
           >
-            x
+            ×
           </button>
 
           <DialogTitle className="text-xl font-bold text-white mb-5">

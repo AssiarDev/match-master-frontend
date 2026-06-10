@@ -26,7 +26,14 @@ export const LoginModal = () => {
   const hasError = Boolean(error);
 
   return (
-    <Dialog open={open} onClose={setOpen} className="relative z-50">
+    <Dialog
+      open={open}
+      onClose={() => {
+        setOpen(false);
+        navigate(-1);
+      }}
+      className="relative z-50"
+    >
       <DialogBackdrop className="fixed inset-0 bg-neutral-950/75 transition-opacity" />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">

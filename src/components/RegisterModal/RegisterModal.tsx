@@ -29,7 +29,14 @@ export const RegisterModal = () => {
   const hasError = Boolean(error);
 
   return (
-    <Dialog open={open} onClose={setOpen} className="relative z-50">
+    <Dialog
+      open={open}
+      onClose={() => {
+        setOpen(false);
+        navigate(-1);
+      }}
+      className="relative z-50"
+    >
       <DialogBackdrop className="fixed inset-0 bg-neutral-950/75 transition-opacity" />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -54,11 +61,13 @@ export const RegisterModal = () => {
           >
             <input
               type="text"
+              required
               placeholder="Nom d'utilisateur"
               className="border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white"
             />
             <input
-              type="text"
+              type="email"
+              required
               placeholder="Email"
               className="border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white"
             />
