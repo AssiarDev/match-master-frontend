@@ -1,6 +1,21 @@
 # Changelog
 
 - - -
+## [0.3.5](https://github.com/AssiarDev/match-master-frontend/compare/ab0c6f4535a7d43d7eb2542116bbdfe29a4ded17..0.3.5) - 2026-06-13
+#### Bug Fixes
+- **(utils)** handle all sportmonks fixture structures and extract shared utility - ([c22b743](https://github.com/AssiarDev/match-master-frontend/commit/c22b743991e0e5ad9b03cfc639d94b64dc148777)) - AssiarDev
+#### Continuous Integration
+- fix commit lint to check from latest tag only - ([b0ea142](https://github.com/AssiarDev/match-master-frontend/commit/b0ea1426cfa867d4ffbed51151e1c5bd53ba2cb3)) - AssiarDev
+#### Miscellaneous Chores
+- **(ci)** add prettier and typecheck jobs to ci pipeline - ([ab0c6f4](https://github.com/AssiarDev/match-master-frontend/commit/ab0c6f4535a7d43d7eb2542116bbdfe29a4ded17)) - AssiarDev
+- **(cog)** fix CHANGELOG separator - ([1f757a0](https://github.com/AssiarDev/match-master-frontend/commit/1f757a03eb43b43776007ebfc3933b95f1b8fb55)) - AssiarDev
+- ignore CHANGELOG.md from prettier - ([428ddc1](https://github.com/AssiarDev/match-master-frontend/commit/428ddc1734e12db7b70380a7435306804ee277da)) - AssiarDev
+#### Tests
+- **(setup)** setup vitest and msw - ([336de3e](https://github.com/AssiarDev/match-master-frontend/commit/336de3e0fcb4e51bcb846c831a807209764aaf63)) - AssiarDev
+- add unit test suite for components and hooks - ([b6a6289](https://github.com/AssiarDev/match-master-frontend/commit/b6a628939663014f0914c3258df1547eff9d89cd)) - AssiarDev
+
+- - -
+
 
 ## [0.3.4](https://github.com/AssiarDev/match-master-frontend/compare/872dbd224e41843b59a6e3c0d458d8bc6d580451..0.3.4) - 2026-05-17
 
