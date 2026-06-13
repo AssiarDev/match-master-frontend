@@ -70,6 +70,8 @@ export interface Round {
 
 export interface Stage {
   rounds?: Round[];
+  stages?: Stage[];
+  fixtures?: Match[];
 }
 
 export interface LeagueMatchGroup {

@@ -1,12 +1,7 @@
 import { useMemo } from "react";
-import type { Match, Stage } from "../types";
+import type { Stage } from "../types";
 import { useFetch } from "./useFetch";
-
-const extractFixtures = (data: Stage | Stage[]): Match[] => {
-  const stages = Array.isArray(data) ? data : [data];
-  const allRounds = stages.flatMap((stage) => stage.rounds ?? []);
-  return allRounds.flatMap((round) => round.fixtures ?? []);
-};
+import { extractFixtures } from "@/utils/extractFixtures";
 
 /**
  * Fetches all matches for a competition, flattening stages and rounds.

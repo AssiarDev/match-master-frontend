@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import type { Match, Stage } from "../types";
 import { useFetch } from "./useFetch";
+import { extractFixtures } from "@/utils/extractFixtures";
 
 /**
  * Fetches the 5 most recent finished matches (state_id === 5) for a competition,
@@ -18,9 +19,7 @@ export const useResumeMatchs = (competitionId?: number | string) => {
 
   return useMemo<Match[]>(() => {
     if (!data) return [];
-    const stages = Array.isArray(data) ? data : [data];
-    const allRounds = stages.flatMap((stage) => stage.rounds ?? []);
-    const allFixtures = allRounds.flatMap((round) => round.fixtures ?? []);
+    const allFixtures = extractFixtures(data);
     return allFixtures
       .filter((f) => f.state_id === 5)
       .sort(

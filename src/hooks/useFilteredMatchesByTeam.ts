@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import type { Match, Stage } from "../types";
 import { useFetch } from "./useFetch";
+import { extractFixtures } from "@/utils/extractFixtures";
 
 type MatchFilter = "upcoming" | "finished" | "all";
 
@@ -27,9 +28,7 @@ export const useFilteredMatchesByTeam = (
 
   return useMemo<Match[]>(() => {
     if (!data) return [];
-    const stages = Array.isArray(data) ? data : [data];
-    const allRounds = stages.flatMap((stage) => stage.rounds ?? []);
-    const allFixtures = allRounds.flatMap((round) => round.fixtures ?? []);
+    const allFixtures = extractFixtures(data);
     const filtered = allFixtures.filter((fixture) =>
       fixture.participants?.some((p) => p.id === Number(teamId)),
     );
