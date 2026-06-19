@@ -44,20 +44,19 @@ export const useRegister = () => {
         }),
       });
 
-      if (!response.ok) throw new Error("Echec tentative d'inscription");
+      const data = await response.json().catch(() => null);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        await checkAuth();
-        onSuccess?.();
-        navigate("/login");
-      } else {
-        setError(data?.message || "Erreur lors de l'inscription");
+      if (!response.ok) {
+        setError(data?.error || "Erreur lors de l'inscription.");
+        return;
       }
+
+      await checkAuth();
+      onSuccess?.();
+      navigate("/login");
     } catch (e) {
       console.error(e);
-      setError("Erreur de connexion au serveur");
+      setError("Erreur de connexion au serveur.");
     } finally {
       setLoading(false);
     }

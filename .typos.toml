@@ -17,5 +17,6 @@ collectons = "collectons"
 Adresse = "Adresse"
 adresse = "adresse"
 authentification = "authentification"
+respecte = "respecte"
 # Ordinal abbreviation in enum values (e.g. 2ND_HALF, INPLAY_2ND_HALF)
 ND = "ND"

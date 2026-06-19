@@ -66,7 +66,7 @@ describe("useRegister", () => {
     expect(onSuccess).toHaveBeenCalledOnce();
   });
 
-  it("sets error on non-ok API response", async () => {
+  it("sets fallback error on non-ok API response without a body", async () => {
     server.use(
       http.post(`${API}/register`, () =>
         HttpResponse.json(null, { status: 400 }),
@@ -79,7 +79,28 @@ describe("useRegister", () => {
     });
 
     await waitFor(() => expect(result.current.loading).toBe(false));
-    expect(result.current.error).not.toBe("");
+    expect(result.current.error).toBe("Erreur lors de l'inscription.");
+  });
+
+  it("displays the error message returned by the API", async () => {
+    server.use(
+      http.post(`${API}/register`, () =>
+        HttpResponse.json(
+          { error: "Le mot de passe ne respecte pas les règles requises." },
+          { status: 422 },
+        ),
+      ),
+    );
+    const { result } = renderHook(() => useRegister(), { wrapper });
+
+    await act(async () => {
+      await result.current.register("user", "user@test.com", "pass", "pass");
+    });
+
+    await waitFor(() => expect(result.current.loading).toBe(false));
+    expect(result.current.error).toBe(
+      "Le mot de passe ne respecte pas les règles requises.",
+    );
   });
 
   it("sets error on network failure", async () => {

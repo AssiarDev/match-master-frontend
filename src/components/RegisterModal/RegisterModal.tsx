@@ -13,39 +13,62 @@ import type { FormEvent } from "react";
 export const RegisterModal = () => {
   const [open, setOpen] = useState(true);
   const [consentChecked, setConsentChecked] = useState(false);
+  const [areFieldsFilled, setAreFieldsFilled] = useState(false);
+  const [confirmError, setConfirmError] = useState("");
   const { register, loading, error } = useRegister();
   const navigate = useNavigate();
+
+  const handleFormInput = (e: FormEvent<HTMLFormElement>) => {
+    const form = e.currentTarget;
+    const username = (form.elements.namedItem("username") as HTMLInputElement)
+      .value;
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+    const password = (form.elements.namedItem("password") as HTMLInputElement)
+      .value;
+    const confirmPassword = (
+      form.elements.namedItem("confirmPassword") as HTMLInputElement
+    ).value;
+    setAreFieldsFilled(
+      username.trim() !== "" &&
+        email.trim() !== "" &&
+        password !== "" &&
+        confirmPassword !== "",
+    );
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    const username = (form[0] as HTMLInputElement).value;
-    const mail = (form[1] as HTMLInputElement).value;
-    const password = (form[2] as HTMLInputElement).value;
-    const confirmPassword = (form[3] as HTMLInputElement).value;
-    register(username, mail, password, confirmPassword, () => setOpen(false));
+    const username = (form.elements.namedItem("username") as HTMLInputElement)
+      .value;
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+    const password = (form.elements.namedItem("password") as HTMLInputElement)
+      .value;
+    const confirmPassword = (
+      form.elements.namedItem("confirmPassword") as HTMLInputElement
+    ).value;
+
+    if (password !== confirmPassword) {
+      setConfirmError("Les mots de passe ne correspondent pas.");
+      return;
+    }
+    setConfirmError("");
+    register(username, email, password, confirmPassword, () => setOpen(false));
   };
 
-  const hasError = Boolean(error);
+  const handleClose = () => {
+    setOpen(false);
+    navigate(-1);
+  };
 
   return (
-    <Dialog
-      open={open}
-      onClose={() => {
-        setOpen(false);
-        navigate(-1);
-      }}
-      className="relative z-50"
-    >
+    <Dialog open={open} onClose={handleClose} className="relative z-50">
       <DialogBackdrop className="fixed inset-0 bg-neutral-950/75 transition-opacity" />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <DialogPanel className="relative bg-neutral-950 border-none shadow-lg shadow-amber-900/50 rounded-lg w-96 p-6">
           <button
-            onClick={() => {
-              setOpen(false);
-              navigate(-1);
-            }}
+            onClick={handleClose}
             className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl cursor-pointer"
           >
             ×
@@ -57,46 +80,64 @@ export const RegisterModal = () => {
 
           <form
             onSubmit={handleSubmit}
+            onInput={handleFormInput}
             className="mt-4 flex flex-col space-y-3"
           >
             <input
               type="text"
+              name="username"
               required
               placeholder="Nom d'utilisateur"
               className="border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white"
             />
             <input
               type="email"
+              name="email"
               required
               placeholder="Email"
               className="border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white"
             />
             <input
               type="password"
+              name="password"
               placeholder="Mot de passe"
               className="border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white"
             />
             <ul className="text-xs text-gray-400 space-y-1">
               <li>• 8 caractères minimum</li>
               <li>• 1 majuscule requise</li>
+              <li>• 1 chiffre requis</li>
               <li>• 1 caractère spécial requis</li>
             </ul>
-            <input
-              type="password"
-              placeholder="Confirmez le mot de passe"
-              className={`border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white ${
-                hasError
-                  ? "border-red-500 focus:border-red-500"
-                  : "focus:border-amber-500"
-              }`}
-            />
+            <div>
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirmez le mot de passe"
+                className={`w-full border p-2 rounded focus:ring bg-neutral-900 text-white ${
+                  confirmError
+                    ? "border-red-500 focus:border-red-500"
+                    : "focus:border-amber-500"
+                }`}
+              />
+              {confirmError && (
+                <p className="text-red-500 text-xs mt-1">{confirmError}</p>
+              )}
+            </div>
 
-            <label className="flex items-start gap-2 text-sm text-gray-300 cursor-pointer">
+            <label
+              className={`flex items-start gap-2 text-sm ${
+                areFieldsFilled
+                  ? "text-gray-300 cursor-pointer"
+                  : "text-gray-500 cursor-not-allowed"
+              }`}
+            >
               <input
                 type="checkbox"
                 checked={consentChecked}
                 onChange={(e) => setConsentChecked(e.target.checked)}
-                className="mt-0.5 accent-amber-500 cursor-pointer"
+                disabled={!areFieldsFilled}
+                className="mt-0.5 accent-amber-500 disabled:cursor-not-allowed"
               />
               <span>
                 J'accepte la{" "}
