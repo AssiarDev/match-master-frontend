@@ -1,6 +1,14 @@
 # Changelog
 
 - - -
+## [0.3.6](https://github.com/AssiarDev/match-master-frontend/compare/598fb44376078f0dd314f67acf490fab7b0a11b9..0.3.6) - 2026-06-19
+#### Bug Fixes
+- **(register)** improve validation flow and test coverage - ([aa864d9](https://github.com/AssiarDev/match-master-frontend/commit/aa864d937889ab349f85607a556f85f4871f3ff3)) - AssiarDev
+#### Tests
+- extend coverage and enable full coverage reporting - ([598fb44](https://github.com/AssiarDev/match-master-frontend/commit/598fb44376078f0dd314f67acf490fab7b0a11b9)) - AssiarDev
+
+- - -
+
 ## [0.3.5](https://github.com/AssiarDev/match-master-frontend/compare/ab0c6f4535a7d43d7eb2542116bbdfe29a4ded17..0.3.5) - 2026-06-13
 #### Bug Fixes
 - **(utils)** handle all sportmonks fixture structures and extract shared utility - ([c22b743](https://github.com/AssiarDev/match-master-frontend/commit/c22b743991e0e5ad9b03cfc639d94b64dc148777)) - AssiarDev
