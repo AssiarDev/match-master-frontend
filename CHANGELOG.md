@@ -1,6 +1,12 @@
 # Changelog
 
 - - -
+## [0.4.0](https://github.com/AssiarDev/match-master-frontend/compare/99c4d649d79f15eafee9b74b41ecc027432cdc01..0.4.0) - 2026-06-20
+#### Features
+- **(bracket)** add cup bracket view with preliminary rounds and visual schema - ([99c4d64](https://github.com/AssiarDev/match-master-frontend/commit/99c4d649d79f15eafee9b74b41ecc027432cdc01)) - AssiarDev
+
+- - -
+
 ## [0.3.6](https://github.com/AssiarDev/match-master-frontend/compare/598fb44376078f0dd314f67acf490fab7b0a11b9..0.3.6) - 2026-06-19
 #### Bug Fixes
 - **(register)** improve validation flow and test coverage - ([aa864d9](https://github.com/AssiarDev/match-master-frontend/commit/aa864d937889ab349f85607a556f85f4871f3ff3)) - AssiarDev
