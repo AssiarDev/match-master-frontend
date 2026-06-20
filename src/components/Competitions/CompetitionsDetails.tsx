@@ -24,7 +24,7 @@ export const CompetitionsDetails = () => {
           competitionId={competition.id}
         />
       </div>
-      <CompetitionTabs />
+      <CompetitionTabs competition={competition} />
     </div>
   );
 };

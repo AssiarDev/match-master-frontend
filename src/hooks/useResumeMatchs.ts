@@ -20,8 +20,9 @@ export const useResumeMatchs = (competitionId?: number | string) => {
   return useMemo<Match[]>(() => {
     if (!data) return [];
     const allFixtures = extractFixtures(data);
+    const FINISHED_STATES = [5, 6, 7, 12];
     return allFixtures
-      .filter((f) => f.state_id === 5)
+      .filter((f) => FINISHED_STATES.includes(Number(f.state_id)))
       .sort(
         (a, b) =>
           new Date(b.starting_at).getTime() - new Date(a.starting_at).getTime(),

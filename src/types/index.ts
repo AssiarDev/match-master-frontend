@@ -15,6 +15,8 @@ export interface Competition {
   name: string;
   image_path?: string;
   emblem?: string;
+  type?: string;
+  sub_type?: string;
 }
 
 export interface League {
@@ -39,6 +41,7 @@ export interface MatchParticipant {
   image_path?: string;
   meta?: {
     location: "home" | "away";
+    winner?: boolean;
   };
 }
 
@@ -69,6 +72,7 @@ export interface Round {
 }
 
 export interface Stage {
+  name?: string;
   rounds?: Round[];
   stages?: Stage[];
   fixtures?: Match[];

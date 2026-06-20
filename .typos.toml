@@ -20,3 +20,8 @@ authentification = "authentification"
 respecte = "respecte"
 # Ordinal abbreviation in enum values (e.g. 2ND_HALF, INPLAY_2ND_HALF)
 ND = "ND"
+# SportMonks state abbreviation for Abandoned matches
+ABD = "ABD"
+# French words used in UI strings and comments
+groupe = "groupe"
+groupes = "groupes"

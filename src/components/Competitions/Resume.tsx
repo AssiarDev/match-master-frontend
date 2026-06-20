@@ -5,18 +5,24 @@ import { useScorers } from "../../hooks/useScorers";
 import { MatchsPreview } from "../Matchs/MatchsPreview";
 import { PodiumSection } from "./PodiumSection";
 import { ScorersSection } from "../Scorers/ScorersSection";
+import { BracketView } from "../Bracket";
+import type { Competition } from "../../types";
 
 interface ResumeProps {
+  competition: Competition;
   setActiveTab: (tab: string) => void;
 }
 
-export const Resume = ({ setActiveTab }: ResumeProps) => {
+const isCup = (competition: Competition): boolean =>
+  competition.sub_type?.includes("cup") ?? false;
+
+export const Resume = ({ competition, setActiveTab }: ResumeProps) => {
   const location = useLocation();
   const id = location.state?.competition?.id;
 
   const matchs = useResumeMatchs(id);
-  const { standings } = useStandings(id);
-  const { scorers } = useScorers(id);
+  const { standings } = useStandings(!isCup(competition) ? id : undefined);
+  const { scorers } = useScorers(!isCup(competition) ? id : undefined);
 
   const podiumTeams = standings.slice(0, 3);
 
@@ -31,15 +37,23 @@ export const Resume = ({ setActiveTab }: ResumeProps) => {
           }}
         />
 
-        <PodiumSection
-          podiumTeams={podiumTeams}
-          onShowAll={(e: React.MouseEvent<HTMLAnchorElement>) => {
-            e.preventDefault();
-            setActiveTab("classement");
-          }}
-        />
-
-        <ScorersSection scorers={scorers} />
+        {isCup(competition) ? (
+          <div>
+            <h2 className="text-white font-semibold text-lg mb-3">Tableau</h2>
+            <BracketView />
+          </div>
+        ) : (
+          <>
+            <PodiumSection
+              podiumTeams={podiumTeams}
+              onShowAll={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault();
+                setActiveTab("classement");
+              }}
+            />
+            <ScorersSection scorers={scorers} />
+          </>
+        )}
       </div>
     </div>
   );

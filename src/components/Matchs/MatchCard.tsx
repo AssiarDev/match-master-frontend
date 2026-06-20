@@ -1,39 +1,6 @@
-import type {
-  Match,
-  ScoreDetail,
-  ScoresWrapper,
-  MatchParticipant,
-} from "../../types";
+import type { Match, MatchParticipant } from "../../types";
 import { FavoriteButton } from "../Favorite/FavoriteButton";
-
-interface NormalizedScore {
-  home: number;
-  away: number;
-}
-
-const normalizeScores = (rawScores: Match["scores"]): ScoreDetail[] => {
-  if (!rawScores) return [];
-  if (Array.isArray(rawScores)) return rawScores;
-  if (Array.isArray((rawScores as ScoresWrapper).data))
-    return (rawScores as ScoresWrapper).data!;
-  return [];
-};
-
-const extractFinalScore = (rawScores: Match["scores"]): NormalizedScore => {
-  const scores = normalizeScores(rawScores);
-  let home = 0;
-  let away = 0;
-
-  scores.forEach((s) => {
-    if (!s?.score) return;
-    const side = s.score.participant;
-    const goals = typeof s.score.goals === "number" ? s.score.goals : 0;
-    if (side === "home") home = Math.max(home, goals);
-    if (side === "away") away = Math.max(away, goals);
-  });
-
-  return { home, away };
-};
+import { FINISHED_STATES, extractFinalScore } from "../../utils/matchUtils";
 
 interface MatchCardProps {
   item: Match;
@@ -69,8 +36,7 @@ export const MatchCard = ({ item, leagueId }: MatchCardProps) => {
     minute: "2-digit",
   });
 
-  const finishedStates = [5, 6, 7];
-  const isFinished = finishedStates.includes(item.state_id);
+  const isFinished = FINISHED_STATES.has(Number(item.state_id));
 
   return (
     <div className="border border-gray-700 rounded-xl shadow-md p-3 sm:p-4 w-full bg-zinc-900 text-white">
