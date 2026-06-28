@@ -1,6 +1,12 @@
 # Changelog
 
 - - -
+## [0.5.0](https://github.com/AssiarDev/match-master-frontend/compare/3f352a401b971da5ff8048091a85225568972697..0.5.0) - 2026-06-28
+#### Features
+- **(mobile)** add bottom navigation bar and extensible search - ([3f352a4](https://github.com/AssiarDev/match-master-frontend/commit/3f352a401b971da5ff8048091a85225568972697)) - AssiarDev
+
+- - -
+
 ## [0.4.0](https://github.com/AssiarDev/match-master-frontend/compare/99c4d649d79f15eafee9b74b41ecc027432cdc01..0.4.0) - 2026-06-20
 #### Features
 - **(bracket)** add cup bracket view with preliminary rounds and visual schema - ([99c4d64](https://github.com/AssiarDev/match-master-frontend/commit/99c4d649d79f15eafee9b74b41ecc027432cdc01)) - AssiarDev
