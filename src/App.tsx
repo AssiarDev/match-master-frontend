@@ -16,42 +16,55 @@ import { UserProfile } from "./components/Profile/UserProfile";
 import { PrivacyPolicy } from "./components/Legal/PrivacyPolicy";
 import { CookieBanner } from "./components/CookieBanner/CookieBanner";
 import { PrivateRoute } from "./components/PrivateRoute";
+import { BottomNav } from "./components/BottomNav/BottomNav";
+import { SearchOverlay } from "./components/SearchOverlay/SearchOverlay";
+import { LiveStreamProvider } from "./context/LiveStreamContext";
 
 function App() {
   const [isMobileMenu, setIsMobileMenu] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
-    <div className="flex flex-col min-h-screen overflow-x-hidden">
-      <Header isMobileMenu={isMobileMenu} setIsMobileMenu={setIsMobileMenu} />
-      <MobileMenu
-        isOpen={isMobileMenu}
-        onClose={() => setIsMobileMenu(false)}
-      />
-      <div className="flex flex-col flex-grow">
-        <main className="flex flex-grow overflow-y-auto">
-          <Routes>
-            <Route path="/login" element={<LoginModal />} />
-            <Route path="/register" element={<RegisterModal />} />
-            <Route path="*" element={<NoMatch />} />
-            <Route path="/" element={<MatchsDetails />} />
-            <Route path="/teams/:teamId" element={<TeamsDetails />} />
-            <Route path="/live" element={<Live />} />
-            <Route path="/competitions" element={<Competitions />} />
-            <Route
-              path="/competition/:competitionId"
-              element={<CompetitionsDetails />}
-            />
-            <Route element={<PrivateRoute />}>
-              <Route path="/favoriteUser" element={<FavoriteModal />} />
-              <Route path="/user-profile" element={<UserProfile />} />
-            </Route>
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-          </Routes>
-        </main>
-        <Footer />
-        <CookieBanner />
+    <LiveStreamProvider>
+      <div className="flex flex-col min-h-screen overflow-x-hidden">
+        <Header isMobileMenu={isMobileMenu} setIsMobileMenu={setIsMobileMenu} />
+        <MobileMenu
+          isOpen={isMobileMenu}
+          onClose={() => setIsMobileMenu(false)}
+        />
+        {isSearchOpen && (
+          <SearchOverlay onClose={() => setIsSearchOpen(false)} />
+        )}
+        <div className="flex flex-col flex-grow pb-16 md:pb-0">
+          <main className="flex flex-grow overflow-y-auto">
+            <Routes>
+              <Route path="/login" element={<LoginModal />} />
+              <Route path="/register" element={<RegisterModal />} />
+              <Route path="*" element={<NoMatch />} />
+              <Route path="/" element={<MatchsDetails />} />
+              <Route path="/teams/:teamId" element={<TeamsDetails />} />
+              <Route path="/live" element={<Live />} />
+              <Route path="/competitions" element={<Competitions />} />
+              <Route
+                path="/competition/:competitionId"
+                element={<CompetitionsDetails />}
+              />
+              <Route element={<PrivateRoute />}>
+                <Route path="/favoriteUser" element={<FavoriteModal />} />
+                <Route path="/user-profile" element={<UserProfile />} />
+              </Route>
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+            </Routes>
+          </main>
+          <Footer />
+          <CookieBanner />
+        </div>
+        <BottomNav
+          onSearchToggle={() => setIsSearchOpen((prev) => !prev)}
+          isSearchOpen={isSearchOpen}
+        />
       </div>
-    </div>
+    </LiveStreamProvider>
   );
 }
 

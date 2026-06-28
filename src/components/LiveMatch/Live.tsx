@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useLiveStream } from "@/hooks/useLiveStream";
+import { useLiveStreamContext } from "@/context/LiveStreamContext";
 import { LiveMatchCard } from "./LiveMatchCard";
 import { INPLAY_STATES } from "@/utils/constants";
 import type { LiveMatch } from "@/types";
@@ -31,7 +31,7 @@ const groupByLeague = (matches: LiveMatch[]): Record<string, LeagueGroup> => {
 };
 
 export const Live = () => {
-  const { matches, connected, error } = useLiveStream();
+  const { matches, connected, error } = useLiveStreamContext();
   const activeMatches = useMemo(
     () =>
       matches.filter(

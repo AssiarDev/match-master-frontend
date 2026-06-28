@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+import { useLocation, Navigate } from "react-router";
 import { CompetitionTabs } from "./CompetitionTabs";
 import type { Competition } from "../../types";
 import { FavoriteButton } from "../Favorite/FavoriteButton";
@@ -6,7 +6,9 @@ import { FavoriteButton } from "../Favorite/FavoriteButton";
 /** Competition detail page: logo, name, favorite button, and tabbed content (Resume, Classement, Matchs). */
 export const CompetitionsDetails = () => {
   const location = useLocation();
-  const competition: Competition = location.state?.competition;
+  const competition: Competition | undefined = location.state?.competition;
+
+  if (!competition) return <Navigate to="/competitions" replace />;
 
   return (
     <div className="w-full flex flex-col">

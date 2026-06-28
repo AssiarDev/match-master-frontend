@@ -1,18 +1,20 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Live } from "./Live";
-import * as useLiveStreamModule from "@/hooks/useLiveStream";
+import * as LiveStreamContextModule from "@/context/LiveStreamContext";
 import { MatchStateDeveloperName } from "@/types";
 import type { LiveMatch } from "@/types";
 
-vi.mock("@/hooks/useLiveStream", () => ({ useLiveStream: vi.fn() }));
+vi.mock("@/context/LiveStreamContext", () => ({
+  useLiveStreamContext: vi.fn(),
+}));
 vi.mock("./LiveMatchCard", () => ({
   LiveMatchCard: ({ match }: { match: LiveMatch }) => (
     <div data-testid="live-match-card">{match.id}</div>
   ),
 }));
 
-const mockHook = () => vi.mocked(useLiveStreamModule.useLiveStream);
+const mockHook = () => vi.mocked(LiveStreamContextModule.useLiveStreamContext);
 
 const fakeMatch: LiveMatch = {
   id: 1,
@@ -46,7 +48,12 @@ const fakeMatch: LiveMatch = {
 };
 
 beforeEach(() => {
-  mockHook().mockReturnValue({ matches: [], connected: false, error: null });
+  mockHook().mockReturnValue({
+    matches: [],
+    connected: false,
+    error: null,
+    hasLiveMatches: false,
+  });
 });
 
 describe("Live", () => {
@@ -56,7 +63,12 @@ describe("Live", () => {
   });
 
   it("shows 'Connecté' status when the stream is connected", () => {
-    mockHook().mockReturnValue({ matches: [], connected: true, error: null });
+    mockHook().mockReturnValue({
+      matches: [],
+      connected: true,
+      error: null,
+      hasLiveMatches: false,
+    });
     render(<Live />);
     expect(screen.getByText("Connecté")).toBeInTheDocument();
   });
@@ -73,13 +85,19 @@ describe("Live", () => {
       matches: [],
       connected: false,
       error: "Connexion perdue",
+      hasLiveMatches: false,
     });
     render(<Live />);
     expect(screen.getByText("Connexion perdue")).toBeInTheDocument();
   });
 
   it("shows 'Aucun match en direct' when connected but no active matches", () => {
-    mockHook().mockReturnValue({ matches: [], connected: true, error: null });
+    mockHook().mockReturnValue({
+      matches: [],
+      connected: true,
+      error: null,
+      hasLiveMatches: false,
+    });
     render(<Live />);
     expect(
       screen.getByText("Aucun match en direct pour le moment."),
@@ -91,6 +109,7 @@ describe("Live", () => {
       matches: [fakeMatch],
       connected: true,
       error: null,
+      hasLiveMatches: true,
     });
     render(<Live />);
     expect(screen.getAllByTestId("live-match-card")).toHaveLength(1);
@@ -101,6 +120,7 @@ describe("Live", () => {
       matches: [fakeMatch],
       connected: true,
       error: null,
+      hasLiveMatches: true,
     });
     render(<Live />);
     expect(screen.getByText("Superliga")).toBeInTheDocument();
@@ -122,6 +142,7 @@ describe("Live", () => {
       matches: [finishedMatch],
       connected: true,
       error: null,
+      hasLiveMatches: false,
     });
     render(<Live />);
     expect(screen.queryByTestId("live-match-card")).not.toBeInTheDocument();
@@ -136,6 +157,7 @@ describe("Live", () => {
       matches: [fakeMatch, match2],
       connected: true,
       error: null,
+      hasLiveMatches: true,
     });
     render(<Live />);
     expect(screen.getAllByText("Superliga")).toHaveLength(1);
@@ -152,6 +174,7 @@ describe("Live", () => {
       matches: [matchWithoutLeague],
       connected: true,
       error: null,
+      hasLiveMatches: true,
     });
     render(<Live />);
     expect(screen.getByText("Compétition inconnue")).toBeInTheDocument();
