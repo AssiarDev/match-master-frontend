@@ -1,7 +1,7 @@
 import type { StandingEntry } from "../../types";
 import { ClassmentThead } from "../Classement/ClassementThead";
 import { ClassementTbody } from "../Classement/ClassementTbody";
-import { ClassementLegende } from "../ClassementLegende/ClassementLegende";
+import { ClassementLegende } from "../Classement/ClassementLegende";
 import { MatchesList } from "../Matchs/MatchesList";
 
 interface TeamDetail {

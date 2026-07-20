@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { Navbar } from "../Forms/Navbar";
+import { Navbar } from "../Navigation/Navbar";
 import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
-import { SearchBar } from "../Forms/Searchbar";
+import { SearchBar } from "../Navigation/Searchbar";
 
 interface HeaderProps {
   isMobileMenu: boolean;

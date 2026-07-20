@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Resume } from "./Resume";
 import { Classement } from "../Classement/Classement";
-import { Matchs } from "./Matchs";
+import { CompetitionMatchs } from "./CompetitionMatchs";
 import { BracketView } from "../Bracket";
 import type { Competition } from "../../types";
 
@@ -55,7 +55,7 @@ export const CompetitionTabs = ({ competition }: CompetitionTabsProps) => {
         )}
         {activeTab === "classement" && <Classement />}
         {activeTab === "bracket" && <BracketView />}
-        {activeTab === "matchs" && <Matchs />}
+        {activeTab === "matchs" && <CompetitionMatchs />}
       </div>
     </div>
   );

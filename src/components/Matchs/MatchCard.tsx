@@ -1,5 +1,5 @@
 import type { Match, MatchParticipant } from "../../types";
-import { FavoriteButton } from "../Favorite/FavoriteButton";
+import { FavoriteButton } from "../Favorite/FavoriteButton/FavoriteButton";
 import { FINISHED_STATES, extractFinalScore } from "../../utils/matchUtils";
 
 interface MatchCardProps {

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
-import { Matchs } from "./Matchs";
+import { CompetitionMatchs } from "./CompetitionMatchs";
 import * as useMatchesModule from "@/hooks/useMatches";
 import type { Match } from "../../types";
 
@@ -25,7 +25,7 @@ const fakeMatch: Match = {
 
 const renderMatchs = (competitionId = 5) => {
   const router = createMemoryRouter(
-    [{ path: "/competitions/:id/matches", element: <Matchs /> }],
+    [{ path: "/competitions/:id/matches", element: <CompetitionMatchs /> }],
     {
       initialEntries: [
         {
@@ -42,7 +42,7 @@ beforeEach(() => {
   mockHook().mockReturnValue({ matches: [], loading: false, error: null });
 });
 
-describe("Competitions/Matchs", () => {
+describe("CompetitionMatchs", () => {
   it("shows a loading message while fetching", () => {
     mockHook().mockReturnValue({
       matches: [],

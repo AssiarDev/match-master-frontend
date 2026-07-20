@@ -6,7 +6,7 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { useRegister } from "../../hooks/useRegister";
+import { useRegister } from "../../../hooks/useRegister";
 import type { FormEvent } from "react";
 
 /** Modal dialog for user registration. Validates password confirmation and redirects to login on success. */

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, useParams } from "react-router";
-import { Filtre } from "../Filtre/Filtre";
+import { Filtre } from "./Filtre/Filtre";
 import { groupMatchesByMonth } from "../../utils/groupMatchesByMonth";
 import { GroupedMatchesList } from "./GroupedMatchesList";
 import { useFilteredMatchesByTeam } from "../../hooks/useFilteredMatchesByTeam";

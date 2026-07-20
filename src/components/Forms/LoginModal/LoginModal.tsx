@@ -6,7 +6,7 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { useLogin } from "../../hooks/useLogin";
+import { useLogin } from "../../../hooks/useLogin";
 import type { FormEvent } from "react";
 
 /** Modal dialog for user login. Redirects to home on success, or closes if opened in-context. */

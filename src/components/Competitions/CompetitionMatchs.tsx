@@ -5,7 +5,7 @@ import { groupMatchesByMonth } from "../../utils/groupMatchesByMonth";
 import { MatchGroupByMonth } from "../Matchs/MatchGroupByMonth";
 
 /** Fetches and displays all matches for the current competition, grouped by month. */
-export const Matchs = () => {
+export const CompetitionMatchs = () => {
   const location = useLocation();
   const competition = location.state?.competition.id;
 

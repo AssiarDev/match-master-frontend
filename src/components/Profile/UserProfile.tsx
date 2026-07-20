@@ -3,8 +3,8 @@ import { FiUser } from "react-icons/fi";
 import { useLogout } from "@/hooks/useLogout";
 import { useDeleteProfile } from "@/hooks/useDeleteProfile";
 import { useState } from "react";
-import { EditUsernameModal } from "./EditUsernameModal";
-import { EditPasswordModal } from "./EditPasswordModal";
+import { EditUsernameModal } from "../Forms/EditUsernameModal/EditUsernameModal";
+import { EditPasswordModal } from "../Forms/EditPasswordModal/EditPasswordModal";
 import { Toast } from "../Toast/Toast";
 
 const cardClass =

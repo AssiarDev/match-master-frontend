@@ -14,23 +14,23 @@ const mockDeleteFavorite = vi.fn();
 const mockRefreshLeagueFavorites = vi.fn();
 const mockDeleteLeagueFavorite = vi.fn();
 
-vi.mock("../../hooks/useFavorite", () => ({
+vi.mock("../../../hooks/useFavorite", () => ({
   useFavorite: vi.fn(),
 }));
-vi.mock("../../hooks/useDeleteFavorite", () => ({
+vi.mock("../../../hooks/useDeleteFavorite", () => ({
   useDeleteFavorite: vi.fn(),
 }));
-vi.mock("../../hooks/useLeagueFavorite", () => ({
+vi.mock("../../../hooks/useLeagueFavorite", () => ({
   useLeagueFavorite: vi.fn(),
 }));
-vi.mock("../../hooks/useDeleteLeagueFavorite", () => ({
+vi.mock("../../../hooks/useDeleteLeagueFavorite", () => ({
   useDeleteLeagueFavorite: vi.fn(),
 }));
 
-import * as useFavoriteModule from "../../hooks/useFavorite";
-import * as useDeleteFavoriteModule from "../../hooks/useDeleteFavorite";
-import * as useLeagueFavoriteModule from "../../hooks/useLeagueFavorite";
-import * as useDeleteLeagueFavoriteModule from "../../hooks/useDeleteLeagueFavorite";
+import * as useFavoriteModule from "../../../hooks/useFavorite";
+import * as useDeleteFavoriteModule from "../../../hooks/useDeleteFavorite";
+import * as useLeagueFavoriteModule from "../../../hooks/useLeagueFavorite";
+import * as useDeleteLeagueFavoriteModule from "../../../hooks/useDeleteLeagueFavorite";
 
 const setup = ({
   clubs = [{ id: 1, name: "PSG", emblem: "", leagueId: 5 }],
