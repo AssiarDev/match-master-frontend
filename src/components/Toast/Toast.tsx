@@ -18,7 +18,7 @@ export const Toast = ({ message, show }: ToastProps) => {
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 translate-y-4"
       >
-        <div className="bg-zinc-900 border border-amber-800 text-white px-5 py-3 rounded-xl shadow-lg">
+        <div className="bg-zinc-900 border border-amber-800 text-zinc-100 px-5 py-3 rounded-xl shadow-lg">
           {message}
         </div>
       </Transition>

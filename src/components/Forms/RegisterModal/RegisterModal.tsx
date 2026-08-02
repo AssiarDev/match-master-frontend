@@ -8,6 +8,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useRegister } from "../../../hooks/useRegister";
 import { Button } from "../../UI/Button/Button";
+import { Input } from "../../UI/Input/Input";
 import type { FormEvent } from "react";
 
 /** Modal dialog for user registration. Validates password confirmation and redirects to login on success. */
@@ -70,12 +71,12 @@ export const RegisterModal = () => {
         <DialogPanel className="relative bg-zinc-950 border-none shadow-lg shadow-amber-900/50 rounded-lg w-96 p-6">
           <button
             onClick={handleClose}
-            className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl cursor-pointer"
+            className="absolute top-2 right-2 text-zinc-100 hover:text-red-500 text-2xl cursor-pointer"
           >
             ×
           </button>
 
-          <DialogTitle className="text-xl font-bold text-white">
+          <DialogTitle className="text-xl font-bold text-zinc-100">
             Inscription
           </DialogTitle>
 
@@ -84,26 +85,14 @@ export const RegisterModal = () => {
             onInput={handleFormInput}
             className="mt-4 flex flex-col space-y-3"
           >
-            <input
+            <Input
               type="text"
               name="username"
               required
               placeholder="Nom d'utilisateur"
-              className="border p-2 rounded focus:ring focus:border-amber-500 bg-zinc-900 text-white"
             />
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="Email"
-              className="border p-2 rounded focus:ring focus:border-amber-500 bg-zinc-900 text-white"
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Mot de passe"
-              className="border p-2 rounded focus:ring focus:border-amber-500 bg-zinc-900 text-white"
-            />
+            <Input type="email" name="email" required placeholder="Email" />
+            <Input type="password" name="password" placeholder="Mot de passe" />
             <ul className="text-xs text-zinc-400 space-y-1">
               <li>• 8 caractères minimum</li>
               <li>• 1 majuscule requise</li>
@@ -111,15 +100,11 @@ export const RegisterModal = () => {
               <li>• 1 caractère spécial requis</li>
             </ul>
             <div>
-              <input
+              <Input
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirmez le mot de passe"
-                className={`w-full border p-2 rounded focus:ring bg-zinc-900 text-white ${
-                  confirmError
-                    ? "border-red-500 focus:border-red-500"
-                    : "focus:border-amber-500"
-                }`}
+                error={Boolean(confirmError)}
               />
               {confirmError && (
                 <p className="text-red-500 text-xs mt-1">{confirmError}</p>
@@ -162,7 +147,7 @@ export const RegisterModal = () => {
             </Button>
           </form>
 
-          <p className="mt-3 text-sm text-white text-center">
+          <p className="mt-3 text-sm text-zinc-100 text-center">
             Déjà inscrit ?{" "}
             <Link to="/login" className="text-amber-600 hover:underline">
               Connectez-vous ici

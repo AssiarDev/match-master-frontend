@@ -9,7 +9,7 @@ interface BurgerMenuProps {
 export const BurgerMenu = ({ isOpen, onToggle }: BurgerMenuProps) => {
   return (
     <button
-      className="md:hidden text-3xl text-white"
+      className="md:hidden text-3xl text-zinc-100"
       onClick={onToggle}
       aria-label="Menu"
     >

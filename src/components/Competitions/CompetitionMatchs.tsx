@@ -22,7 +22,7 @@ export const CompetitionMatchs = () => {
 
   if (loading)
     return (
-      <p className="text-white text-center mt-5">Chargement des matchs...</p>
+      <p className="text-zinc-100 text-center mt-5">Chargement des matchs...</p>
     );
   if (error)
     return <p className="text-red-500 text-center mt-5">Erreur : {error}</p>;

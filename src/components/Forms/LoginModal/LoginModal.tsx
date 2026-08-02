@@ -8,6 +8,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "../../../hooks/useLogin";
 import { Button } from "../../UI/Button/Button";
+import { Input } from "../../UI/Input/Input";
 import type { FormEvent } from "react";
 
 /** Modal dialog for user login. Redirects to home on success, or closes if opened in-context. */
@@ -45,12 +46,12 @@ export const LoginModal = () => {
               navigate(-1);
             }}
             aria-label="Fermer le modal"
-            className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl cursor-pointer"
+            className="absolute top-2 right-2 text-zinc-100 hover:text-red-500 text-2xl cursor-pointer"
           >
             ×
           </button>
 
-          <DialogTitle className="text-xl font-bold text-white">
+          <DialogTitle className="text-xl font-bold text-zinc-100">
             Connexion
           </DialogTitle>
 
@@ -58,25 +59,12 @@ export const LoginModal = () => {
             onSubmit={handleSubmit}
             className="mt-4 flex flex-col space-y-3"
           >
-            <input
-              type="email"
-              required
-              placeholder="Email"
-              className={`border p-2 rounded focus:ring bg-zinc-900 text-white ${
-                hasError
-                  ? "border-red-500 focus:border-red-500"
-                  : "focus:border-amber-500"
-              }`}
-            />
-            <input
+            <Input type="email" required placeholder="Email" error={hasError} />
+            <Input
               type="password"
               required
               placeholder="Mot de passe"
-              className={`border p-2 rounded focus:ring bg-zinc-900 text-white ${
-                hasError
-                  ? "border-red-500 focus:border-red-500"
-                  : "focus:border-amber-500"
-              }`}
+              error={hasError}
             />
             {error && <p className="text-red-400 text-sm">{error}</p>}
             <Button type="submit" disabled={loading}>
@@ -84,7 +72,7 @@ export const LoginModal = () => {
             </Button>
           </form>
 
-          <p className="mt-3 text-sm text-white text-center">
+          <p className="mt-3 text-sm text-zinc-100 text-center">
             Pas encore inscrit ?{" "}
             <Link to="/register" className="text-amber-600 hover:underline">
               Créez un compte ici

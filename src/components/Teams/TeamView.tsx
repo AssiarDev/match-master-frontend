@@ -19,7 +19,7 @@ interface TeamViewProps {
 /** Renders a team detail page: badge + name header, standings table with legend, and match list. */
 export const TeamView = ({ team, standings, teamId }: TeamViewProps) => (
   <div className="w-full max-w-6xl mx-auto flex flex-col gap-8 px-4 py-6">
-    <div className="flex justify-center items-center gap-3 bg-stone-800 border border-stone-700 rounded-lg px-4 py-3 text-white text-xl sm:text-2xl font-semibold">
+    <div className="flex justify-center items-center gap-3 bg-stone-800 border border-stone-700 rounded-lg px-4 py-3 text-zinc-100 text-xl sm:text-2xl font-semibold">
       <img src={team.image_path} alt={`${team.name} emblem`} className="h-10" />
       {team.name}
     </div>
@@ -35,7 +35,7 @@ export const TeamView = ({ team, standings, teamId }: TeamViewProps) => (
 
     <ClassementLegende />
 
-    <div className="flex items-center justify-center gap-2 text-white text-lg sm:text-xl font-medium mt-4">
+    <div className="flex items-center justify-center gap-2 text-zinc-100 text-lg sm:text-xl font-medium mt-4">
       <h1>Matchs du {team.name}</h1>
       <img src={team.image_path} alt={`${team.name} logo`} className="h-8" />
     </div>

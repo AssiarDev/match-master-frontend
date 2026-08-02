@@ -1,6 +1,6 @@
 ﻿export const PrivacyPolicy = () => {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10 text-white">
+    <div className="max-w-3xl mx-auto px-4 py-10 text-zinc-100">
       <h1 className="text-3xl font-bold text-amber-700 mb-8">
         Politique de confidentialité
       </h1>
@@ -46,7 +46,7 @@
         </ul>
         <p className="text-zinc-300 leading-relaxed mt-2">
           La base légale de ce traitement est votre{" "}
-          <span className="text-white font-medium">consentement</span> (Art.
+          <span className="text-zinc-100 font-medium">consentement</span> (Art.
           6.1.a du RGPD), donné lors de votre inscription.
         </p>
       </section>
@@ -83,18 +83,22 @@
         </p>
         <ul className="list-disc list-inside text-zinc-300 space-y-1">
           <li>
-            <span className="text-white font-medium">
+            <span className="text-zinc-100 font-medium">
               Droit d'accès et de rectification
             </span>{" "}
             — modifiez vos informations depuis votre profil
           </li>
           <li>
-            <span className="text-white font-medium">Droit à l'effacement</span>{" "}
+            <span className="text-zinc-100 font-medium">
+              Droit à l'effacement
+            </span>{" "}
             — supprimez votre compte depuis votre profil
           </li>
           <li>
-            <span className="text-white font-medium">Droit d'opposition</span> —
-            contactez-nous à l'adresse indiquée ci-dessus
+            <span className="text-zinc-100 font-medium">
+              Droit d'opposition
+            </span>{" "}
+            — contactez-nous à l'adresse indiquée ci-dessus
           </li>
         </ul>
       </section>

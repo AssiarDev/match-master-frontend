@@ -13,7 +13,7 @@ export const Header = ({ isMobileMenu, setIsMobileMenu }: HeaderProps) => {
   return (
     <header className="h-20 w-full sticky top-0 z-50 shadow-lg shadow-amber-900/50">
       <div className="w-full mx-auto flex items-center justify-between h-full px-4">
-        <Link to="/" className="text-3xl font-bold text-white">
+        <Link to="/" className="text-3xl font-bold text-zinc-100">
           Match Master
         </Link>
 

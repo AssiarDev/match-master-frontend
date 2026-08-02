@@ -52,17 +52,17 @@ export const FavoriteModal = () => {
               navigate(-1);
             }}
             aria-label="Fermer le modal"
-            className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl cursor-pointer"
+            className="absolute top-2 right-2 text-zinc-100 hover:text-red-500 text-2xl cursor-pointer"
           >
             ×
           </button>
 
-          <DialogTitle className="text-xl font-bold text-white mb-5">
+          <DialogTitle className="text-xl font-bold text-zinc-100 mb-5">
             Mes favoris
           </DialogTitle>
 
           <div>
-            <p className="text-white font-semibold mb-2">Clubs</p>
+            <p className="text-zinc-100 font-semibold mb-2">Clubs</p>
             {hasError ? (
               <p className="text-red-500 text-sm text-center">{error}</p>
             ) : (
@@ -77,7 +77,7 @@ export const FavoriteModal = () => {
                     className="mb-2 h-5 w-5"
                   />
                   <Link
-                    className="mb-2 text-white hover:underline"
+                    className="mb-2 text-zinc-100 hover:underline"
                     to={`/teams/${fav.id}`}
                     state={{ selectedLeague: fav.leagueId }}
                   >
@@ -85,7 +85,7 @@ export const FavoriteModal = () => {
                   </Link>
                   <button
                     onClick={() => handleDelete(fav.id)}
-                    className="ml-auto mr-2 cursor-pointer text-white hover:text-red-500"
+                    className="ml-auto mr-2 cursor-pointer text-zinc-100 hover:text-red-500"
                   >
                     x
                   </button>
@@ -95,7 +95,7 @@ export const FavoriteModal = () => {
           </div>
 
           <div className="mt-4">
-            <p className="text-white font-semibold mb-2">Compétitions</p>
+            <p className="text-zinc-100 font-semibold mb-2">Compétitions</p>
             {leagueFavorite.map((fav, index) => (
               <div
                 key={index}
@@ -103,7 +103,7 @@ export const FavoriteModal = () => {
               >
                 <img src={fav.emblem} alt={fav.name} className="mb-2 h-5 w-5" />
                 <Link
-                  className="mb-2 text-white hover:underline"
+                  className="mb-2 text-zinc-100 hover:underline"
                   to={`/competition/${fav.id}`}
                   state={{ competition: { ...fav, image_path: fav.emblem } }}
                 >
@@ -111,7 +111,7 @@ export const FavoriteModal = () => {
                 </Link>
                 <button
                   onClick={() => handleDeleteLeague(fav.id)}
-                  className="ml-auto mr-2 cursor-pointer text-white hover:text-red-500"
+                  className="ml-auto mr-2 cursor-pointer text-zinc-100 hover:text-red-500"
                 >
                   x
                 </button>

@@ -12,7 +12,7 @@ export const TeamsDetails = () => {
 
   if (loading || !team) {
     return (
-      <div className="h-screen flex items-center justify-center text-white text-lg animate-pulse">
+      <div className="h-screen flex items-center justify-center text-zinc-100 text-lg animate-pulse">
         Chargement des infos de l'équipe...
       </div>
     );

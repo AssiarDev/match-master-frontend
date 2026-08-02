@@ -38,14 +38,14 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
       >
         <Link
           to="/live"
-          className="flex items-center gap-3 text-white"
+          className="flex items-center gap-3 text-zinc-100"
           onClick={onClose}
         >
           <FiRadio /> Score en Live
         </Link>
         <Link
           to="/competitions"
-          className="flex items-center gap-3 text-white"
+          className="flex items-center gap-3 text-zinc-100"
           onClick={onClose}
         >
           <FiAward /> Compétitions
@@ -55,7 +55,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
           <>
             <Link
               to="/favoriteUser"
-              className="flex items-center gap-3 text-white"
+              className="flex items-center gap-3 text-zinc-100"
               onClick={onClose}
             >
               <FiStar /> Favoris
@@ -80,7 +80,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
         ) : (
           <Link
             to="/login"
-            className="flex items-center gap-3 text-white"
+            className="flex items-center gap-3 text-zinc-100"
             onClick={onClose}
           >
             <FiLogIn /> Se connecter

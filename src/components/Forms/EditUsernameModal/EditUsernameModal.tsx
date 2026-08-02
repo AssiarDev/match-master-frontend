@@ -8,6 +8,7 @@ import { FormEvent, useState } from "react";
 import { useUpdateInfoUser } from "@/hooks/useUpdateInfoUser";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/UI/Button/Button";
+import { Input } from "@/components/UI/Input/Input";
 
 /** Modal dialog to change the authenticated user's username. Calls `onClose` on success. */
 export const EditUsernameModal = ({ onClose }: { onClose: () => void }) => {
@@ -37,12 +38,12 @@ export const EditUsernameModal = ({ onClose }: { onClose: () => void }) => {
               onClose();
             }}
             aria-label="Fermer le modal"
-            className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl cursor-pointer"
+            className="absolute top-2 right-2 text-zinc-100 hover:text-red-500 text-2xl cursor-pointer"
           >
             ×
           </button>
 
-          <DialogTitle className="text-xl font-bold text-white">
+          <DialogTitle className="text-xl font-bold text-zinc-100">
             Modifier votre nom d'utilisateur
           </DialogTitle>
 
@@ -50,15 +51,11 @@ export const EditUsernameModal = ({ onClose }: { onClose: () => void }) => {
             onSubmit={handleSubmit}
             className="mt-4 flex flex-col space-y-3"
           >
-            <input
+            <Input
               type="text"
               required
               placeholder="Username"
-              className={`border p-2 rounded focus:ring bg-zinc-900 text-white ${
-                hasError
-                  ? "border-red-500 focus:border-red-500"
-                  : "focus:border-amber-500"
-              }`}
+              error={hasError}
             />
             <Button type="submit" disabled={loading}>
               Modifier

@@ -11,7 +11,7 @@ export const Navbar = () => {
   const logout = useLogout();
 
   return (
-    <nav className="text-white px-4 py-3 shadow-md">
+    <nav className="text-zinc-100 px-4 py-3 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto">
         <ul className="flex gap-6 text-xl items-center">
           <li>
@@ -30,7 +30,7 @@ export const Navbar = () => {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="flex items-center gap-2 bg-amber-700 hover:bg-amber-600 px-3 py-1 rounded-md cursor-pointer"
               >
-                <FiUser className="text-white" />
+                <FiUser className="text-zinc-100" />
                 {user?.username}
               </button>
               {isMenuOpen && (

@@ -29,16 +29,16 @@ export const UserProfile = () => {
   return (
     <div className="flex flex-col gap-5 w-full max-w-5xl mx-auto">
       <div className="px-2 pt-2 flex justify-between items-center w-full">
-        <h1 className="text-white font-bold text-2xl sm:text-4xl">
+        <h1 className="text-zinc-100 font-bold text-2xl sm:text-4xl">
           Mon profil
         </h1>
-        <div className="text-white text-2xl sm:text-4xl flex items-center gap-2">
+        <div className="text-zinc-100 text-2xl sm:text-4xl flex items-center gap-2">
           <FiUser />
           <span>{user?.username}</span>
         </div>
       </div>
       <div className="px-2 flex flex-col gap-3">
-        <h2 className="text-white text-2xl sm:text-3xl">Mes informations</h2>
+        <h2 className="text-zinc-100 text-2xl sm:text-3xl">Mes informations</h2>
         <Card className={cardClass}>
           <div className="flex justify-between">
             <h3 className="font-bold">Username</h3>
@@ -65,7 +65,9 @@ export const UserProfile = () => {
         </Card>
       </div>
       <div className="px-2 flex flex-col gap-3">
-        <h2 className="text-white text-2xl sm:text-3xl">Notification push</h2>
+        <h2 className="text-zinc-100 text-2xl sm:text-3xl">
+          Notification push
+        </h2>
         <Card className={cardClass}>
           <div className="flex justify-between">
             <h3 className="font-bold">Notification match</h3>
@@ -76,7 +78,7 @@ export const UserProfile = () => {
         </Card>
       </div>
       <div className="px-2 flex flex-col gap-3">
-        <h2 className="text-white text-2xl sm:text-3xl">Thème</h2>
+        <h2 className="text-zinc-100 text-2xl sm:text-3xl">Thème</h2>
         <Card className={cardClass}>
           <div className="flex justify-between">
             <h3 className="font-bold">Mode clair</h3>
@@ -89,7 +91,7 @@ export const UserProfile = () => {
       <div className="flex justify-center">
         <button
           onClick={logout}
-          className="border border-zinc-600 rounded-sm px-4 py-2 text-white hover:border-red-500 hover:text-red-500 transition duration-200"
+          className="border border-zinc-600 rounded-sm px-4 py-2 text-zinc-100 hover:border-red-500 hover:text-red-500 transition duration-200"
         >
           Déconnexion
         </button>

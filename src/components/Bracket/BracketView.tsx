@@ -61,7 +61,7 @@ export const BracketView = () => {
               className={`pb-2 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
                 activeSubTab === tab
                   ? "border-amber-500 text-amber-400"
-                  : "border-transparent text-zinc-400 hover:text-white"
+                  : "border-transparent text-zinc-400 hover:text-zinc-100"
               }`}
             >
               {SUB_TAB_LABELS[tab]}

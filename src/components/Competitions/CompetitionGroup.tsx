@@ -22,7 +22,7 @@ export const CompetitionGroup = ({
 }: CompetitionGroupProps) => (
   <div className="mb-8">
     <div className="flex items-center gap-3 mb-4">
-      <h2 className="text-2xl font-bold text-white">{name}</h2>
+      <h2 className="text-2xl font-bold text-zinc-100">{name}</h2>
       {flag && <img src={flag} alt="" className="h-5" />}
     </div>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">

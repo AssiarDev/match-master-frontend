@@ -46,7 +46,7 @@ export const Live = () => {
     <div className="w-full max-w-6xl mx-auto flex flex-col gap-4 sm:gap-6 py-6 sm:py-8 px-3 sm:px-4">
       {/* Header + connection status */}
       <div className="flex items-center justify-between">
-        <h1 className="text-xl sm:text-2xl font-bold text-white">
+        <h1 className="text-xl sm:text-2xl font-bold text-zinc-100">
           Matchs en direct
         </h1>
         <div className="flex items-center gap-2">
@@ -80,7 +80,7 @@ export const Live = () => {
             {group.image_path && (
               <img src={group.image_path} alt="" className="h-5" />
             )}
-            <h2 className="text-lg sm:text-2xl font-bold text-white">
+            <h2 className="text-lg sm:text-2xl font-bold text-zinc-100">
               {group.name}
             </h2>
           </div>

@@ -14,7 +14,7 @@ interface ArrowButtonProps {
 const PrevButton = ({ onClick }: ArrowButtonProps) => (
   <button
     type="button"
-    className="absolute left-[-40px] top-[1%] text-white hover:bg-zinc-800 rounded-sm px-2 py-2 cursor-pointer"
+    className="absolute left-[-40px] top-[1%] text-zinc-100 hover:bg-zinc-800 rounded-sm px-2 py-2 cursor-pointer"
     onClick={onClick}
   >
     ←
@@ -24,7 +24,7 @@ const PrevButton = ({ onClick }: ArrowButtonProps) => (
 const NextButton = ({ onClick }: ArrowButtonProps) => (
   <button
     type="button"
-    className="absolute right-[-40px] top-[1%] text-white hover:bg-zinc-800 rounded-sm px-2 py-2 cursor-pointer"
+    className="absolute right-[-40px] top-[1%] text-zinc-100 hover:bg-zinc-800 rounded-sm px-2 py-2 cursor-pointer"
     onClick={onClick}
   >
     →
@@ -81,8 +81,8 @@ export const DatePickerCarousel = ({
               key={day.toISOString()}
               className={`py-0.5 text-center rounded-md mx-0.5 sm:mx-1 cursor-pointer ${
                 selectedDate?.toDateString() === day.toDateString()
-                  ? "bg-amber-800 text-white font-bold"
-                  : "text-white"
+                  ? "bg-amber-800 text-zinc-100 font-bold"
+                  : "text-zinc-100"
               }`}
               onClick={() => onDateChange(day)}
             >

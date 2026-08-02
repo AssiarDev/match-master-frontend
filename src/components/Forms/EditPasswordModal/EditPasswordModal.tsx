@@ -8,6 +8,7 @@ import { FormEvent, useState } from "react";
 import { useUpdateInfoUser } from "@/hooks/useUpdateInfoUser";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/UI/Button/Button";
+import { Input } from "@/components/UI/Input/Input";
 
 /** Modal dialog to change the authenticated user's password. Calls `onSuccess` with a confirmation message on success. */
 export const EditPasswordModal = ({
@@ -54,12 +55,12 @@ export const EditPasswordModal = ({
               onClose();
             }}
             aria-label="Fermer le modal"
-            className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl cursor-pointer"
+            className="absolute top-2 right-2 text-zinc-100 hover:text-red-500 text-2xl cursor-pointer"
           >
             ×
           </button>
 
-          <DialogTitle className="text-xl font-bold text-white">
+          <DialogTitle className="text-xl font-bold text-zinc-100">
             Modifier votre mot de passe
           </DialogTitle>
 
@@ -67,40 +68,28 @@ export const EditPasswordModal = ({
             onSubmit={handleSubmit}
             className="mt-4 flex flex-col space-y-3"
           >
-            <input
+            <Input
               type="password"
               required
               placeholder="Mot de passe actuel"
-              className={`border p-2 rounded focus:ring bg-zinc-900 text-white ${
-                hasError
-                  ? "border-red-500 focus:border-red-500"
-                  : "focus:border-amber-500"
-              }`}
+              error={hasError}
             />
-            <input
+            <Input
               type="password"
               required
               placeholder="Nouveau mot de passe"
-              className={`border p-2 rounded focus:ring bg-zinc-900 text-white ${
-                hasError
-                  ? "border-red-500 focus:border-red-500"
-                  : "focus:border-amber-500"
-              }`}
+              error={hasError}
             />
             <ul className="text-xs text-zinc-400 space-y-1">
               <li>• 8 caractères minimum</li>
               <li>• 1 majuscule requise</li>
               <li>• 1 caractère spécial requis</li>
             </ul>
-            <input
+            <Input
               type="password"
               required
               placeholder="Confirmer votre mot de passe"
-              className={`border p-2 rounded focus:ring bg-zinc-900 text-white ${
-                hasError
-                  ? "border-red-500 focus:border-red-500"
-                  : "focus:border-amber-500"
-              }`}
+              error={hasError}
             />
             {error && <p className="text-red-400 text-sm">{error}</p>}
             <Button type="submit" disabled={loading}>

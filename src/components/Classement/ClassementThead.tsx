@@ -1,7 +1,7 @@
 /** Header row of the standings table (position, team, points, played, W/D/L, GF/GA/GD). */
 export const ClassmentThead = () => {
   return (
-    <thead className="bg-stone-800 text-white text-xs sm:text-sm">
+    <thead className="bg-stone-800 text-zinc-100 text-xs sm:text-sm">
       <tr>
         <th className="px-2 py-2 text-center">#</th>
         <th className="px-2 py-2 text-left">Équipe</th>

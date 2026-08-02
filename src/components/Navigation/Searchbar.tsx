@@ -84,7 +84,9 @@ export const SearchBar = () => {
                           className="w-5 h-5 object-contain"
                         />
                       )}
-                      <span className="text-white text-sm">{result.name}</span>
+                      <span className="text-zinc-100 text-sm">
+                        {result.name}
+                      </span>
                     </li>
                   ))}
                 </ul>

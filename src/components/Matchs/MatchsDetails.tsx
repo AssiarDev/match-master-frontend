@@ -60,7 +60,7 @@ export const MatchsDetails = () => {
             <p className="w-full text-zinc-400 text-sm sm:text-base text-left">
               <a
                 href="/"
-                className="text-white underline hover:text-amber-500 transition"
+                className="text-zinc-100 underline hover:text-amber-500 transition"
               >
                 Match Master
               </a>{" "}

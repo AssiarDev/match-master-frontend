@@ -47,7 +47,7 @@ export const MatchCard = ({ item, leagueId }: MatchCardProps) => {
           {formattedDate} · {formattedTime}
         </span>
         <span
-          className={`ml-auto text-xs font-medium ${isFinished ? "text-zinc-500" : "text-yellow-400"}`}
+          className={`ml-auto text-xs font-medium ${isFinished ? "text-zinc-500" : "text-yellow-500"}`}
         >
           {isFinished ? "Terminé" : "À venir"}
         </span>

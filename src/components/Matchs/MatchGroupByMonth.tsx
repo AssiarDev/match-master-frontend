@@ -20,7 +20,7 @@ export const MatchGroupByMonth = ({
 
   return (
     <div className="w-full mt-8">
-      <h2 className="text-xl font-bold text-white uppercase mb-4 text-center">
+      <h2 className="text-xl font-bold text-zinc-100 uppercase mb-4 text-center">
         {month}
       </h2>
 

@@ -28,7 +28,7 @@ export const CookieBanner = () => {
             <div className="flex gap-3 shrink-0">
               <button
                 onClick={refuse}
-                className="text-sm px-4 py-2 border border-zinc-600 text-zinc-300 rounded hover:border-zinc-400 hover:text-white transition duration-200 cursor-pointer"
+                className="text-sm px-4 py-2 border border-zinc-600 text-zinc-300 rounded hover:border-zinc-400 hover:text-zinc-100 transition duration-200 cursor-pointer"
               >
                 Refuser
               </button>

@@ -38,7 +38,7 @@ export const ClassementTbody = ({
     <tbody>
       <tr
         className={`text-xs sm:text-sm ${
-          isSelected ? "bg-amber-800 text-white font-bold" : ""
+          isSelected ? "bg-amber-800 text-zinc-100 font-bold" : ""
         } ${borderColor}`}
       >
         <td className="px-2 py-2 text-center">{item.position}</td>

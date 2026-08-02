@@ -14,7 +14,7 @@ const TeamRow = ({
   showScore: boolean;
 }) => (
   <div
-    className={`flex items-center gap-2 px-2 ${winner ? "text-white" : "text-zinc-400"}`}
+    className={`flex items-center gap-2 px-2 ${winner ? "text-zinc-100" : "text-zinc-400"}`}
     style={{ height: BRACKET_CARD_H / 2 }}
   >
     {team?.image_path ? (

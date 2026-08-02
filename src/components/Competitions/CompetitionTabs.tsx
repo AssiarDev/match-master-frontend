@@ -41,7 +41,7 @@ export const CompetitionTabs = ({ competition }: CompetitionTabsProps) => {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`text-white px-4 py-2 rounded-md hover:bg-zinc-800 cursor-pointer ${
+            className={`text-zinc-100 px-4 py-2 rounded-md hover:bg-zinc-800 cursor-pointer ${
               activeTab === tab.id ? "bg-amber-950/50" : ""
             }`}
           >
@@ -49,7 +49,7 @@ export const CompetitionTabs = ({ competition }: CompetitionTabsProps) => {
           </button>
         ))}
       </div>
-      <div className="p-4 text-white">
+      <div className="p-4 text-zinc-100">
         {activeTab === "resume" && (
           <Resume competition={competition} setActiveTab={setActiveTab} />
         )}

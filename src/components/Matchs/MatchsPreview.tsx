@@ -10,7 +10,7 @@ interface MatchsPreviewProps {
 export const MatchsPreview = ({ matchs, onShowAll }: MatchsPreviewProps) => {
   if (!matchs?.length) {
     return (
-      <div className="w-full border border-zinc-800 text-white text-center py-6 rounded-lg shadow">
+      <div className="w-full border border-zinc-800 text-zinc-100 text-center py-6 rounded-lg shadow">
         <p className="text-zinc-500 text-center">
           La compétition n'a pas encore démarré.
         </p>

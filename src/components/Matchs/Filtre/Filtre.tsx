@@ -25,7 +25,7 @@ export const Filtre = ({ activeFilter, onFilterChange }: FiltreProps) => {
           onClick={() => onFilterChange(value)}
           className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-sm sm:text-base font-medium transition-colors duration-200 ${
             activeFilter === value
-              ? "bg-amber-800 text-white"
+              ? "bg-amber-800 text-zinc-100"
               : "bg-stone-300 text-black hover:bg-stone-400"
           }`}
         >

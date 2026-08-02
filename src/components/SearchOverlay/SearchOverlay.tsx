@@ -79,12 +79,12 @@ export const SearchOverlay = ({ onClose }: SearchOverlayProps) => {
             setQuery(e.target.value)
           }
           placeholder="Rechercher une équipe ou une compétition..."
-          className="flex-1 bg-transparent text-white text-lg outline-none placeholder:text-zinc-500"
+          className="flex-1 bg-transparent text-zinc-100 text-lg outline-none placeholder:text-zinc-500"
         />
         <button
           onClick={onClose}
           aria-label="Fermer la recherche"
-          className="text-zinc-400 hover:text-white transition-colors shrink-0"
+          className="text-zinc-400 hover:text-zinc-100 transition-colors shrink-0"
         >
           <FiX size={22} />
         </button>
@@ -124,7 +124,7 @@ export const SearchOverlay = ({ onClose }: SearchOverlayProps) => {
                         className="w-8 h-8 object-contain"
                       />
                     )}
-                    <span className="text-white">{result.name}</span>
+                    <span className="text-zinc-100">{result.name}</span>
                   </li>
                 ))}
               </ul>

@@ -11,7 +11,7 @@ export const CompetitionCard = ({ competition }: CompetitionCardProps) => (
     <Link
       to={`/competition/${competition.id}`}
       state={{ competition }}
-      className="flex items-center gap-4 sm:gap-5 text-white text-base sm:text-lg font-semibold hover:underline"
+      className="flex items-center gap-4 sm:gap-5 text-zinc-100 text-base sm:text-lg font-semibold hover:underline"
     >
       <img
         className="h-10 w-10 object-contain"

@@ -11,7 +11,7 @@ interface InputProps {
 /** Styled text input with a search icon. */
 export const Input = ({ placeholder, value, onChange, type }: InputProps) => {
   return (
-    <div className="relative text-white">
+    <div className="relative text-zinc-100">
       <input
         className="border border-stone-800 placeholder:text-zinc-500 focus:border-amber-500 focus:outline focus:outline-amber-500 rounded-sm px-2 py-1 mx-2"
         type={type}

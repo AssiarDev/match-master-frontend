@@ -39,7 +39,9 @@ export const Resume = ({ competition, setActiveTab }: ResumeProps) => {
 
         {isCup(competition) ? (
           <div>
-            <h2 className="text-white font-semibold text-lg mb-3">Tableau</h2>
+            <h2 className="text-zinc-100 font-semibold text-lg mb-3">
+              Tableau
+            </h2>
             <BracketView />
           </div>
         ) : (
