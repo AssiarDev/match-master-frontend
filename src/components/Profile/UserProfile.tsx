@@ -6,9 +6,10 @@ import { useState } from "react";
 import { EditUsernameModal } from "../Forms/EditUsernameModal/EditUsernameModal";
 import { EditPasswordModal } from "../Forms/EditPasswordModal/EditPasswordModal";
 import { Toast } from "../Toast/Toast";
+import { Card } from "../UI/Card/Card";
 
 const cardClass =
-  "border border-zinc-700 rounded-xl shadow-md p-4 w-full bg-zinc-900 text-white transition duration-300 hover:shadow-lg hover:border-amber-800 flex flex-col gap-4";
+  "transition duration-300 hover:shadow-lg hover:border-amber-800 flex flex-col gap-4";
 
 /** User profile page: displays account info, notification/theme settings, logout, and account deletion. */
 export const UserProfile = () => {
@@ -39,7 +40,7 @@ export const UserProfile = () => {
       </div>
       <div className="px-2 flex flex-col gap-3">
         <h2 className="text-white text-2xl sm:text-3xl">Mes informations</h2>
-        <div className={cardClass}>
+        <Card className={cardClass}>
           <div className="flex justify-between">
             <h3 className="font-bold">Username</h3>
             <button
@@ -62,29 +63,29 @@ export const UserProfile = () => {
             <h3 className="font-bold">Date d'inscription</h3>
             <span>{user?.createdAt}</span>
           </div>
-        </div>
+        </Card>
       </div>
       <div className="px-2 flex flex-col gap-3">
         <h2 className="text-white text-2xl sm:text-3xl">Notification push</h2>
-        <div className={cardClass}>
+        <Card className={cardClass}>
           <div className="flex justify-between">
             <h3 className="font-bold">Notification match</h3>
             <button className="border border-zinc-600 rounded-sm px-3 py-1 hover:border-amber-500 hover:text-amber-500 transition duration-200">
               Activer
             </button>
           </div>
-        </div>
+        </Card>
       </div>
       <div className="px-2 flex flex-col gap-3">
         <h2 className="text-white text-2xl sm:text-3xl">Thème</h2>
-        <div className={cardClass}>
+        <Card className={cardClass}>
           <div className="flex justify-between">
             <h3 className="font-bold">Mode clair</h3>
             <button className="border border-zinc-600 rounded-sm px-3 py-1 hover:border-amber-500 hover:text-amber-500 transition duration-200">
               Activer
             </button>
           </div>
-        </div>
+        </Card>
       </div>
       <div className="flex justify-center">
         <button
