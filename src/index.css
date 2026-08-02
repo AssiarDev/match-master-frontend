@@ -26,6 +26,8 @@
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+
+  --shadow-card: 0 4px 6px rgba(0, 0, 0, 0.45);
 }
 
 @utility scrollbar-hide {

@@ -8,8 +8,7 @@ import { EditPasswordModal } from "../Forms/EditPasswordModal/EditPasswordModal"
 import { Toast } from "../Toast/Toast";
 import { Card } from "../UI/Card/Card";
 
-const cardClass =
-  "transition duration-300 hover:shadow-lg hover:border-amber-800 flex flex-col gap-4";
+const cardClass = "flex flex-col gap-4";
 
 /** User profile page: displays account info, notification/theme settings, logout, and account deletion. */
 export const UserProfile = () => {
