@@ -1,6 +1,7 @@
 ﻿import { Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { useCookieConsent } from "../../hooks/useCookieConsent";
+import { Button } from "../UI/Button/Button";
 
 export const CookieBanner = () => {
   const { showBanner, accept, refuse } = useCookieConsent();
@@ -26,18 +27,10 @@ export const CookieBanner = () => {
               </Link>
             </p>
             <div className="flex gap-3 shrink-0">
-              <button
-                onClick={refuse}
-                className="text-sm px-4 py-2 border border-zinc-600 text-zinc-300 rounded hover:border-zinc-400 hover:text-zinc-100 transition duration-200 cursor-pointer"
-              >
+              <Button variant="secondary" onClick={refuse}>
                 Refuser
-              </button>
-              <button
-                onClick={accept}
-                className="text-sm px-4 py-2 bg-amber-600 text-zinc-950 font-semibold rounded hover:bg-amber-500 transition duration-200 cursor-pointer"
-              >
-                Tout accepter
-              </button>
+              </Button>
+              <Button onClick={accept}>Tout accepter</Button>
             </div>
           </div>
         </div>

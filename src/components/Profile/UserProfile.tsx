@@ -7,6 +7,7 @@ import { EditUsernameModal } from "../Forms/EditUsernameModal/EditUsernameModal"
 import { EditPasswordModal } from "../Forms/EditPasswordModal/EditPasswordModal";
 import { Toast } from "../Toast/Toast";
 import { Card } from "../UI/Card/Card";
+import { Button } from "../UI/Button/Button";
 
 const cardClass = "flex flex-col gap-4";
 
@@ -71,7 +72,7 @@ export const UserProfile = () => {
         <Card className={cardClass}>
           <div className="flex justify-between">
             <h3 className="font-bold">Notification match</h3>
-            <button className="border border-zinc-600 rounded-sm px-3 py-1 hover:border-amber-500 hover:text-amber-500 transition duration-200">
+            <button className="bg-amber-600 hover:bg-amber-700 text-white text-sm rounded-md px-3 py-1.5 transition duration-200 cursor-pointer">
               Activer
             </button>
           </div>
@@ -82,27 +83,24 @@ export const UserProfile = () => {
         <Card className={cardClass}>
           <div className="flex justify-between">
             <h3 className="font-bold">Mode clair</h3>
-            <button className="border border-zinc-600 rounded-sm px-3 py-1 hover:border-amber-500 hover:text-amber-500 transition duration-200">
+            <button className="bg-amber-600 hover:bg-amber-700 text-white text-sm rounded-md px-3 py-1.5 transition duration-200 cursor-pointer">
               Activer
             </button>
           </div>
         </Card>
       </div>
       <div className="flex justify-center">
-        <button
-          onClick={logout}
-          className="border border-zinc-600 rounded-sm px-4 py-2 text-zinc-100 hover:border-red-500 hover:text-red-500 transition duration-200"
-        >
+        <Button variant="secondary" onClick={logout}>
           Déconnexion
-        </button>
+        </Button>
       </div>
       <div className="flex justify-center">
-        <button
+        <Button
+          variant="danger-outline"
           onClick={() => deleteProfile(user?.id)}
-          className="text-red-500 hover:underline cursor-pointer"
         >
           Supprimer mon compte
-        </button>
+        </Button>
       </div>
       {isUsernameOpen && (
         <EditUsernameModal onClose={() => setIsUsernameOpen(false)} />
