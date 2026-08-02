@@ -1,4 +1,4 @@
-import {
+﻿import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
@@ -26,10 +26,10 @@ export const EditUsernameModal = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <Dialog open={open} onClose={setOpen} className="relative z-50">
-      <DialogBackdrop className="fixed inset-0 bg-neutral-950/75 transition-opacity" />
+      <DialogBackdrop className="fixed inset-0 bg-zinc-950/75 transition-opacity" />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <DialogPanel className="relative bg-neutral-950 border-none shadow-lg shadow-amber-900/50 rounded-lg w-96 p-6">
+        <DialogPanel className="relative bg-zinc-950 border-none shadow-lg shadow-amber-900/50 rounded-lg w-96 p-6">
           <button
             onClick={() => {
               setOpen(false);
@@ -53,7 +53,7 @@ export const EditUsernameModal = ({ onClose }: { onClose: () => void }) => {
               type="text"
               required
               placeholder="Username"
-              className={`border p-2 rounded focus:ring bg-neutral-900 text-white ${
+              className={`border p-2 rounded focus:ring bg-zinc-900 text-white ${
                 hasError
                   ? "border-red-500 focus:border-red-500"
                   : "focus:border-amber-500"
@@ -62,7 +62,7 @@ export const EditUsernameModal = ({ onClose }: { onClose: () => void }) => {
             <button
               type="submit"
               disabled={loading}
-              className="bg-amber-600 text-neutral-950 py-2 rounded hover:bg-amber-700 cursor-pointer disabled:opacity-50"
+              className="bg-amber-600 text-zinc-950 py-2 rounded hover:bg-amber-700 cursor-pointer disabled:opacity-50"
             >
               Modifier
             </button>

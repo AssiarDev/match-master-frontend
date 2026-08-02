@@ -1,4 +1,4 @@
-import { useAuth } from "@/context/AuthContext";
+﻿import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router";
 import { useFavorite } from "@/hooks/useFavorite";
 import { useAddFavorite } from "@/hooks/useAddFavorite";
@@ -61,7 +61,7 @@ export const FavoriteButton = ({
       <button
         aria-label={`${teamName} à été ajouté aux favoris`}
         onClick={handleClick}
-        className={`text-xl ${isFavorite ? "text-orange-400" : "text-gray-400"} cursor-pointer`}
+        className={`text-xl ${isFavorite ? "text-amber-400" : "text-zinc-400"} cursor-pointer`}
       >
         {isFavorite ? <AiFillStar /> : <AiOutlineStar />}
       </button>

@@ -1,4 +1,4 @@
-import { useAuth } from "@/context/AuthContext";
+﻿import { useAuth } from "@/context/AuthContext";
 import { FiUser } from "react-icons/fi";
 import { useLogout } from "@/hooks/useLogout";
 import { useDeleteProfile } from "@/hooks/useDeleteProfile";
@@ -8,7 +8,7 @@ import { EditPasswordModal } from "../Forms/EditPasswordModal/EditPasswordModal"
 import { Toast } from "../Toast/Toast";
 
 const cardClass =
-  "border border-gray-700 rounded-xl shadow-md p-4 w-full bg-zinc-900 text-white transition duration-300 hover:shadow-lg hover:border-orange-800 flex flex-col gap-4";
+  "border border-zinc-700 rounded-xl shadow-md p-4 w-full bg-zinc-900 text-white transition duration-300 hover:shadow-lg hover:border-amber-800 flex flex-col gap-4";
 
 /** User profile page: displays account info, notification/theme settings, logout, and account deletion. */
 export const UserProfile = () => {
@@ -44,7 +44,7 @@ export const UserProfile = () => {
             <h3 className="font-bold">Username</h3>
             <button
               onClick={() => setIsUsernameOpen(true)}
-              className="text-orange-500 hover:underline"
+              className="text-amber-600 hover:underline"
             >
               Modifier
             </button>
@@ -53,7 +53,7 @@ export const UserProfile = () => {
             <h3 className="font-bold">Mot de passe</h3>
             <button
               onClick={() => setIsPasswordOpen(true)}
-              className="text-orange-500 hover:underline"
+              className="text-amber-600 hover:underline"
             >
               Modifier
             </button>
@@ -69,7 +69,7 @@ export const UserProfile = () => {
         <div className={cardClass}>
           <div className="flex justify-between">
             <h3 className="font-bold">Notification match</h3>
-            <button className="border border-gray-600 rounded-sm px-3 py-1 hover:border-orange-500 hover:text-orange-500 transition duration-200">
+            <button className="border border-zinc-600 rounded-sm px-3 py-1 hover:border-amber-500 hover:text-amber-500 transition duration-200">
               Activer
             </button>
           </div>
@@ -80,7 +80,7 @@ export const UserProfile = () => {
         <div className={cardClass}>
           <div className="flex justify-between">
             <h3 className="font-bold">Mode clair</h3>
-            <button className="border border-gray-600 rounded-sm px-3 py-1 hover:border-orange-500 hover:text-orange-500 transition duration-200">
+            <button className="border border-zinc-600 rounded-sm px-3 py-1 hover:border-amber-500 hover:text-amber-500 transition duration-200">
               Activer
             </button>
           </div>
@@ -89,7 +89,7 @@ export const UserProfile = () => {
       <div className="flex justify-center">
         <button
           onClick={logout}
-          className="border border-gray-600 rounded-sm px-4 py-2 text-white hover:border-red-500 hover:text-red-500 transition duration-200"
+          className="border border-zinc-600 rounded-sm px-4 py-2 text-white hover:border-red-500 hover:text-red-500 transition duration-200"
         >
           Déconnexion
         </button>

@@ -1,4 +1,4 @@
-import type { Scorer } from "../../types";
+﻿import type { Scorer } from "../../types";
 import { ScorersCard } from "./ScorersCard";
 
 interface ScorersSectionProps {
@@ -11,7 +11,7 @@ export const ScorersSection = ({ scorers }: ScorersSectionProps) => {
     <section className="flex flex-col gap-4">
       <h1 className="font-bold text-lg sm:text-xl">Meilleurs buteurs</h1>
 
-      <div className="p-4 border border-gray-800 rounded-lg flex flex-col gap-2">
+      <div className="p-4 border border-zinc-800 rounded-lg flex flex-col gap-2">
         {scorers.length > 0 ? (
           scorers.map((scorer) => (
             <ScorersCard
@@ -22,7 +22,7 @@ export const ScorersSection = ({ scorers }: ScorersSectionProps) => {
             />
           ))
         ) : (
-          <p className="text-gray-500 text-sm">Aucun buteur disponible.</p>
+          <p className="text-zinc-500 text-sm">Aucun buteur disponible.</p>
         )}
       </div>
     </section>

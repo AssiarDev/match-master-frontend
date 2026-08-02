@@ -25,9 +25,7 @@ describe("Filtre", () => {
 
   it("applies active style to the current active filter button", () => {
     render(<Filtre activeFilter="upcoming" onFilterChange={vi.fn()} />);
-    expect(screen.getByText("À venir").className).toContain("bg-orange-800");
-    expect(screen.getByText("Terminé").className).not.toContain(
-      "bg-orange-800",
-    );
+    expect(screen.getByText("À venir").className).toContain("bg-amber-800");
+    expect(screen.getByText("Terminé").className).not.toContain("bg-amber-800");
   });
 });

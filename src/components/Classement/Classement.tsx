@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+﻿import { useLocation } from "react-router";
 import { useStandings } from "../../hooks/useStandings";
 import { ClassementTable } from "./ClassementTable";
 
@@ -12,7 +12,7 @@ export const Classement = () => {
   if (loading) {
     return (
       <div className="flex justify-center py-10">
-        <p className="text-gray-600">Chargement en cours...</p>
+        <p className="text-zinc-600">Chargement en cours...</p>
       </div>
     );
   }

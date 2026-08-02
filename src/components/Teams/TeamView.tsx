@@ -1,4 +1,4 @@
-import type { StandingEntry } from "../../types";
+﻿import type { StandingEntry } from "../../types";
 import { ClassmentThead } from "../Classement/ClassementThead";
 import { ClassementTbody } from "../Classement/ClassementTbody";
 import { ClassementLegende } from "../Classement/ClassementLegende";
@@ -25,7 +25,7 @@ export const TeamView = ({ team, standings, teamId }: TeamViewProps) => (
     </div>
 
     <div className="overflow-x-auto">
-      <table className="w-full table-auto border-collapse border border-gray-700 text-sm text-gray-200 rounded-lg shadow-lg">
+      <table className="w-full table-auto border-collapse border border-zinc-700 text-sm text-zinc-200 rounded-lg shadow-lg">
         <ClassmentThead />
         {standings.map((item) => (
           <ClassementTbody key={item.position} item={item} teamId={teamId} />

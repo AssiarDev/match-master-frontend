@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+﻿import { useLocation } from "react-router";
 import type { Match } from "../../types";
 import { useMatches } from "../../hooks/useMatches";
 import { groupMatchesByMonth } from "../../utils/groupMatchesByMonth";
@@ -35,7 +35,7 @@ export const CompetitionMatchs = () => {
             <MatchGroupByMonth key={month} month={month} matches={matches} />
           ))
         ) : (
-          <p className="text-gray-400 mt-4 text-center">
+          <p className="text-zinc-400 mt-4 text-center">
             Aucun match disponible.
           </p>
         )}

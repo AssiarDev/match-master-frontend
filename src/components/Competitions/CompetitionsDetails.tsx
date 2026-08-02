@@ -1,4 +1,4 @@
-import { useLocation, Navigate } from "react-router";
+﻿import { useLocation, Navigate } from "react-router";
 import { CompetitionTabs } from "./CompetitionTabs";
 import type { Competition } from "../../types";
 import { FavoriteButton } from "../Favorite/FavoriteButton/FavoriteButton";
@@ -12,7 +12,7 @@ export const CompetitionsDetails = () => {
 
   return (
     <div className="w-full flex flex-col">
-      <div className="bg-gradient-to-b from-neutral-950 to-zinc-900 flex flex-col justify-center items-center gap-2 py-3">
+      <div className="bg-gradient-to-b from-zinc-950 to-zinc-900 flex flex-col justify-center items-center gap-2 py-3">
         <div className="h-20 w-20 flex items-center justify-center">
           <img
             className="max-h-full max-w-full rounded-sm"

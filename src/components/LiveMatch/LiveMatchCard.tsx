@@ -1,4 +1,4 @@
-import type { LiveMatch, LiveParticipant, LiveScore, Period } from "@/types";
+﻿import type { LiveMatch, LiveParticipant, LiveScore, Period } from "@/types";
 import { STATE_LABELS } from "@/utils/constants";
 
 const extractCurrentScore = (
@@ -38,14 +38,14 @@ export const LiveMatchCard = ({ match }: { match: LiveMatch }) => {
   const gameTime = getGameTime(match.periods);
 
   return (
-    <div className="border border-gray-700 rounded-xl shadow-md p-3 sm:p-4 w-full bg-zinc-900 text-white">
+    <div className="border border-zinc-700 rounded-xl shadow-md p-3 sm:p-4 w-full bg-zinc-900 text-white">
       {/* Période + minute */}
       <div className="flex items-center gap-2 mb-3">
         <span className="relative flex h-2 w-2 shrink-0">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600" />
         </span>
-        <span className="text-xs font-medium text-gray-300">{stateLabel}</span>
+        <span className="text-xs font-medium text-zinc-300">{stateLabel}</span>
         {gameTime && (
           <span className="ml-auto text-xs font-bold text-red-400 tabular-nums">
             {gameTime}
@@ -64,7 +64,7 @@ export const LiveMatchCard = ({ match }: { match: LiveMatch }) => {
               className="w-7 h-7 rounded-full object-contain shrink-0"
             />
           ) : (
-            <div className="w-7 h-7 rounded-full bg-gray-700 shrink-0" />
+            <div className="w-7 h-7 rounded-full bg-zinc-700 shrink-0" />
           )}
           <span className="flex-1 text-sm font-medium truncate">
             {home?.short_code || home?.name}
@@ -81,7 +81,7 @@ export const LiveMatchCard = ({ match }: { match: LiveMatch }) => {
               className="w-7 h-7 rounded-full object-contain shrink-0"
             />
           ) : (
-            <div className="w-7 h-7 rounded-full bg-gray-700 shrink-0" />
+            <div className="w-7 h-7 rounded-full bg-zinc-700 shrink-0" />
           )}
           <span className="flex-1 text-sm font-medium truncate">
             {away?.short_code || away?.name}

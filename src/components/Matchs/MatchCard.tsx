@@ -1,4 +1,4 @@
-import type { Match, MatchParticipant } from "../../types";
+﻿import type { Match, MatchParticipant } from "../../types";
 import { FavoriteButton } from "../Favorite/FavoriteButton/FavoriteButton";
 import { FINISHED_STATES, extractFinalScore } from "../../utils/matchUtils";
 
@@ -39,14 +39,14 @@ export const MatchCard = ({ item, leagueId }: MatchCardProps) => {
   const isFinished = FINISHED_STATES.has(Number(item.state_id));
 
   return (
-    <div className="border border-gray-700 rounded-xl shadow-md p-3 sm:p-4 w-full bg-zinc-900 text-white">
+    <div className="border border-zinc-700 rounded-xl shadow-md p-3 sm:p-4 w-full bg-zinc-900 text-white">
       {/* Date + heure + statut */}
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-xs text-gray-400">
+        <span className="text-xs text-zinc-400">
           {formattedDate} · {formattedTime}
         </span>
         <span
-          className={`ml-auto text-xs font-medium ${isFinished ? "text-gray-500" : "text-yellow-400"}`}
+          className={`ml-auto text-xs font-medium ${isFinished ? "text-zinc-500" : "text-yellow-400"}`}
         >
           {isFinished ? "Terminé" : "À venir"}
         </span>
@@ -70,7 +70,7 @@ export const MatchCard = ({ item, leagueId }: MatchCardProps) => {
               className="w-7 h-7 rounded-full object-contain shrink-0"
             />
           ) : (
-            <div className="w-7 h-7 rounded-full bg-gray-700 shrink-0" />
+            <div className="w-7 h-7 rounded-full bg-zinc-700 shrink-0" />
           )}
           <span className="flex-1 text-sm font-medium truncate">
             {home?.name || home?.short_code}
@@ -96,7 +96,7 @@ export const MatchCard = ({ item, leagueId }: MatchCardProps) => {
               className="w-7 h-7 rounded-full object-contain shrink-0"
             />
           ) : (
-            <div className="w-7 h-7 rounded-full bg-gray-700 shrink-0" />
+            <div className="w-7 h-7 rounded-full bg-zinc-700 shrink-0" />
           )}
           <span className="flex-1 text-sm font-medium truncate">
             {away?.name || away?.short_code}

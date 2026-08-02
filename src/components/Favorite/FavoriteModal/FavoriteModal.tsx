@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -42,10 +42,10 @@ export const FavoriteModal = () => {
       onClose={() => setOpen(false)}
       className="relative z-50"
     >
-      <DialogBackdrop className="fixed inset-0 bg-neutral-950/75 transition-opacity" />
+      <DialogBackdrop className="fixed inset-0 bg-zinc-950/75 transition-opacity" />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <DialogPanel className="relative bg-neutral-950 border-none shadow-lg shadow-amber-900/50 rounded-lg w-96 p-6">
+        <DialogPanel className="relative bg-zinc-950 border-none shadow-lg shadow-amber-900/50 rounded-lg w-96 p-6">
           <button
             onClick={() => {
               setOpen(false);

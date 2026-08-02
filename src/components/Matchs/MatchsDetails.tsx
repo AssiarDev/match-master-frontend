@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+﻿import { useEffect, useState, useMemo } from "react";
 import { DatePickerCarousel } from "../DatePicker/DatePickerCaroussel";
 import { CompetitionGroup } from "../Competitions/CompetitionGroup";
 import { useMatchByDate } from "../../hooks/useMatchByDate";
@@ -57,7 +57,7 @@ export const MatchsDetails = () => {
           </p>
         ) : (
           <>
-            <p className="w-full text-gray-400 text-sm sm:text-base text-left">
+            <p className="w-full text-zinc-400 text-sm sm:text-base text-left">
               <a
                 href="/"
                 className="text-white underline hover:text-amber-500 transition"
@@ -86,7 +86,7 @@ export const MatchsDetails = () => {
                 />
               ))
             ) : (
-              <p className="text-gray-400 text-center mt-6 text-lg">
+              <p className="text-zinc-400 text-center mt-6 text-lg">
                 Aucun match disponible pour cette date.
               </p>
             )}

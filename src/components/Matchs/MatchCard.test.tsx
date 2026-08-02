@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+﻿import { describe, it, expect } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { AuthProvider } from "@/context/AuthContext";
@@ -130,7 +130,7 @@ describe("MatchCard", () => {
     renderMatchCard(baseMatch);
     await settle();
     // Teams have no image_path → grey placeholder divs
-    const placeholders = document.querySelectorAll(".bg-gray-700.rounded-full");
+    const placeholders = document.querySelectorAll(".bg-zinc-700.rounded-full");
     expect(placeholders.length).toBeGreaterThanOrEqual(2);
   });
 });

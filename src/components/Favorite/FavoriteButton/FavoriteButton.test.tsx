@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+﻿import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { FavoriteButton } from "./FavoriteButton";
@@ -88,7 +88,7 @@ describe("FavoriteButton — club", () => {
     });
     renderButton();
     expect(screen.getByRole("button", { name: /PSG/i })).toBeInTheDocument();
-    expect(screen.getByRole("button").className).toContain("text-gray-400");
+    expect(screen.getByRole("button").className).toContain("text-zinc-400");
   });
 
   it("shows a filled star when the club is already a favorite", () => {
@@ -106,7 +106,7 @@ describe("FavoriteButton — club", () => {
       refreshFavorites: mockRefreshFavorites,
     });
     renderButton();
-    expect(screen.getByRole("button").className).toContain("text-orange-400");
+    expect(screen.getByRole("button").className).toContain("text-amber-400");
   });
 
   it("redirects to /login when the user is not authenticated", async () => {
@@ -185,7 +185,7 @@ describe("FavoriteButton — league", () => {
       checkAuth: vi.fn(),
     });
     renderButton({ competitionId: 5, teamId: undefined });
-    expect(screen.getByRole("button").className).toContain("text-gray-400");
+    expect(screen.getByRole("button").className).toContain("text-zinc-400");
   });
 
   it("shows a filled star when the league is already a favorite", () => {
@@ -203,7 +203,7 @@ describe("FavoriteButton — league", () => {
       refreshLeagueFavorites: mockRefreshLeagueFavorites,
     });
     renderButton({ competitionId: 5, teamId: undefined });
-    expect(screen.getByRole("button").className).toContain("text-orange-400");
+    expect(screen.getByRole("button").className).toContain("text-amber-400");
   });
 
   it("calls addLeagueFavorite when the league is not a favorite", async () => {

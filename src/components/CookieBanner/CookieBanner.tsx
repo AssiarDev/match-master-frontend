@@ -1,4 +1,4 @@
-import { Transition } from "@headlessui/react";
+﻿import { Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { useCookieConsent } from "../../hooks/useCookieConsent";
 
@@ -18,7 +18,7 @@ export const CookieBanner = () => {
       >
         <div className="pointer-events-auto bg-zinc-900 border-t border-amber-900/50 shadow-lg shadow-amber-900/30 px-4 py-4">
           <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
-            <p className="text-sm text-gray-300 leading-relaxed">
+            <p className="text-sm text-zinc-300 leading-relaxed">
               Nous utilisons un cookie de session strictement nécessaire à votre
               connexion. Aucun cookie de suivi n'est utilisé.{" "}
               <Link to="/privacy" className="text-amber-400 hover:underline">
@@ -28,7 +28,7 @@ export const CookieBanner = () => {
             <div className="flex gap-3 shrink-0">
               <button
                 onClick={refuse}
-                className="text-sm px-4 py-2 border border-gray-600 text-gray-300 rounded hover:border-gray-400 hover:text-white transition duration-200 cursor-pointer"
+                className="text-sm px-4 py-2 border border-zinc-600 text-zinc-300 rounded hover:border-zinc-400 hover:text-white transition duration-200 cursor-pointer"
               >
                 Refuser
               </button>

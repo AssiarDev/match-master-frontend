@@ -62,7 +62,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
             </Link>
             <Link
               to="/user-profile"
-              className="flex items-center gap-3 text-orange-400"
+              className="flex items-center gap-3 text-amber-600"
               onClick={onClose}
             >
               <FiUser /> {user?.username}

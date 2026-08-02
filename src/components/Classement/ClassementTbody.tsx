@@ -1,4 +1,4 @@
-import type { StandingEntry } from "../../types";
+﻿import type { StandingEntry } from "../../types";
 
 interface ClassementTbodyProps {
   item: StandingEntry | null;
@@ -17,7 +17,7 @@ export const ClassementTbody = ({
     return (
       <tbody>
         <tr>
-          <td colSpan={10} className="text-center text-gray-400 py-4">
+          <td colSpan={10} className="text-center text-zinc-400 py-4">
             Aucune donnée disponible pour le classement.
           </td>
         </tr>
@@ -38,7 +38,7 @@ export const ClassementTbody = ({
     <tbody>
       <tr
         className={`text-xs sm:text-sm ${
-          isSelected ? "bg-orange-800 text-white font-bold" : ""
+          isSelected ? "bg-amber-800 text-white font-bold" : ""
         } ${borderColor}`}
       >
         <td className="px-2 py-2 text-center">{item.position}</td>

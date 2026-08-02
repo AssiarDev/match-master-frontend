@@ -1,4 +1,4 @@
-import {
+﻿import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
@@ -43,10 +43,10 @@ export const EditPasswordModal = ({
 
   return (
     <Dialog open={open} onClose={setOpen} className="relative z-50">
-      <DialogBackdrop className="fixed inset-0 bg-neutral-950/75 transition-opacity" />
+      <DialogBackdrop className="fixed inset-0 bg-zinc-950/75 transition-opacity" />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <DialogPanel className="relative bg-neutral-950 border-none shadow-lg shadow-amber-900/50 rounded-lg w-96 p-6">
+        <DialogPanel className="relative bg-zinc-950 border-none shadow-lg shadow-amber-900/50 rounded-lg w-96 p-6">
           <button
             onClick={() => {
               setOpen(false);
@@ -70,7 +70,7 @@ export const EditPasswordModal = ({
               type="password"
               required
               placeholder="Mot de passe actuel"
-              className={`border p-2 rounded focus:ring bg-neutral-900 text-white ${
+              className={`border p-2 rounded focus:ring bg-zinc-900 text-white ${
                 hasError
                   ? "border-red-500 focus:border-red-500"
                   : "focus:border-amber-500"
@@ -80,13 +80,13 @@ export const EditPasswordModal = ({
               type="password"
               required
               placeholder="Nouveau mot de passe"
-              className={`border p-2 rounded focus:ring bg-neutral-900 text-white ${
+              className={`border p-2 rounded focus:ring bg-zinc-900 text-white ${
                 hasError
                   ? "border-red-500 focus:border-red-500"
                   : "focus:border-amber-500"
               }`}
             />
-            <ul className="text-xs text-gray-400 space-y-1">
+            <ul className="text-xs text-zinc-400 space-y-1">
               <li>• 8 caractères minimum</li>
               <li>• 1 majuscule requise</li>
               <li>• 1 caractère spécial requis</li>
@@ -95,7 +95,7 @@ export const EditPasswordModal = ({
               type="password"
               required
               placeholder="Confirmer votre mot de passe"
-              className={`border p-2 rounded focus:ring bg-neutral-900 text-white ${
+              className={`border p-2 rounded focus:ring bg-zinc-900 text-white ${
                 hasError
                   ? "border-red-500 focus:border-red-500"
                   : "focus:border-amber-500"
@@ -105,7 +105,7 @@ export const EditPasswordModal = ({
             <button
               type="submit"
               disabled={loading}
-              className="bg-amber-600 text-neutral-950 py-2 rounded hover:bg-amber-700 cursor-pointer disabled:opacity-50"
+              className="bg-amber-600 text-zinc-950 py-2 rounded hover:bg-amber-700 cursor-pointer disabled:opacity-50"
             >
               Modifier
             </button>

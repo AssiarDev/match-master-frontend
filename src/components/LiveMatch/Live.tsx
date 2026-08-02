@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+﻿import { useMemo } from "react";
 import { useLiveStreamContext } from "@/context/LiveStreamContext";
 import { LiveMatchCard } from "./LiveMatchCard";
 import { INPLAY_STATES } from "@/utils/constants";
@@ -51,9 +51,9 @@ export const Live = () => {
         </h1>
         <div className="flex items-center gap-2">
           <span
-            className={`h-2.5 w-2.5 rounded-full ${connected ? "bg-green-500" : "bg-gray-600"}`}
+            className={`h-2.5 w-2.5 rounded-full ${connected ? "bg-green-500" : "bg-zinc-600"}`}
           />
-          <span className="text-xs sm:text-sm text-gray-400">
+          <span className="text-xs sm:text-sm text-zinc-400">
             {connected ? "Connecté" : "Connexion..."}
           </span>
         </div>
@@ -62,13 +62,13 @@ export const Live = () => {
       {error && <p className="text-red-500 text-center text-sm">{error}</p>}
 
       {!connected && !error && (
-        <p className="text-gray-400 text-center mt-10 text-sm">
+        <p className="text-zinc-400 text-center mt-10 text-sm">
           Connexion au flux en direct...
         </p>
       )}
 
       {connected && activeMatches.length === 0 && (
-        <p className="text-gray-400 text-center mt-10 text-base sm:text-lg">
+        <p className="text-zinc-400 text-center mt-10 text-base sm:text-lg">
           Aucun match en direct pour le moment.
         </p>
       )}

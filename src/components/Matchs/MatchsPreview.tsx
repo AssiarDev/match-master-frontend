@@ -1,4 +1,4 @@
-import type { Match } from "../../types";
+﻿import type { Match } from "../../types";
 import { MatchCard } from "./MatchCard";
 
 interface MatchsPreviewProps {
@@ -10,8 +10,8 @@ interface MatchsPreviewProps {
 export const MatchsPreview = ({ matchs, onShowAll }: MatchsPreviewProps) => {
   if (!matchs?.length) {
     return (
-      <div className="w-full border border-gray-800 text-white text-center py-6 rounded-lg shadow">
-        <p className="text-gray-500 text-center">
+      <div className="w-full border border-zinc-800 text-white text-center py-6 rounded-lg shadow">
+        <p className="text-zinc-500 text-center">
           La compétition n'a pas encore démarré.
         </p>
       </div>

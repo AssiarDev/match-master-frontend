@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 
 /** Application footer displaying the copyright year and author. */
 export const Footer = () => {
@@ -8,14 +8,14 @@ export const Footer = () => {
         &copy; {new Date().getFullYear()} - Tous droits réservés
       </p>
       <p className="text-sm">Développé par Raïssa Ali</p>
-      <p className="text-xs text-gray-500 mt-2 max-w-lg mx-auto px-4">
+      <p className="text-xs text-zinc-500 mt-2 max-w-lg mx-auto px-4">
         Ce projet est réalisé à but éducatif uniquement. Les données sportives
         sont fournies par{" "}
         <a
           href="https://www.sportmonks.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:underline"
+          className="text-zinc-400 hover:underline"
         >
           Sportmonks
         </a>{" "}

@@ -26,7 +26,7 @@ export const BottomNav = ({ onSearchToggle, isSearchOpen }: BottomNavProps) => {
   const baseTab =
     "flex flex-col items-center justify-center gap-1 text-xs font-medium w-16 h-11 rounded-lg border transition-colors cursor-pointer";
 
-  const activeClass = "text-orange-400 border-orange-400";
+  const activeClass = "text-amber-600 border-amber-600";
   const inactiveClass = "text-zinc-400 border-zinc-500";
 
   return (

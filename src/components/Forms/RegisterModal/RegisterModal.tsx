@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -63,10 +63,10 @@ export const RegisterModal = () => {
 
   return (
     <Dialog open={open} onClose={handleClose} className="relative z-50">
-      <DialogBackdrop className="fixed inset-0 bg-neutral-950/75 transition-opacity" />
+      <DialogBackdrop className="fixed inset-0 bg-zinc-950/75 transition-opacity" />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <DialogPanel className="relative bg-neutral-950 border-none shadow-lg shadow-amber-900/50 rounded-lg w-96 p-6">
+        <DialogPanel className="relative bg-zinc-950 border-none shadow-lg shadow-amber-900/50 rounded-lg w-96 p-6">
           <button
             onClick={handleClose}
             className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl cursor-pointer"
@@ -88,22 +88,22 @@ export const RegisterModal = () => {
               name="username"
               required
               placeholder="Nom d'utilisateur"
-              className="border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white"
+              className="border p-2 rounded focus:ring focus:border-amber-500 bg-zinc-900 text-white"
             />
             <input
               type="email"
               name="email"
               required
               placeholder="Email"
-              className="border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white"
+              className="border p-2 rounded focus:ring focus:border-amber-500 bg-zinc-900 text-white"
             />
             <input
               type="password"
               name="password"
               placeholder="Mot de passe"
-              className="border p-2 rounded focus:ring focus:border-amber-500 bg-neutral-900 text-white"
+              className="border p-2 rounded focus:ring focus:border-amber-500 bg-zinc-900 text-white"
             />
-            <ul className="text-xs text-gray-400 space-y-1">
+            <ul className="text-xs text-zinc-400 space-y-1">
               <li>• 8 caractères minimum</li>
               <li>• 1 majuscule requise</li>
               <li>• 1 chiffre requis</li>
@@ -114,7 +114,7 @@ export const RegisterModal = () => {
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirmez le mot de passe"
-                className={`w-full border p-2 rounded focus:ring bg-neutral-900 text-white ${
+                className={`w-full border p-2 rounded focus:ring bg-zinc-900 text-white ${
                   confirmError
                     ? "border-red-500 focus:border-red-500"
                     : "focus:border-amber-500"
@@ -128,8 +128,8 @@ export const RegisterModal = () => {
             <label
               className={`flex items-start gap-2 text-sm ${
                 areFieldsFilled
-                  ? "text-gray-300 cursor-pointer"
-                  : "text-gray-500 cursor-not-allowed"
+                  ? "text-zinc-300 cursor-pointer"
+                  : "text-zinc-500 cursor-not-allowed"
               }`}
             >
               <input
@@ -159,7 +159,7 @@ export const RegisterModal = () => {
             <button
               type="submit"
               disabled={loading || !consentChecked}
-              className="bg-amber-600 text-neutral-950 py-2 rounded hover:bg-amber-700 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-amber-600 text-zinc-950 py-2 rounded hover:bg-amber-700 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? "Inscription... " : "S'inscrire"}
             </button>

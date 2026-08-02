@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useLocation } from "react-router";
 import { useBracket } from "../../hooks/useBracket";
 import { BRACKET_MAX_MATCHES } from "../../utils/constants";
@@ -38,13 +38,13 @@ export const BracketView = () => {
 
   if (loading) {
     return (
-      <p className="text-center text-gray-400 py-8">Chargement du tableau…</p>
+      <p className="text-center text-zinc-400 py-8">Chargement du tableau…</p>
     );
   }
 
   if (error || stages.length === 0) {
     return (
-      <p className="text-center text-gray-400 py-8">
+      <p className="text-center text-zinc-400 py-8">
         Aucune donnée de tableau disponible.
       </p>
     );
@@ -61,7 +61,7 @@ export const BracketView = () => {
               className={`pb-2 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
                 activeSubTab === tab
                   ? "border-amber-500 text-amber-400"
-                  : "border-transparent text-gray-400 hover:text-white"
+                  : "border-transparent text-zinc-400 hover:text-white"
               }`}
             >
               {SUB_TAB_LABELS[tab]}

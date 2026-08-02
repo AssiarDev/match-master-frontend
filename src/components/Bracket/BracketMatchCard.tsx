@@ -1,4 +1,4 @@
-import type { Match, MatchParticipant } from "../../types";
+﻿import type { Match, MatchParticipant } from "../../types";
 import { FINISHED_STATES, extractFinalScore } from "../../utils/matchUtils";
 import { BRACKET_CARD_H } from "../../utils/constants";
 
@@ -14,7 +14,7 @@ const TeamRow = ({
   showScore: boolean;
 }) => (
   <div
-    className={`flex items-center gap-2 px-2 ${winner ? "text-white" : "text-gray-400"}`}
+    className={`flex items-center gap-2 px-2 ${winner ? "text-white" : "text-zinc-400"}`}
     style={{ height: BRACKET_CARD_H / 2 }}
   >
     {team?.image_path ? (
@@ -24,7 +24,7 @@ const TeamRow = ({
         className="w-5 h-5 object-contain shrink-0"
       />
     ) : (
-      <div className="w-5 h-5 rounded-full bg-gray-700 shrink-0" />
+      <div className="w-5 h-5 rounded-full bg-zinc-700 shrink-0" />
     )}
     <span className="flex-1 text-xs font-medium truncate">
       {team?.short_code ?? team?.name ?? "—"}
