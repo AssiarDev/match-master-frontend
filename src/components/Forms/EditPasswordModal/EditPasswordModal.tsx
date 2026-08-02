@@ -7,6 +7,7 @@
 import { FormEvent, useState } from "react";
 import { useUpdateInfoUser } from "@/hooks/useUpdateInfoUser";
 import { useAuth } from "@/context/AuthContext";
+import { Button } from "@/components/UI/Button/Button";
 
 /** Modal dialog to change the authenticated user's password. Calls `onSuccess` with a confirmation message on success. */
 export const EditPasswordModal = ({
@@ -102,13 +103,9 @@ export const EditPasswordModal = ({
               }`}
             />
             {error && <p className="text-red-400 text-sm">{error}</p>}
-            <button
-              type="submit"
-              disabled={loading}
-              className="bg-amber-600 text-zinc-950 py-2 rounded hover:bg-amber-700 cursor-pointer disabled:opacity-50"
-            >
+            <Button type="submit" disabled={loading}>
               Modifier
-            </button>
+            </Button>
           </form>
         </DialogPanel>
       </div>

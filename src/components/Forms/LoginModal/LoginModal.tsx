@@ -7,6 +7,7 @@ import {
 } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "../../../hooks/useLogin";
+import { Button } from "../../UI/Button/Button";
 import type { FormEvent } from "react";
 
 /** Modal dialog for user login. Redirects to home on success, or closes if opened in-context. */
@@ -78,13 +79,9 @@ export const LoginModal = () => {
               }`}
             />
             {error && <p className="text-red-400 text-sm">{error}</p>}
-            <button
-              type="submit"
-              disabled={loading}
-              className="bg-amber-600 text-zinc-950 py-2 rounded hover:bg-amber-700 cursor-pointer disabled:opacity-50"
-            >
+            <Button type="submit" disabled={loading}>
               {loading ? "Connexion..." : "Se connecter"}
-            </button>
+            </Button>
           </form>
 
           <p className="mt-3 text-sm text-white text-center">

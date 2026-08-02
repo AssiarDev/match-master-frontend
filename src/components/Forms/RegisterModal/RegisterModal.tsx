@@ -7,6 +7,7 @@ import {
 } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegister } from "../../../hooks/useRegister";
+import { Button } from "../../UI/Button/Button";
 import type { FormEvent } from "react";
 
 /** Modal dialog for user registration. Validates password confirmation and redirects to login on success. */
@@ -156,13 +157,9 @@ export const RegisterModal = () => {
               <p className="text-red-500 text-sm text-center">{error}</p>
             )}
 
-            <button
-              type="submit"
-              disabled={loading || !consentChecked}
-              className="bg-amber-600 text-zinc-950 py-2 rounded hover:bg-amber-700 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-            >
+            <Button type="submit" disabled={loading || !consentChecked}>
               {loading ? "Inscription... " : "S'inscrire"}
-            </button>
+            </Button>
           </form>
 
           <p className="mt-3 text-sm text-white text-center">

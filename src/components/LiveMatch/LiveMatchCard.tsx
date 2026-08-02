@@ -1,5 +1,6 @@
 ﻿import type { LiveMatch, LiveParticipant, LiveScore, Period } from "@/types";
 import { STATE_LABELS } from "@/utils/constants";
+import { Card } from "@/components/UI/Card/Card";
 
 const extractCurrentScore = (
   scores: LiveScore[] = [],
@@ -38,7 +39,7 @@ export const LiveMatchCard = ({ match }: { match: LiveMatch }) => {
   const gameTime = getGameTime(match.periods);
 
   return (
-    <div className="border border-zinc-700 rounded-xl shadow-md p-3 sm:p-4 w-full bg-zinc-900 text-white">
+    <Card>
       {/* Période + minute */}
       <div className="flex items-center gap-2 mb-3">
         <span className="relative flex h-2 w-2 shrink-0">
@@ -89,6 +90,6 @@ export const LiveMatchCard = ({ match }: { match: LiveMatch }) => {
           <span className="text-lg font-bold tabular-nums">{awayScore}</span>
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
