@@ -1,6 +1,21 @@
 # Changelog
 
 - - -
+## [0.5.1](https://github.com/AssiarDev/match-master-frontend/compare/b7d4d917f09b406798953a86427d006629d45304..0.5.1) - 2026-08-17
+#### Bug Fixes
+- **(live)** bypass the Netlify proxy for the SSE stream (#8) - ([155db1d](https://github.com/AssiarDev/match-master-frontend/commit/155db1d3f95bfc0c920959a635c2bf050ecaa73d)) - Assiar
+#### Code Refactoring
+- **(components)** add Button variants and align with Figma - ([035241d](https://github.com/AssiarDev/match-master-frontend/commit/035241d88deb8c79f76def4ef2fdaaef392d8fef)) - AssiarDev
+- **(components)** align Button and Card with Figma design system - ([6ce10b9](https://github.com/AssiarDev/match-master-frontend/commit/6ce10b977f34393697e6324d57afe6d816cfe2fe)) - AssiarDev
+- **(components)** reuse Card in UserProfile - ([a8f55fb](https://github.com/AssiarDev/match-master-frontend/commit/a8f55fba17cff59185f3b99e89d74902bd691af9)) - AssiarDev
+- **(components)** extract shared Card and Button primitives - ([51e1a8e](https://github.com/AssiarDev/match-master-frontend/commit/51e1a8e60ddfdb4d578181515a592586c9f885f3)) - AssiarDev
+- **(components)** reorganize component folder structure - ([b7d4d91](https://github.com/AssiarDev/match-master-frontend/commit/b7d4d917f09b406798953a86427d006629d45304)) - AssiarDev
+- **(theme)** align text colors with Figma design system - ([8bb629e](https://github.com/AssiarDev/match-master-frontend/commit/8bb629ea5342dd787358a504725944cb1ef38782)) - AssiarDev
+- **(theme)** declare typography scale in @theme - ([1c7e352](https://github.com/AssiarDev/match-master-frontend/commit/1c7e35291f0dc01e338f838b2ebd926d696824fb)) - AssiarDev
+- **(theme)** unify accent color and neutral palette - ([907c528](https://github.com/AssiarDev/match-master-frontend/commit/907c5288f7eb0ed9dc92a07faefc6eeb59f0349b)) - AssiarDev
+
+- - -
+
 ## [0.5.0](https://github.com/AssiarDev/match-master-frontend/compare/3f352a401b971da5ff8048091a85225568972697..0.5.0) - 2026-06-28
 #### Features
 - **(mobile)** add bottom navigation bar and extensible search - ([3f352a4](https://github.com/AssiarDev/match-master-frontend/commit/3f352a401b971da5ff8048091a85225568972697)) - AssiarDev
