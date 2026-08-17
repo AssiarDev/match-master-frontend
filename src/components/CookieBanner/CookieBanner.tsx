@@ -7,7 +7,7 @@ export const CookieBanner = () => {
   const { showBanner, accept, refuse } = useCookieConsent();
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none">
+    <div className="fixed bottom-16 md:bottom-0 left-0 right-0 z-40 pointer-events-none">
       <Transition
         show={showBanner}
         enter="transition ease-out duration-300"
