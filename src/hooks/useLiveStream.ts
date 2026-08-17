@@ -12,6 +12,12 @@ interface UseLiveStreamResult {
  * No authentication required for this endpoint
  * The EventSource is automatically closed on unmount
  *
+ * Uses VITE_SSE_URL instead of VITE_API_URL: in production the rest of the API
+ * goes through the Netlify proxy redirect to keep the auth cookie SameSite=Strict,
+ * but that proxy does not relay SSE streams — it forwards the first chunk then
+ * closes the connection. This endpoint is public, so it can hit the backend
+ * directly without the proxy and without the cookie.
+ *
  * returns `{matches, connected, error }`
  */
 
@@ -22,7 +28,7 @@ export const useLiveStream = (): UseLiveStreamResult => {
   const esRef = useRef<EventSource | null>(null);
 
   useEffect(() => {
-    const url = `${import.meta.env.VITE_API_URL}/matches/live/stream`;
+    const url = `${import.meta.env.VITE_SSE_URL}/matches/live/stream`;
     const es = new EventSource(url);
     esRef.current = es;
 
