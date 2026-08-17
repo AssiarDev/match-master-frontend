@@ -1,6 +1,12 @@
 # Changelog
 
 - - -
+## [0.5.2](https://github.com/AssiarDev/match-master-frontend/compare/21d2738bc1196d0c6ea1b02072723b3dc3e8a495..0.5.2) - 2026-08-17
+#### Bug Fixes
+- **(cookie-banner)** offset the banner above the mobile bottom nav - ([21d2738](https://github.com/AssiarDev/match-master-frontend/commit/21d2738bc1196d0c6ea1b02072723b3dc3e8a495)) - AssiarDev
+
+- - -
+
 ## [0.5.1](https://github.com/AssiarDev/match-master-frontend/compare/b7d4d917f09b406798953a86427d006629d45304..0.5.1) - 2026-08-17
 #### Bug Fixes
 - **(live)** bypass the Netlify proxy for the SSE stream (#8) - ([155db1d](https://github.com/AssiarDev/match-master-frontend/commit/155db1d3f95bfc0c920959a635c2bf050ecaa73d)) - Assiar
