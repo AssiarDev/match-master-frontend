@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import { useLiveStream } from "./useLiveStream";
 
-const API = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
+const SSE = import.meta.env.VITE_SSE_URL ?? "http://localhost:3000";
 
 const makeFakeEventSource = () => ({
   onopen: null as ((event: Event) => void) | null,
@@ -38,7 +38,7 @@ describe("useLiveStream", () => {
   it("opens an EventSource with the correct URL", () => {
     renderHook(() => useLiveStream());
     expect(globalThis.EventSource).toHaveBeenCalledWith(
-      `${API}/matches/live/stream`,
+      `${SSE}/matches/live/stream`,
     );
   });
 

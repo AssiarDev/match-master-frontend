@@ -36,9 +36,18 @@ Copier le fichier d'exemple et renseigner les valeurs :
 cp .env.example .env
 ```
 
-| Variable       | Description          | Exemple                 |
-| -------------- | -------------------- | ----------------------- |
-| `VITE_API_URL` | URL de l'API backend | `http://localhost:3000` |
+| Variable       | Description                   | Exemple                 |
+| -------------- | ----------------------------- | ----------------------- |
+| `VITE_API_URL` | URL de l'API backend          | `http://localhost:3000` |
+| `VITE_SSE_URL` | URL du flux SSE (scores live) | `http://localhost:3000` |
+
+En local, les deux variables pointent sur la même URL. En production elles
+diffèrent : `VITE_API_URL` passe par le proxy Netlify (nécessaire pour conserver
+le cookie d'auth en `SameSite=Strict`), tandis que `VITE_SSE_URL` pointe
+directement sur le backend Render. Le proxy Netlify ne relaie pas les flux SSE —
+il transmet le premier bloc puis referme la connexion. La route
+`/matches/live/stream` étant publique, elle n'a pas besoin du cookie et peut donc
+contourner le proxy.
 
 ## Workflow Git
 
