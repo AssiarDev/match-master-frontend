@@ -44,13 +44,17 @@ export const FavoriteButton = ({
     }
 
     if (isFavorite) {
-      competitionId
-        ? await deleteLeagueFavorite(competitionId)
-        : await deleteFavorite(teamId!);
+      if (competitionId) {
+        await deleteLeagueFavorite(competitionId);
+      } else {
+        await deleteFavorite(teamId!);
+      }
     } else {
-      competitionId
-        ? await addLeagueFavorite(user.id, competitionId)
-        : await addFavorite(user.id, teamId!, competitionId ?? 0);
+      if (competitionId) {
+        await addLeagueFavorite(user.id, competitionId);
+      } else {
+        await addFavorite(user.id, teamId!, competitionId ?? 0);
+      }
     }
     refreshFavorites();
     refreshLeagueFavorites();
