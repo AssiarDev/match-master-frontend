@@ -33,11 +33,20 @@ export const MatchsDetails = () => {
   const message = location.state?.message;
   const [showToast, setShowToast] = useState(!!message);
 
+  /**
+   * Auto-hides the navigation toast after 4s and strips the message from the
+   * history entry so a reload does not display it again.
+   *
+   * Mount-only on purpose: `showToast` is seeded from the message carried by
+   * the navigation that mounted this view, so re-running the effect when
+   * `message` changes would have no effect on what is displayed.
+   */
   useEffect(() => {
     if (!message) return;
     window.history.replaceState({}, "");
     const timer = setTimeout(() => setShowToast(false), 4000);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const formattedDate = selectedDate.toLocaleDateString("fr-FR", {
