@@ -9,7 +9,9 @@ owner = "AssiarDev"
 
 [git_hooks.pre-commit]
 script = """#!/bin/sh
+set -e
 npm run typecheck
+npm run lint
 npm run prettier:check
 typos
 """
