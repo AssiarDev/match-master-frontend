@@ -1,26 +1,27 @@
-﻿import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { FavoriteButton } from "./FavoriteButton";
 import * as AuthContext from "@/context/AuthContext";
-import * as useFavoriteModule from "@/hooks/useFavorite";
+import * as FavoritesContextModule from "@/context/FavoritesContext";
 import * as useAddFavoriteModule from "@/hooks/useAddFavorite";
 import * as useDeleteFavoriteModule from "@/hooks/useDeleteFavorite";
 import * as useAddLeagueFavoriteModule from "@/hooks/useAddLeagueFavorite";
-import * as useLeagueFavoriteModule from "@/hooks/useLeagueFavorite";
 import * as useDeleteLeagueFavoriteModule from "@/hooks/useDeleteLeagueFavorite";
+import type { Favorite } from "@/types";
 
 vi.mock("@/context/AuthContext", async (importOriginal) => {
   const actual = await importOriginal<typeof import("@/context/AuthContext")>();
   return { ...actual, useAuth: vi.fn() };
 });
-vi.mock("@/hooks/useFavorite", () => ({ useFavorite: vi.fn() }));
+vi.mock("@/context/FavoritesContext", () => ({
+  useFavoritesContext: vi.fn(),
+}));
 vi.mock("@/hooks/useAddFavorite", () => ({ useAddFavorite: vi.fn() }));
 vi.mock("@/hooks/useDeleteFavorite", () => ({ useDeleteFavorite: vi.fn() }));
 vi.mock("@/hooks/useAddLeagueFavorite", () => ({
   useAddLeagueFavorite: vi.fn(),
 }));
-vi.mock("@/hooks/useLeagueFavorite", () => ({ useLeagueFavorite: vi.fn() }));
 vi.mock("@/hooks/useDeleteLeagueFavorite", () => ({
   useDeleteLeagueFavorite: vi.fn(),
 }));
@@ -38,7 +39,21 @@ const mockDeleteLeagueFavorite = vi.fn().mockResolvedValue({});
 const mockRefreshFavorites = vi.fn();
 const mockRefreshLeagueFavorites = vi.fn();
 
+/** Stubs the favorites context with the given club and league lists. */
+const mockFavorites = ({
+  favorite = [] as Favorite[],
+  leagueFavorite = [] as Favorite[],
+} = {}) =>
+  vi.mocked(FavoritesContextModule.useFavoritesContext).mockReturnValue({
+    favorite,
+    leagueFavorite,
+    error: null,
+    refreshFavorites: mockRefreshFavorites,
+    refreshLeagueFavorites: mockRefreshLeagueFavorites,
+  });
+
 beforeEach(() => {
+  vi.clearAllMocks();
   vi.mocked(useAddFavoriteModule.useAddFavorite).mockReturnValue({
     addFavorite: mockAddFavorite,
     error: null,
@@ -57,16 +72,7 @@ beforeEach(() => {
     deleteLeagueFavorite: mockDeleteLeagueFavorite,
     error: null,
   });
-  vi.mocked(useFavoriteModule.useFavorite).mockReturnValue({
-    favorite: [],
-    error: null,
-    refreshFavorites: mockRefreshFavorites,
-  });
-  vi.mocked(useLeagueFavoriteModule.useLeagueFavorite).mockReturnValue({
-    leagueFavorite: [],
-    error: null,
-    refreshLeagueFavorites: mockRefreshLeagueFavorites,
-  });
+  mockFavorites();
 });
 
 const renderButton = (props = {}) =>
@@ -100,11 +106,7 @@ describe("FavoriteButton — club", () => {
       setUser: vi.fn(),
       checkAuth: vi.fn(),
     });
-    vi.mocked(useFavoriteModule.useFavorite).mockReturnValue({
-      favorite: [{ id: 10, name: "PSG" }],
-      error: null,
-      refreshFavorites: mockRefreshFavorites,
-    });
+    mockFavorites({ favorite: [{ id: 10, name: "PSG" }] });
     renderButton();
     expect(screen.getByRole("button").className).toContain("text-amber-400");
   });
@@ -146,11 +148,7 @@ describe("FavoriteButton — club", () => {
       setUser: vi.fn(),
       checkAuth: vi.fn(),
     });
-    vi.mocked(useLeagueFavoriteModule.useLeagueFavorite).mockReturnValue({
-      leagueFavorite: [{ id: 5, name: "Ligue 1" }],
-      error: null,
-      refreshLeagueFavorites: mockRefreshLeagueFavorites,
-    });
+    mockFavorites({ leagueFavorite: [{ id: 5, name: "Ligue 1" }] });
     renderButton({ competitionId: 5 });
     expect(screen.getByRole("button").className).toContain("text-zinc-400");
     fireEvent.click(screen.getByRole("button"));
@@ -168,17 +166,13 @@ describe("FavoriteButton — club", () => {
       setUser: vi.fn(),
       checkAuth: vi.fn(),
     });
-    vi.mocked(useFavoriteModule.useFavorite).mockReturnValue({
-      favorite: [{ id: 10, name: "PSG" }],
-      error: null,
-      refreshFavorites: mockRefreshFavorites,
-    });
+    mockFavorites({ favorite: [{ id: 10, name: "PSG" }] });
     renderButton();
     fireEvent.click(screen.getByRole("button"));
     await waitFor(() => expect(mockDeleteFavorite).toHaveBeenCalledWith(10));
   });
 
-  it("calls refreshFavorites and refreshLeagueFavorites after any action", async () => {
+  it("refreshes only the club list after a club action", async () => {
     vi.mocked(AuthContext.useAuth).mockReturnValue({
       isAuthenticated: true,
       user: { id: 1 },
@@ -189,10 +183,8 @@ describe("FavoriteButton — club", () => {
     });
     renderButton();
     fireEvent.click(screen.getByRole("button"));
-    await waitFor(() => {
-      expect(mockRefreshFavorites).toHaveBeenCalled();
-      expect(mockRefreshLeagueFavorites).toHaveBeenCalled();
-    });
+    await waitFor(() => expect(mockRefreshFavorites).toHaveBeenCalled());
+    expect(mockRefreshLeagueFavorites).not.toHaveBeenCalled();
   });
 });
 
@@ -219,11 +211,7 @@ describe("FavoriteButton — league", () => {
       setUser: vi.fn(),
       checkAuth: vi.fn(),
     });
-    vi.mocked(useLeagueFavoriteModule.useLeagueFavorite).mockReturnValue({
-      leagueFavorite: [{ id: 5, name: "Ligue 1" }],
-      error: null,
-      refreshLeagueFavorites: mockRefreshLeagueFavorites,
-    });
+    mockFavorites({ leagueFavorite: [{ id: 5, name: "Ligue 1" }] });
     renderButton({ competitionId: 5, teamId: undefined });
     expect(screen.getByRole("button").className).toContain("text-amber-400");
   });
@@ -253,15 +241,26 @@ describe("FavoriteButton — league", () => {
       setUser: vi.fn(),
       checkAuth: vi.fn(),
     });
-    vi.mocked(useLeagueFavoriteModule.useLeagueFavorite).mockReturnValue({
-      leagueFavorite: [{ id: 5, name: "Ligue 1" }],
-      error: null,
-      refreshLeagueFavorites: mockRefreshLeagueFavorites,
-    });
+    mockFavorites({ leagueFavorite: [{ id: 5, name: "Ligue 1" }] });
     renderButton({ competitionId: 5, teamId: undefined });
     fireEvent.click(screen.getByRole("button"));
     await waitFor(() =>
       expect(mockDeleteLeagueFavorite).toHaveBeenCalledWith(5),
     );
+  });
+
+  it("refreshes only the league list after a league action", async () => {
+    vi.mocked(AuthContext.useAuth).mockReturnValue({
+      isAuthenticated: true,
+      user: { id: 1 },
+      loading: false,
+      setIsAuthenticated: vi.fn(),
+      setUser: vi.fn(),
+      checkAuth: vi.fn(),
+    });
+    renderButton({ competitionId: 5, teamId: undefined });
+    fireEvent.click(screen.getByRole("button"));
+    await waitFor(() => expect(mockRefreshLeagueFavorites).toHaveBeenCalled());
+    expect(mockRefreshFavorites).not.toHaveBeenCalled();
   });
 });

@@ -6,18 +6,22 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { useFavorite } from "../../../hooks/useFavorite";
+import { useFavoritesContext } from "../../../context/FavoritesContext";
 import { useDeleteFavorite } from "../../../hooks/useDeleteFavorite";
-import { useLeagueFavorite } from "../../../hooks/useLeagueFavorite";
 import { useDeleteLeagueFavorite } from "../../../hooks/useDeleteLeagueFavorite";
 
 /** Modal displaying the user's favorite clubs and leagues, with navigation links and delete actions for each. */
 export const FavoriteModal = () => {
   const [open, setOpen] = useState(true);
   const navigate = useNavigate();
-  const { favorite, error, refreshFavorites } = useFavorite();
+  const {
+    favorite,
+    leagueFavorite,
+    error,
+    refreshFavorites,
+    refreshLeagueFavorites,
+  } = useFavoritesContext();
   const { deleteFavorite } = useDeleteFavorite();
-  const { leagueFavorite, refreshLeagueFavorites } = useLeagueFavorite();
   const { deleteLeagueFavorite } = useDeleteLeagueFavorite();
 
   const hasError = Boolean(error);

@@ -1,10 +1,9 @@
 ﻿import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router";
-import { useFavorite } from "@/hooks/useFavorite";
+import { useFavoritesContext } from "@/context/FavoritesContext";
 import { useAddFavorite } from "@/hooks/useAddFavorite";
 import { useDeleteFavorite } from "@/hooks/useDeleteFavorite";
 import { useAddLeagueFavorite } from "@/hooks/useAddLeagueFavorite";
-import { useLeagueFavorite } from "@/hooks/useLeagueFavorite";
 import { useDeleteLeagueFavorite } from "@/hooks/useDeleteLeagueFavorite";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
@@ -20,6 +19,7 @@ interface FavoriteButtonProps {
  * Behavior is conditioned on `teamId`: club logic when present, league logic otherwise.
  * For a club, `competitionId` is only the competition context sent along with the favorite;
  * for a league, it is the id of the league itself.
+ * Favorite lists are read from FavoritesContext; after a change, only the affected list is re-fetched.
  */
 export const FavoriteButton = ({
   teamId,
@@ -28,11 +28,11 @@ export const FavoriteButton = ({
 }: FavoriteButtonProps) => {
   const { isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
-  const { favorite, refreshFavorites } = useFavorite();
+  const { favorite, leagueFavorite, refreshFavorites, refreshLeagueFavorites } =
+    useFavoritesContext();
   const { deleteFavorite } = useDeleteFavorite();
   const { addFavorite } = useAddFavorite();
   const { addLeagueFavorite } = useAddLeagueFavorite();
-  const { leagueFavorite, refreshLeagueFavorites } = useLeagueFavorite();
   const { deleteLeagueFavorite } = useDeleteLeagueFavorite();
 
   const isLeague = teamId === undefined;
@@ -60,8 +60,11 @@ export const FavoriteButton = ({
         await addFavorite(user.id, teamId, competitionId ?? 0);
       }
     }
-    refreshFavorites();
-    refreshLeagueFavorites();
+    if (isLeague) {
+      refreshLeagueFavorites();
+    } else {
+      refreshFavorites();
+    }
   };
 
   return (
