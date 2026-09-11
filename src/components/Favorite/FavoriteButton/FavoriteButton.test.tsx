@@ -137,6 +137,28 @@ describe("FavoriteButton — club", () => {
     await waitFor(() => expect(mockAddFavorite).toHaveBeenCalledWith(1, 10, 0));
   });
 
+  it("toggles the club, not the league, when both teamId and competitionId are given", async () => {
+    vi.mocked(AuthContext.useAuth).mockReturnValue({
+      isAuthenticated: true,
+      user: { id: 1 },
+      loading: false,
+      setIsAuthenticated: vi.fn(),
+      setUser: vi.fn(),
+      checkAuth: vi.fn(),
+    });
+    vi.mocked(useLeagueFavoriteModule.useLeagueFavorite).mockReturnValue({
+      leagueFavorite: [{ id: 5, name: "Ligue 1" }],
+      error: null,
+      refreshLeagueFavorites: mockRefreshLeagueFavorites,
+    });
+    renderButton({ competitionId: 5 });
+    expect(screen.getByRole("button").className).toContain("text-zinc-400");
+    fireEvent.click(screen.getByRole("button"));
+    await waitFor(() => expect(mockAddFavorite).toHaveBeenCalledWith(1, 10, 5));
+    expect(mockAddLeagueFavorite).not.toHaveBeenCalled();
+    expect(mockDeleteLeagueFavorite).not.toHaveBeenCalled();
+  });
+
   it("calls deleteFavorite when the club is already a favorite", async () => {
     vi.mocked(AuthContext.useAuth).mockReturnValue({
       isAuthenticated: true,

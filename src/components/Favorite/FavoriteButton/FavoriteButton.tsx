@@ -17,7 +17,9 @@ interface FavoriteButtonProps {
 /**
  * Star button to add or remove a club or league from the user's favorites.
  * Redirects to login if the user is not authenticated.
- * Behavior is conditioned on `competitionId`: league logic when present, club logic otherwise.
+ * Behavior is conditioned on `teamId`: club logic when present, league logic otherwise.
+ * For a club, `competitionId` is only the competition context sent along with the favorite;
+ * for a league, it is the id of the league itself.
  */
 export const FavoriteButton = ({
   teamId,
@@ -33,7 +35,9 @@ export const FavoriteButton = ({
   const { leagueFavorite, refreshLeagueFavorites } = useLeagueFavorite();
   const { deleteLeagueFavorite } = useDeleteLeagueFavorite();
 
-  const isFavorite = competitionId
+  const isLeague = teamId === undefined;
+
+  const isFavorite = isLeague
     ? leagueFavorite.some((fav) => fav.id === competitionId)
     : favorite.some((fav) => fav.id === teamId);
 
@@ -44,16 +48,16 @@ export const FavoriteButton = ({
     }
 
     if (isFavorite) {
-      if (competitionId) {
-        await deleteLeagueFavorite(competitionId);
+      if (isLeague) {
+        await deleteLeagueFavorite(competitionId!);
       } else {
-        await deleteFavorite(teamId!);
+        await deleteFavorite(teamId);
       }
     } else {
-      if (competitionId) {
-        await addLeagueFavorite(user.id, competitionId);
+      if (isLeague) {
+        await addLeagueFavorite(user.id, competitionId!);
       } else {
-        await addFavorite(user.id, teamId!, competitionId ?? 0);
+        await addFavorite(user.id, teamId, competitionId ?? 0);
       }
     }
     refreshFavorites();
