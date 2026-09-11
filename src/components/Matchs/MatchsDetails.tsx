@@ -2,6 +2,7 @@
 import { DatePickerCarousel } from "../DatePicker/DatePickerCaroussel";
 import { CompetitionGroup } from "../Competitions/CompetitionGroup";
 import { useMatchByDate } from "../../hooks/useMatchByDate";
+import { MatchSkeletonGrid } from "./MatchSkeleton";
 import { useLiveStream } from "../../hooks/useLiveStream";
 import { useLocation } from "react-router";
 import { Toast } from "../Toast/Toast";
@@ -13,7 +14,7 @@ import { INPLAY_STATES } from "@/utils/constants";
  */
 export const MatchsDetails = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const { matchesByDate, error } = useMatchByDate(selectedDate);
+  const { matchesByDate, loading, error } = useMatchByDate(selectedDate);
   const { matches: liveMatches } = useLiveStream();
 
   const liveMap = useMemo(
@@ -83,7 +84,9 @@ export const MatchsDetails = () => {
               />
             </div>
 
-            {Object.keys(matchesByDate).length > 0 ? (
+            {loading ? (
+              <MatchSkeletonGrid />
+            ) : Object.keys(matchesByDate).length > 0 ? (
               Object.entries(matchesByDate).map(([name, data]) => (
                 <CompetitionGroup
                   key={name}
