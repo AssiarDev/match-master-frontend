@@ -15,10 +15,24 @@ import { BracketConnector } from "./BracketConnector";
 import { reorderBracketStages } from "../../utils/reorderBracketStages";
 import type { StageGroup } from "../../utils/groupMatchesByStage";
 
+/**
+ * Renders the knockout bracket as connected columns, one per stage.
+ *
+ * @param stages - Stages to display; an empty array renders a fallback message,
+ *   as a competition may only have preliminary rounds at this point of the season.
+ */
 export const SchemaTab = ({ stages }: { stages: StageGroup[] }) => {
   const isSmall = useIsSmallScreen();
   const cardW = isSmall ? BRACKET_CARD_W_SM : BRACKET_CARD_W;
   const connectorW = isSmall ? BRACKET_CONNECTOR_W_SM : BRACKET_CONNECTOR_W;
+
+  if (stages.length === 0) {
+    return (
+      <p className="text-center text-zinc-400 py-8">
+        Aucun tour à afficher dans le schéma.
+      </p>
+    );
+  }
 
   const sorted = reorderBracketStages(stages);
   const stage0Count = sorted[0].matches.length;

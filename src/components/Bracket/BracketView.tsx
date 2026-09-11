@@ -12,7 +12,14 @@ const SUB_TAB_LABELS: Record<SubTab, string> = {
   schema: "Schéma",
 };
 
-/** Tableau éliminatoire d'une coupe : tours préliminaires en liste, phases finales en schéma visuel. */
+/**
+ * Tableau éliminatoire d'une coupe : tours préliminaires en liste, phases finales en schéma visuel.
+ *
+ * The available sub-tabs depend on stages fetched asynchronously, so the active
+ * tab is derived rather than stored: a tab selected earlier (or defaulted while
+ * loading) may no longer exist once the data arrives. Falling back to the first
+ * available tab prevents rendering a tab with no stages to display.
+ */
 export const BracketView = () => {
   const location = useLocation();
   const competition = location.state?.competition;
@@ -32,9 +39,11 @@ export const BracketView = () => {
     ...(bracketStages.length > 0 ? (["schema"] as SubTab[]) : []),
   ];
 
-  const [activeSubTab, setActiveSubTab] = useState<SubTab>(
-    availableTabs[0] ?? "schema",
-  );
+  const [selectedSubTab, setSelectedSubTab] = useState<SubTab | null>(null);
+  const activeSubTab =
+    selectedSubTab !== null && availableTabs.includes(selectedSubTab)
+      ? selectedSubTab
+      : availableTabs[0];
 
   if (loading) {
     return (
@@ -57,7 +66,7 @@ export const BracketView = () => {
           {availableTabs.map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveSubTab(tab)}
+              onClick={() => setSelectedSubTab(tab)}
               className={`pb-2 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
                 activeSubTab === tab
                   ? "border-amber-500 text-amber-400"
