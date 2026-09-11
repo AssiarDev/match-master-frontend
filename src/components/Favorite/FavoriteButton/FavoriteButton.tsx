@@ -1,4 +1,5 @@
-﻿import { useAuth } from "@/context/AuthContext";
+import { useOptimistic, useTransition } from "react";
+import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router";
 import { useFavoritesContext } from "@/context/FavoritesContext";
 import { useAddFavorite } from "@/hooks/useAddFavorite";
@@ -20,6 +21,13 @@ interface FavoriteButtonProps {
  * For a club, `competitionId` is only the competition context sent along with the favorite;
  * for a league, it is the id of the league itself.
  * Favorite lists are read from FavoritesContext; after a change, only the affected list is re-fetched.
+ *
+ * The star is optimistic: `useOptimistic` shows the toggled state as soon as the user clicks,
+ * for as long as the transition runs. The transition awaits both the request and the re-fetch,
+ * so when it ends the star falls back to the real state computed from the reloaded list:
+ * unchanged if the request succeeded, reverted if it failed, with no rollback code.
+ * The button stays disabled while the transition is pending, so a quick second click
+ * cannot race the first request.
  */
 export const FavoriteButton = ({
   teamId,
@@ -34,6 +42,7 @@ export const FavoriteButton = ({
   const { addFavorite } = useAddFavorite();
   const { addLeagueFavorite } = useAddLeagueFavorite();
   const { deleteLeagueFavorite } = useDeleteLeagueFavorite();
+  const [isPending, startTransition] = useTransition();
 
   const isLeague = teamId === undefined;
 
@@ -41,30 +50,36 @@ export const FavoriteButton = ({
     ? leagueFavorite.some((fav) => fav.id === competitionId)
     : favorite.some((fav) => fav.id === teamId);
 
-  const handleClick = async () => {
+  const [optimisticIsFavorite, setOptimisticIsFavorite] =
+    useOptimistic(isFavorite);
+
+  const handleClick = () => {
     if (!isAuthenticated || !user) {
       navigate("/login");
       return;
     }
 
-    if (isFavorite) {
-      if (isLeague) {
-        await deleteLeagueFavorite(competitionId!);
+    startTransition(async () => {
+      setOptimisticIsFavorite(!isFavorite);
+      if (isFavorite) {
+        if (isLeague) {
+          await deleteLeagueFavorite(competitionId!);
+        } else {
+          await deleteFavorite(teamId);
+        }
       } else {
-        await deleteFavorite(teamId);
+        if (isLeague) {
+          await addLeagueFavorite(user.id, competitionId!);
+        } else {
+          await addFavorite(user.id, teamId, competitionId ?? 0);
+        }
       }
-    } else {
       if (isLeague) {
-        await addLeagueFavorite(user.id, competitionId!);
+        await refreshLeagueFavorites();
       } else {
-        await addFavorite(user.id, teamId, competitionId ?? 0);
+        await refreshFavorites();
       }
-    }
-    if (isLeague) {
-      refreshLeagueFavorites();
-    } else {
-      refreshFavorites();
-    }
+    });
   };
 
   return (
@@ -72,9 +87,10 @@ export const FavoriteButton = ({
       <button
         aria-label={`${teamName} à été ajouté aux favoris`}
         onClick={handleClick}
-        className={`text-xl ${isFavorite ? "text-amber-400" : "text-zinc-400"} cursor-pointer`}
+        disabled={isPending}
+        className={`text-xl ${optimisticIsFavorite ? "text-amber-400" : "text-zinc-400"} cursor-pointer disabled:cursor-wait`}
       >
-        {isFavorite ? <AiFillStar /> : <AiOutlineStar />}
+        {optimisticIsFavorite ? <AiFillStar /> : <AiOutlineStar />}
       </button>
     </>
   );

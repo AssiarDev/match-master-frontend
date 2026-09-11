@@ -1,5 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  act,
+} from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { FavoriteButton } from "./FavoriteButton";
 import * as AuthContext from "@/context/AuthContext";
@@ -51,6 +57,13 @@ const mockFavorites = ({
     refreshFavorites: mockRefreshFavorites,
     refreshLeagueFavorites: mockRefreshLeagueFavorites,
   });
+
+/** Returns a promise and the function that settles it, to hold a request pending. */
+const deferred = <T,>() => {
+  let resolve!: (value: T) => void;
+  const promise = new Promise<T>((r) => (resolve = r));
+  return { promise, resolve };
+};
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -185,6 +198,70 @@ describe("FavoriteButton — club", () => {
     fireEvent.click(screen.getByRole("button"));
     await waitFor(() => expect(mockRefreshFavorites).toHaveBeenCalled());
     expect(mockRefreshLeagueFavorites).not.toHaveBeenCalled();
+  });
+});
+
+describe("FavoriteButton — optimistic star", () => {
+  it("fills the star and disables the button while the request is pending", async () => {
+    vi.mocked(AuthContext.useAuth).mockReturnValue({
+      isAuthenticated: true,
+      user: { id: 1 },
+      loading: false,
+      setIsAuthenticated: vi.fn(),
+      setUser: vi.fn(),
+      checkAuth: vi.fn(),
+    });
+    const request = deferred<unknown>();
+    mockAddFavorite.mockReturnValueOnce(request.promise);
+    renderButton();
+    fireEvent.click(screen.getByRole("button"));
+    await waitFor(() =>
+      expect(screen.getByRole("button").className).toContain("text-amber-400"),
+    );
+    expect(screen.getByRole("button")).toBeDisabled();
+    await act(async () => request.resolve({}));
+  });
+
+  it("reverts the star once the request settles if the reloaded list is unchanged", async () => {
+    vi.mocked(AuthContext.useAuth).mockReturnValue({
+      isAuthenticated: true,
+      user: { id: 1 },
+      loading: false,
+      setIsAuthenticated: vi.fn(),
+      setUser: vi.fn(),
+      checkAuth: vi.fn(),
+    });
+    const request = deferred<unknown>();
+    mockAddFavorite.mockReturnValueOnce(request.promise);
+    renderButton();
+    fireEvent.click(screen.getByRole("button"));
+    await waitFor(() =>
+      expect(screen.getByRole("button").className).toContain("text-amber-400"),
+    );
+    await act(async () => request.resolve(undefined));
+    await waitFor(() =>
+      expect(screen.getByRole("button").className).toContain("text-zinc-400"),
+    );
+    expect(screen.getByRole("button")).not.toBeDisabled();
+  });
+
+  it("keeps the star filled once the reloaded list contains the club", async () => {
+    vi.mocked(AuthContext.useAuth).mockReturnValue({
+      isAuthenticated: true,
+      user: { id: 1 },
+      loading: false,
+      setIsAuthenticated: vi.fn(),
+      setUser: vi.fn(),
+      checkAuth: vi.fn(),
+    });
+    mockRefreshFavorites.mockImplementationOnce(async () => {
+      mockFavorites({ favorite: [{ id: 10, name: "PSG" }] });
+    });
+    renderButton();
+    fireEvent.click(screen.getByRole("button"));
+    await waitFor(() => expect(mockRefreshFavorites).toHaveBeenCalled());
+    await waitFor(() => expect(screen.getByRole("button")).not.toBeDisabled());
+    expect(screen.getByRole("button").className).toContain("text-amber-400");
   });
 });
 
