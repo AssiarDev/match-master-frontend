@@ -68,9 +68,11 @@ describe("LoginModal", () => {
     await clickPromise;
   });
 
-  it("shows error message on failed login", async () => {
+  it("shows the backend error message on failed login", async () => {
     server.use(
-      http.post(`${API}/login`, () => HttpResponse.json(null, { status: 401 })),
+      http.post(`${API}/login`, () =>
+        HttpResponse.json({ error: "Identifiants invalides" }, { status: 401 }),
+      ),
     );
 
     const user = userEvent.setup({ delay: null });
@@ -81,9 +83,7 @@ describe("LoginModal", () => {
     await user.click(screen.getByRole("button", { name: "Se connecter" }));
 
     await waitFor(() =>
-      expect(
-        screen.getByText("Erreur de connexion au serveur"),
-      ).toBeInTheDocument(),
+      expect(screen.getByText("Identifiants invalides")).toBeInTheDocument(),
     );
   });
 

@@ -45,9 +45,11 @@ describe("useLogin", () => {
     expect(result.current.error).not.toBe("");
   });
 
-  it("sets error on non-ok HTTP response", async () => {
+  it("displays the error message returned by the backend", async () => {
     server.use(
-      http.post(`${API}/login`, () => HttpResponse.json(null, { status: 401 })),
+      http.post(`${API}/login`, () =>
+        HttpResponse.json({ error: "Identifiants invalides" }, { status: 401 }),
+      ),
     );
 
     const { result } = renderHook(() => useLogin(), { wrapper });
@@ -57,7 +59,22 @@ describe("useLogin", () => {
     });
 
     await waitFor(() => expect(result.current.loading).toBe(false));
-    expect(result.current.error).not.toBe("");
+    expect(result.current.error).toBe("Identifiants invalides");
+  });
+
+  it("falls back to a generic message when the error response has no body", async () => {
+    server.use(
+      http.post(`${API}/login`, () => new HttpResponse(null, { status: 500 })),
+    );
+
+    const { result } = renderHook(() => useLogin(), { wrapper });
+
+    await act(async () => {
+      await result.current.login("user@test.com", "password");
+    });
+
+    await waitFor(() => expect(result.current.loading).toBe(false));
+    expect(result.current.error).toBe("Echec tentative de connexion");
   });
 
   it("calls onSuccess callback on successful login", async () => {

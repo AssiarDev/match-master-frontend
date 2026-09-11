@@ -30,15 +30,23 @@ export const useLogin = () => {
         body: JSON.stringify({ mail: email, password }),
       });
 
-      if (!response.ok) throw new Error("Echec tentative de connexion");
+      const data = await response.json().catch(() => null);
 
-      if (response.ok) {
-        const authenticated = await checkAuth();
-        if (!authenticated)
-          throw new Error("Session non établie après connexion");
-        onSuccess?.();
-        navigate("/");
+      if (!response.ok) {
+        setError(
+          data?.error || data?.message || "Echec tentative de connexion",
+        );
+        return;
       }
+
+      const authenticated = await checkAuth();
+      if (!authenticated) {
+        setError("Session non établie après connexion");
+        return;
+      }
+
+      onSuccess?.();
+      navigate("/");
     } catch (err) {
       setError("Erreur de connexion au serveur");
       console.error(err);
