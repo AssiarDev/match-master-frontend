@@ -1,6 +1,22 @@
 # Changelog
 
 - - -
+## [0.6.0](https://github.com/AssiarDev/match-master-frontend/compare/828633de912b6a9238c678aa9d0fe5bf50815485..0.6.0) - 2026-09-11
+#### Bug Fixes
+- **(bracket)** derive the active sub-tab from loaded stages - ([3abb8c9](https://github.com/AssiarDev/match-master-frontend/commit/3abb8c9c50f9fc2b884b887fdb8a1c855cbb69dc)) - AssiarDev
+- **(competitions)** keep country flag in the group header - ([d849fa1](https://github.com/AssiarDev/match-master-frontend/commit/d849fa1c38c9f9122fa3998ea699f0f71f7cb158)) - AssiarDev
+- **(login)** surface the server error message instead of a generic one - ([ae8faa3](https://github.com/AssiarDev/match-master-frontend/commit/ae8faa35578780f74803df82bb77dc97b04df08e)) - AssiarDev
+#### Code Refactoring
+- **(favorite)** replace side-effect ternaries with if/else - ([9cf0c5a](https://github.com/AssiarDev/match-master-frontend/commit/9cf0c5afeec70a73c2d247a1932a8b450185846b)) - AssiarDev
+#### Continuous Integration
+- **(lint)** add ESLint job and make the pre-commit hook blocking - ([926cf9e](https://github.com/AssiarDev/match-master-frontend/commit/926cf9eebb057c648d7568075a3fa1ecf555c4c9)) - AssiarDev
+#### Features
+- **(matchs)** show a skeleton grid while matches are loading - ([5362959](https://github.com/AssiarDev/match-master-frontend/commit/5362959e02dfe237379f2469ad191db65d115b11)) - AssiarDev
+#### Miscellaneous Chores
+- **(eslint)** lint TypeScript files with typescript-eslint - ([828633d](https://github.com/AssiarDev/match-master-frontend/commit/828633de912b6a9238c678aa9d0fe5bf50815485)) - AssiarDev
+
+- - -
+
 ## [0.5.2](https://github.com/AssiarDev/match-master-frontend/compare/21d2738bc1196d0c6ea1b02072723b3dc3e8a495..0.5.2) - 2026-08-17
 #### Bug Fixes
 - **(cookie-banner)** offset the banner above the mobile bottom nav - ([21d2738](https://github.com/AssiarDev/match-master-frontend/commit/21d2738bc1196d0c6ea1b02072723b3dc3e8a495)) - AssiarDev
