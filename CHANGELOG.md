@@ -1,6 +1,12 @@
 # Changelog
 
 - - -
+## [0.6.1](https://github.com/AssiarDev/match-master-frontend/compare/46687ebb281f000b749618899019ad8d3de425d5..0.6.1) - 2026-09-12
+#### Bug Fixes
+- **(favorites)** toggle the team, not the cup, from preliminary round … (#10) - ([46687eb](https://github.com/AssiarDev/match-master-frontend/commit/46687ebb281f000b749618899019ad8d3de425d5)) - Assiar
+
+- - -
+
 ## [0.6.0](https://github.com/AssiarDev/match-master-frontend/compare/828633de912b6a9238c678aa9d0fe5bf50815485..0.6.0) - 2026-09-11
 #### Bug Fixes
 - **(bracket)** derive the active sub-tab from loaded stages - ([3abb8c9](https://github.com/AssiarDev/match-master-frontend/commit/3abb8c9c50f9fc2b884b887fdb8a1c855cbb69dc)) - AssiarDev
