@@ -3,11 +3,14 @@ import { BrowserRouter as Router } from "react-router";
 import "./index.css";
 import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
+import { FavoritesProvider } from "./context/FavoritesContext";
 
 createRoot(document.getElementById("root")!).render(
   <AuthProvider>
-    <Router>
-      <App />
-    </Router>
+    <FavoritesProvider>
+      <Router>
+        <App />
+      </Router>
+    </FavoritesProvider>
   </AuthProvider>,
 );

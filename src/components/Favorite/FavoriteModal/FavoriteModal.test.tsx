@@ -14,22 +14,18 @@ const mockDeleteFavorite = vi.fn();
 const mockRefreshLeagueFavorites = vi.fn();
 const mockDeleteLeagueFavorite = vi.fn();
 
-vi.mock("../../../hooks/useFavorite", () => ({
-  useFavorite: vi.fn(),
+vi.mock("../../../context/FavoritesContext", () => ({
+  useFavoritesContext: vi.fn(),
 }));
 vi.mock("../../../hooks/useDeleteFavorite", () => ({
   useDeleteFavorite: vi.fn(),
-}));
-vi.mock("../../../hooks/useLeagueFavorite", () => ({
-  useLeagueFavorite: vi.fn(),
 }));
 vi.mock("../../../hooks/useDeleteLeagueFavorite", () => ({
   useDeleteLeagueFavorite: vi.fn(),
 }));
 
-import * as useFavoriteModule from "../../../hooks/useFavorite";
+import * as FavoritesContextModule from "../../../context/FavoritesContext";
 import * as useDeleteFavoriteModule from "../../../hooks/useDeleteFavorite";
-import * as useLeagueFavoriteModule from "../../../hooks/useLeagueFavorite";
 import * as useDeleteLeagueFavoriteModule from "../../../hooks/useDeleteLeagueFavorite";
 
 const setup = ({
@@ -37,19 +33,16 @@ const setup = ({
   leagues = [{ id: 5, name: "Ligue 1", emblem: "" }],
   clubError = null as string | null,
 } = {}) => {
-  vi.mocked(useFavoriteModule.useFavorite).mockReturnValue({
+  vi.mocked(FavoritesContextModule.useFavoritesContext).mockReturnValue({
     favorite: clubs,
+    leagueFavorite: leagues,
     error: clubError,
     refreshFavorites: mockRefreshFavorites,
+    refreshLeagueFavorites: mockRefreshLeagueFavorites,
   });
   vi.mocked(useDeleteFavoriteModule.useDeleteFavorite).mockReturnValue({
     deleteFavorite: mockDeleteFavorite,
     error: null,
-  });
-  vi.mocked(useLeagueFavoriteModule.useLeagueFavorite).mockReturnValue({
-    leagueFavorite: leagues,
-    error: null,
-    refreshLeagueFavorites: mockRefreshLeagueFavorites,
   });
   vi.mocked(
     useDeleteLeagueFavoriteModule.useDeleteLeagueFavorite,

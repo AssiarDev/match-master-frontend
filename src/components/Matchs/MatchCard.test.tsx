@@ -2,6 +2,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { AuthProvider } from "@/context/AuthContext";
+import { FavoritesProvider } from "@/context/FavoritesContext";
 import { MatchCard } from "./MatchCard";
 import type { Match } from "@/types";
 
@@ -12,7 +13,9 @@ const renderMatchCard = (match: Match, leagueId?: number) => {
       path: "/",
       element: (
         <AuthProvider>
-          <MatchCard item={match} leagueId={leagueId} />
+          <FavoritesProvider>
+            <MatchCard item={match} leagueId={leagueId} />
+          </FavoritesProvider>
         </AuthProvider>
       ),
     },
