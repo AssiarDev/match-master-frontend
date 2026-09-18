@@ -3,19 +3,20 @@ import { DatePickerCarousel } from "../DatePicker/DatePickerCaroussel";
 import { CompetitionGroup } from "../Competitions/CompetitionGroup";
 import { useMatchByDate } from "../../hooks/useMatchByDate";
 import { MatchSkeletonGrid } from "./MatchSkeleton";
-import { useLiveStream } from "../../hooks/useLiveStream";
+import { useLiveStreamContext } from "@/context/LiveStreamContext";
 import { useLocation } from "react-router";
 import { Toast } from "../Toast/Toast";
 import { INPLAY_STATES } from "@/utils/constants";
 
 /** Home page: date picker carousel + matches grouped by competition for the selected date.
- * Live matches are automatically rendered as LiveMatchCard via the SSE stream.
+ * Live matches are automatically rendered as LiveMatchCard via the shared SSE
+ * connection from LiveStreamContext (no second EventSource opened here).
  * Shows a toast on redirect messages.
  */
 export const MatchsDetails = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const { matchesByDate, loading, error } = useMatchByDate(selectedDate);
-  const { matches: liveMatches } = useLiveStream();
+  const { matches: liveMatches } = useLiveStreamContext();
 
   const liveMap = useMemo(
     () =>
