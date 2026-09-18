@@ -1,6 +1,12 @@
 # Changelog
 
 - - -
+## [0.6.2](https://github.com/AssiarDev/match-master-frontend/compare/291998cc996395b9f5de9032d7ed38a7319b4d3c..0.6.2) - 2026-09-18
+#### Bug Fixes
+- **(live)** reuse shared SSE context on home page - ([291998c](https://github.com/AssiarDev/match-master-frontend/commit/291998cc996395b9f5de9032d7ed38a7319b4d3c)) - AssiarDev
+
+- - -
+
 ## [0.6.1](https://github.com/AssiarDev/match-master-frontend/compare/46687ebb281f000b749618899019ad8d3de425d5..0.6.1) - 2026-09-12
 #### Bug Fixes
 - **(favorites)** toggle the team, not the cup, from preliminary round … (#10) - ([46687eb](https://github.com/AssiarDev/match-master-frontend/commit/46687ebb281f000b749618899019ad8d3de425d5)) - Assiar
