@@ -60,7 +60,7 @@ mise run hooks:install
 | `mise run check`         | Lance les mêmes vérifications que le hook pre-commit, sans créer de commit |
 | `mise run hooks:install` | Installe les dépendances npm et les hooks git                              |
 
-> La version de Node (Node 24) est déclarée à trois endroits : dans `mise.toml` (local et CI), dans le `FROM` du `Dockerfile` et dans l'image du service `frontend-dev` de `docker-compose.yml`. Si tu changes l'une, change aussi les autres.
+> La version de Node (Node 24) est déclarée à quatre endroits : dans `mise.toml` (local et CI), dans le `FROM` du `Dockerfile`, dans l'image du service `frontend-dev` de `docker-compose.yml` et dans `NODE_VERSION` de `netlify.toml` (build Netlify). Si tu changes l'une, change aussi les autres.
 
 ### Variables d'environnement
 
