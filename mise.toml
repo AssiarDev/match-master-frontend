@@ -1,0 +1,20 @@
+[tools]
+node = "24"
+cocogitto = "7.0.0"
+typos = "1.42.3"
+
+[tasks.check]
+description = "Same checks as the pre-commit hook"
+run = [
+  "npm run typecheck",
+  "npm run lint",
+  "npm run prettier:check",
+  "typos",
+]
+
+[tasks."hooks:install"]
+description = "Install dependencies and git hooks"
+run = [
+  "npm install",
+  "cog install-hook --all --overwrite",
+]
