@@ -28,10 +28,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Install Node with mise
+        uses: jdx/mise-action@v5
         with:
-          node-version: 22
+          install_args: node
 
       - name: Install dependencies
         run: npm install
@@ -46,10 +46,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Install Node with mise
+        uses: jdx/mise-action@v5
         with:
-          node-version: 22
+          install_args: node
 
       - name: Install dependencies
         run: npm install
@@ -64,10 +64,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Install Node with mise
+        uses: jdx/mise-action@v5
         with:
-          node-version: 22
+          install_args: node
 
       - name: Install dependencies
         run: npm install
@@ -92,10 +92,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Install Node with mise
+        uses: jdx/mise-action@v5
         with:
-          node-version: 22
+          install_args: node
 
       - name: Install dependencies
         run: npm install
