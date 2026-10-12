@@ -45,7 +45,10 @@ Accessible sur **http://localhost:5173**.
 
 #### Sans Docker
 
+Prérequis : [mise](https://mise.jdx.dev/), qui installe Node, Cocogitto et typos (voir [CONTRIBUTING.md](CONTRIBUTING.md)).
+
 ```sh
+mise install
 npm install && npm run dev
 ```
 

@@ -6,27 +6,61 @@
 
 - [Docker](https://www.docker.com/) et Docker Compose
 - Le backend [match-master-backend](https://github.com/AssiarDev/match-master) lancé localement
-- [Cocogitto](https://docs.cocogitto.io/) pour les commits conventionnels
+- [mise](https://mise.jdx.dev/) pour installer les outils de développement (voir ci-dessous)
 
-#### Installer cocogitto
+### Outils de développement
 
-**macOS**
+Les outils de développement sont déclarés dans [`mise.toml`](mise.toml) et installés avec [mise](https://mise.jdx.dev/), aux mêmes versions en local et en CI :
 
-```sh
-brew install cocogitto
-```
+- **Node**, pour les scripts npm et les hooks de commit ;
+- **[Cocogitto](https://docs.cocogitto.io/)** (`cog`), qui fait respecter les [Conventional Commits](https://www.conventionalcommits.org/) ;
+- **[typos](https://github.com/crate-ci/typos)**, qui détecte les fautes de frappe avant chaque commit.
 
-**Windows**
-
-```sh
-winget install cocogitto
-```
-
-Puis activer le hook git dans le repo :
+**Installer mise**
 
 ```sh
-cog install-hook commit-msg
+# macOS
+brew install mise
+
+# Linux
+curl -fsSL https://mise.run | sh
+
+# Windows
+winget install jdx.mise
 ```
+
+Rendre ensuite les outils accessibles au terminal et aux hooks git :
+
+- **bash / zsh** : ajouter `eval "$(mise activate bash)"` (ou `zsh`) à la fin de `~/.bashrc` (ou `~/.zshrc`) ;
+- **Windows** : ajouter `C:\Users\<ton-nom>\AppData\Local\mise\shims` au `PATH` de l'utilisateur, au-dessus de `.cargo\bin` s'il y figure. Le nouveau `PATH` ne s'applique qu'aux programmes lancés ensuite : redémarrer Windows (pas une simple mise en veille), ou au moins l'Explorateur Windows depuis le Gestionnaire des tâches.
+- **Windows, si Node.js est déjà installé** (dans `C:\Program Files\nodejs`) : le désinstaller, puis lancer `mise use -g node@24`. Le `PATH` système passe avant le `PATH` utilisateur : sans cela, `node` et `npm` restent ceux de l'ancienne installation, même dans le projet.
+
+Pour les autres shells, voir la [documentation de mise](https://mise.jdx.dev/installing-mise.html).
+
+**Installer les outils et les hooks**
+
+À la racine du projet :
+
+```sh
+mise install
+mise run hooks:install
+```
+
+- `mise install` installe Node, `cog` et `typos`. Si mise indique que le fichier `mise.toml` n'est pas approuvé, lancer `mise trust` puis relancer `mise install`.
+- `mise run hooks:install` installe les dépendances npm, utilisées par le hook pre-commit (vérification des types, ESLint et Prettier), puis les hooks git `pre-commit` et `commit-msg` définis dans `cog.toml`. Sans mise, l'équivalent est `npm install`, puis `cog install-hook --all --overwrite`.
+
+> Cette étape est à refaire sur chaque nouvelle machine après un clone.
+
+**Tâches mise**
+
+`mise.toml` définit des raccourcis pour les opérations courantes. `mise tasks` les liste :
+
+| Tâche                    | Rôle                                                                       |
+| ------------------------ | -------------------------------------------------------------------------- |
+| `mise run check`         | Lance les mêmes vérifications que le hook pre-commit, sans créer de commit |
+| `mise run hooks:install` | Installe les dépendances npm et les hooks git                              |
+
+> La version de Node (Node 24) est déclarée à trois endroits : dans `mise.toml` (local et CI), dans le `FROM` du `Dockerfile` et dans l'image du service `frontend-dev` de `docker-compose.yml`. Si tu changes l'une, change aussi les autres.
 
 ### Variables d'environnement
 
