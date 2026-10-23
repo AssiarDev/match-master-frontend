@@ -38,6 +38,16 @@ const renderModal = () =>
   render(<EditPasswordModal onClose={mockOnClose} onSuccess={mockOnSuccess} />);
 
 describe("EditPasswordModal", () => {
+  it("lists the four password rules required by the backend", () => {
+    renderModal();
+    expect(screen.getByText("• 8 caractères minimum")).toBeInTheDocument();
+    expect(screen.getByText("• 1 majuscule requise")).toBeInTheDocument();
+    expect(screen.getByText("• 1 chiffre requis")).toBeInTheDocument();
+    expect(
+      screen.getByText("• 1 caractère spécial requis"),
+    ).toBeInTheDocument();
+  });
+
   it("calls onClose once when Escape is pressed", async () => {
     const user = userEvent.setup({ delay: null });
     renderModal();

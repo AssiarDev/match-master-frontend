@@ -79,6 +79,7 @@ export const EditPasswordModal = ({
             <ul className="text-xs text-zinc-400 space-y-1">
               <li>• 8 caractères minimum</li>
               <li>• 1 majuscule requise</li>
+              <li>• 1 chiffre requis</li>
               <li>• 1 caractère spécial requis</li>
             </ul>
             <Input
