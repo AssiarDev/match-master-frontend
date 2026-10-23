@@ -85,7 +85,7 @@ export const FavoriteButton = ({
   return (
     <>
       <button
-        aria-label={`${teamName} à été ajouté aux favoris`}
+        aria-label={`${teamName} a été ajouté aux favoris`}
         onClick={handleClick}
         disabled={isPending}
         className={`text-xl ${optimisticIsFavorite ? "text-amber-400" : "text-zinc-400"} cursor-pointer disabled:cursor-wait`}

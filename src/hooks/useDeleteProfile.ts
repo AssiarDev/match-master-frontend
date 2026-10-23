@@ -23,7 +23,7 @@ export const useDeleteProfile = () => {
       );
 
       if (!response.ok) {
-        throw new Error("Echec tentative de suppression du compte");
+        throw new Error("Échec tentative de suppression du compte");
       }
       const data = await response.json();
 

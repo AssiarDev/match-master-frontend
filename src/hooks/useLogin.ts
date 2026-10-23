@@ -34,7 +34,7 @@ export const useLogin = () => {
 
       if (!response.ok) {
         setError(
-          data?.error || data?.message || "Echec tentative de connexion",
+          data?.error || data?.message || "Échec tentative de connexion",
         );
         return;
       }

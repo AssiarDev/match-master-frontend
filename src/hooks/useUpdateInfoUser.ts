@@ -47,7 +47,7 @@ export const useUpdateInfoUser = () => {
       await checkAuth();
       return true;
     } catch (error) {
-      setError(error instanceof Error ? error.message : "Echec mise à jour");
+      setError(error instanceof Error ? error.message : "Échec mise à jour");
       console.error(error);
     } finally {
       setLoading(false);
