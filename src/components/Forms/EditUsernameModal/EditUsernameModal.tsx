@@ -4,15 +4,14 @@
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import { FormEvent, useState } from "react";
+import { FormEvent } from "react";
 import { useUpdateInfoUser } from "@/hooks/useUpdateInfoUser";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/UI/Button/Button";
 import { Input } from "@/components/UI/Input/Input";
 
-/** Modal dialog to change the authenticated user's username. Calls `onClose` on success. */
+/** Modal dialog to change the authenticated user's username. Calls `onClose` on success and on every dismissal (close button, Escape, outside click), so the parent can open it again. */
 export const EditUsernameModal = ({ onClose }: { onClose: () => void }) => {
-  const [open, setOpen] = useState(true);
   const { error, updateUser, loading } = useUpdateInfoUser();
   const { user } = useAuth();
 
@@ -27,16 +26,13 @@ export const EditUsernameModal = ({ onClose }: { onClose: () => void }) => {
   const hasError = Boolean(error);
 
   return (
-    <Dialog open={open} onClose={setOpen} className="relative z-50">
+    <Dialog open onClose={onClose} className="relative z-50">
       <DialogBackdrop className="fixed inset-0 bg-zinc-950/75 transition-opacity" />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <DialogPanel className="relative bg-zinc-950 border-none shadow-lg shadow-amber-900/50 rounded-lg w-96 p-6">
           <button
-            onClick={() => {
-              setOpen(false);
-              onClose();
-            }}
+            onClick={onClose}
             aria-label="Fermer le modal"
             className="absolute top-2 right-2 text-zinc-100 hover:text-red-500 text-2xl cursor-pointer"
           >

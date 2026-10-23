@@ -38,6 +38,13 @@ const renderModal = () =>
   render(<EditPasswordModal onClose={mockOnClose} onSuccess={mockOnSuccess} />);
 
 describe("EditPasswordModal", () => {
+  it("calls onClose once when Escape is pressed", async () => {
+    const user = userEvent.setup({ delay: null });
+    renderModal();
+    await user.keyboard("{Escape}");
+    expect(mockOnClose).toHaveBeenCalledTimes(1);
+  });
+
   it("renders the three password fields", () => {
     renderModal();
     expect(

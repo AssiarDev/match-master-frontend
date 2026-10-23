@@ -54,6 +54,13 @@ describe("EditUsernameModal", () => {
     expect(mockOnClose).toHaveBeenCalled();
   });
 
+  it("calls onClose once when Escape is pressed", async () => {
+    const user = userEvent.setup({ delay: null });
+    renderModal();
+    await user.keyboard("{Escape}");
+    expect(mockOnClose).toHaveBeenCalledTimes(1);
+  });
+
   it("disables the submit button while loading", () => {
     vi.mocked(useUpdateInfoUserModule.useUpdateInfoUser).mockReturnValue({
       error: "",

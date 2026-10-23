@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import * as AuthContext from "@/context/AuthContext";
 import * as useLogoutModule from "@/hooks/useLogout";
 import * as useDeleteProfileModule from "@/hooks/useDeleteProfile";
@@ -120,5 +121,31 @@ describe("UserProfile", () => {
     expect(
       screen.getByRole("button", { name: "Supprimer mon compte" }),
     ).toBeInTheDocument();
+  });
+
+  it("reopens the username modal after closing it with Escape", async () => {
+    const user = userEvent.setup({ delay: null });
+    render(<UserProfile />);
+    await user.click(screen.getAllByRole("button", { name: "Modifier" })[0]);
+    await user.keyboard("{Escape}");
+    expect(
+      screen.queryByText("Modifier votre nom d'utilisateur"),
+    ).not.toBeInTheDocument();
+    await user.click(screen.getAllByRole("button", { name: "Modifier" })[0]);
+    expect(
+      screen.getByText("Modifier votre nom d'utilisateur"),
+    ).toBeInTheDocument();
+  });
+
+  it("reopens the password modal after closing it with Escape", async () => {
+    const user = userEvent.setup({ delay: null });
+    render(<UserProfile />);
+    await user.click(screen.getAllByRole("button", { name: "Modifier" })[1]);
+    await user.keyboard("{Escape}");
+    expect(
+      screen.queryByText("Modifier votre mot de passe"),
+    ).not.toBeInTheDocument();
+    await user.click(screen.getAllByRole("button", { name: "Modifier" })[1]);
+    expect(screen.getByText("Modifier votre mot de passe")).toBeInTheDocument();
   });
 });
