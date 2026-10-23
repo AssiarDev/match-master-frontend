@@ -19,6 +19,7 @@ const mockDeleteProfile = vi.fn();
 const mockUpdateUser = vi.fn();
 
 beforeEach(() => {
+  mockDeleteProfile.mockReset();
   vi.mocked(AuthContext.useAuth).mockReturnValue({
     user: { id: 1, username: "TestUser", createdAt: "2024-01-01" },
     isAuthenticated: true,
@@ -85,11 +86,39 @@ describe("UserProfile", () => {
     expect(mockLogout).toHaveBeenCalled();
   });
 
-  it("calls deleteProfile with the user id when clicking Supprimer mon compte", () => {
+  it("asks for confirmation instead of deleting when clicking Supprimer mon compte", () => {
     render(<UserProfile />);
     fireEvent.click(
       screen.getByRole("button", { name: "Supprimer mon compte" }),
     );
+    expect(mockDeleteProfile).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole("button", { name: "Confirmer" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Annuler" })).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Supprimer mon compte" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("calls deleteProfile with the user id when confirming the deletion", () => {
+    render(<UserProfile />);
+    fireEvent.click(
+      screen.getByRole("button", { name: "Supprimer mon compte" }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Confirmer" }));
     expect(mockDeleteProfile).toHaveBeenCalledWith(1);
+  });
+
+  it("does not delete the account and shows Supprimer mon compte again when cancelling", () => {
+    render(<UserProfile />);
+    fireEvent.click(
+      screen.getByRole("button", { name: "Supprimer mon compte" }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Annuler" }));
+    expect(mockDeleteProfile).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole("button", { name: "Supprimer mon compte" }),
+    ).toBeInTheDocument();
   });
 });
