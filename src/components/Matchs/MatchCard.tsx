@@ -1,7 +1,20 @@
 ﻿import type { Match, MatchParticipant } from "../../types";
 import { FavoriteButton } from "../Favorite/FavoriteButton/FavoriteButton";
-import { FINISHED_STATES, extractFinalScore } from "../../utils/matchUtils";
+import { extractFinalScore } from "../../utils/matchUtils";
+import {
+  MATCH_STATUS_LABELS,
+  getMatchStatus,
+  type MatchStatus,
+} from "../../utils/matchStatus";
 import { Card } from "../UI/Card/Card";
+
+const STATUS_CLASSES: Record<MatchStatus, string> = {
+  upcoming: "text-yellow-500",
+  live: "text-red-400",
+  finished: "text-zinc-500",
+  postponed: "text-orange-400",
+  cancelled: "text-zinc-400",
+};
 
 interface MatchCardProps {
   item: Match;
@@ -9,7 +22,7 @@ interface MatchCardProps {
 }
 
 /**
- * Card displaying a match with home/away teams, score (if finished), and favorite buttons.
+ * Card displaying a match with home/away teams, status, score (if finished), and favorite buttons.
  * Score normalization handles both array and wrapped API response shapes.
  */
 export const MatchCard = ({ item, leagueId }: MatchCardProps) => {
@@ -37,7 +50,8 @@ export const MatchCard = ({ item, leagueId }: MatchCardProps) => {
     minute: "2-digit",
   });
 
-  const isFinished = FINISHED_STATES.has(Number(item.state_id));
+  const status = getMatchStatus(item.state_id);
+  const isFinished = status === "finished";
 
   return (
     <Card>
@@ -47,9 +61,9 @@ export const MatchCard = ({ item, leagueId }: MatchCardProps) => {
           {formattedDate} · {formattedTime}
         </span>
         <span
-          className={`ml-auto text-xs font-medium ${isFinished ? "text-zinc-500" : "text-yellow-500"}`}
+          className={`ml-auto text-xs font-medium ${STATUS_CLASSES[status]}`}
         >
-          {isFinished ? "Terminé" : "À venir"}
+          {MATCH_STATUS_LABELS[status]}
         </span>
       </div>
 

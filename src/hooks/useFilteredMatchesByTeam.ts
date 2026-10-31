@@ -2,12 +2,23 @@ import { useMemo } from "react";
 import type { Match, Stage } from "../types";
 import { useFetch } from "./useFetch";
 import { extractFixtures } from "@/utils/extractFixtures";
+import { getMatchStatus, type MatchStatus } from "@/utils/matchStatus";
 
 type MatchFilter = "upcoming" | "finished" | "all";
+
+const STATUSES_BY_FILTER: Record<
+  Exclude<MatchFilter, "all">,
+  readonly MatchStatus[]
+> = {
+  upcoming: ["upcoming", "live", "postponed"],
+  finished: ["finished", "cancelled"],
+};
 
 /**
  * Fetches and filters matches for a specific team within a league.
  * Supports filtering by match status: 'upcoming', 'finished', or 'all'.
+ * Every match belongs to one tab: live and postponed matches stay in 'upcoming',
+ * cancelled matches go to 'finished', and each card shows its own status.
  * Results are sorted by date descending.
  *
  * @param leagueId - ID of the league
@@ -32,17 +43,12 @@ export const useFilteredMatchesByTeam = (
     const filtered = allFixtures.filter((fixture) =>
       fixture.participants?.some((p) => p.id === Number(teamId)),
     );
-    const now = new Date();
     return filtered
-      .filter((match) => {
-        const matchDate = new Date(match.starting_at);
-        if (filter === "upcoming") return matchDate > now;
-        if (filter === "finished") return matchDate <= now;
-        return true;
-      })
-      .sort(
-        (a, b) =>
-          new Date(b.starting_at).getTime() - new Date(a.starting_at).getTime(),
-      );
+      .filter(
+        (match) =>
+          filter === "all" ||
+          STATUSES_BY_FILTER[filter].includes(getMatchStatus(match.state_id)),
+      )
+      .sort((a, b) => b.starting_at_timestamp - a.starting_at_timestamp);
   }, [data, teamId, filter]);
 };

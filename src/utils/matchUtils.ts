@@ -1,7 +1,5 @@
 import type { Match, ScoreDetail, ScoresWrapper } from "@/types";
 
-export const FINISHED_STATES = new Set([5, 6, 7, 8, 12]);
-
 export const normalizeScores = (rawScores: Match["scores"]): ScoreDetail[] => {
   if (!rawScores) return [];
   if (Array.isArray(rawScores)) return rawScores;
