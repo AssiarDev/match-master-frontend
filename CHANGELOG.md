@@ -1,6 +1,15 @@
 # Changelog
 
 - - -
+## [0.6.3](https://github.com/AssiarDev/match-master-frontend/compare/eefa2c42f70e9783bb584680c6fb868ab520bb2f..0.6.3) - 2026-10-31
+#### Bug Fixes
+- quick user-facing fixes (MM-47) (#13) - ([9a1f491](https://github.com/AssiarDev/match-master-frontend/commit/9a1f4912577b07ef916871f6a758e979b0be7c33)) - Assiar
+#### Miscellaneous Chores
+- manage dev tools with mise (#12) - ([6c00590](https://github.com/AssiarDev/match-master-frontend/commit/6c00590e4826b69d9fc282b0fc259136cd70395b)) - Assiar
+- trigger preview - ([eefa2c4](https://github.com/AssiarDev/match-master-frontend/commit/eefa2c42f70e9783bb584680c6fb868ab520bb2f)) - AssiarDev
+
+- - -
+
 ## [0.6.2](https://github.com/AssiarDev/match-master-frontend/compare/291998cc996395b9f5de9032d7ed38a7319b4d3c..0.6.2) - 2026-09-18
 #### Bug Fixes
 - **(live)** reuse shared SSE context on home page - ([291998c](https://github.com/AssiarDev/match-master-frontend/commit/291998cc996395b9f5de9032d7ed38a7319b4d3c)) - AssiarDev
