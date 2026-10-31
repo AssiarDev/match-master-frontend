@@ -1,10 +1,10 @@
 ﻿import { useLocation, Navigate } from "react-router";
-import { CompetitionTabs } from "./CompetitionTabs";
-import type { Competition } from "../../types";
-import { FavoriteButton } from "../Favorite/FavoriteButton/FavoriteButton";
+import { CompetitionTabs } from "@/components/Competitions/CompetitionTabs";
+import type { Competition } from "@/types";
+import { FavoriteButton } from "@/components/Favorite/FavoriteButton/FavoriteButton";
 
 /** Competition detail page: logo, name, favorite button, and tabbed content (Resume, Classement, Matchs). */
-export const CompetitionsDetails = () => {
+export const CompetitionPage = () => {
   const location = useLocation();
   const competition: Competition | undefined = location.state?.competition;
 

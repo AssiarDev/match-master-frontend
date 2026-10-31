@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { Live } from "./Live";
+import { LivePage } from "./LivePage";
 import * as LiveStreamContextModule from "@/context/LiveStreamContext";
 import { MatchStateDeveloperName } from "@/types";
 import type { LiveMatch } from "@/types";
@@ -8,7 +8,7 @@ import type { LiveMatch } from "@/types";
 vi.mock("@/context/LiveStreamContext", () => ({
   useLiveStreamContext: vi.fn(),
 }));
-vi.mock("./LiveMatchCard", () => ({
+vi.mock("@/components/LiveMatch/LiveMatchCard", () => ({
   LiveMatchCard: ({ match }: { match: LiveMatch }) => (
     <div data-testid="live-match-card">{match.id}</div>
   ),
@@ -56,9 +56,9 @@ beforeEach(() => {
   });
 });
 
-describe("Live", () => {
+describe("LivePage", () => {
   it("shows 'Connexion...' status when not connected", () => {
-    render(<Live />);
+    render(<LivePage />);
     expect(screen.getByText("Connexion...")).toBeInTheDocument();
   });
 
@@ -69,12 +69,12 @@ describe("Live", () => {
       error: null,
       hasLiveMatches: false,
     });
-    render(<Live />);
+    render(<LivePage />);
     expect(screen.getByText("Connecté")).toBeInTheDocument();
   });
 
   it("shows a waiting message when not connected and no error", () => {
-    render(<Live />);
+    render(<LivePage />);
     expect(
       screen.getByText("Connexion au flux en direct..."),
     ).toBeInTheDocument();
@@ -87,7 +87,7 @@ describe("Live", () => {
       error: "Connexion perdue",
       hasLiveMatches: false,
     });
-    render(<Live />);
+    render(<LivePage />);
     expect(screen.getByText("Connexion perdue")).toBeInTheDocument();
   });
 
@@ -98,7 +98,7 @@ describe("Live", () => {
       error: null,
       hasLiveMatches: false,
     });
-    render(<Live />);
+    render(<LivePage />);
     expect(
       screen.getByText("Aucun match en direct pour le moment."),
     ).toBeInTheDocument();
@@ -111,7 +111,7 @@ describe("Live", () => {
       error: null,
       hasLiveMatches: true,
     });
-    render(<Live />);
+    render(<LivePage />);
     expect(screen.getAllByTestId("live-match-card")).toHaveLength(1);
   });
 
@@ -122,7 +122,7 @@ describe("Live", () => {
       error: null,
       hasLiveMatches: true,
     });
-    render(<Live />);
+    render(<LivePage />);
     expect(screen.getByText("Superliga")).toBeInTheDocument();
   });
 
@@ -144,7 +144,7 @@ describe("Live", () => {
       error: null,
       hasLiveMatches: false,
     });
-    render(<Live />);
+    render(<LivePage />);
     expect(screen.queryByTestId("live-match-card")).not.toBeInTheDocument();
     expect(
       screen.getByText("Aucun match en direct pour le moment."),
@@ -159,7 +159,7 @@ describe("Live", () => {
       error: null,
       hasLiveMatches: true,
     });
-    render(<Live />);
+    render(<LivePage />);
     expect(screen.getAllByText("Superliga")).toHaveLength(1);
     expect(screen.getAllByTestId("live-match-card")).toHaveLength(2);
   });
@@ -176,7 +176,7 @@ describe("Live", () => {
       error: null,
       hasLiveMatches: true,
     });
-    render(<Live />);
+    render(<LivePage />);
     expect(screen.getByText("Compétition inconnue")).toBeInTheDocument();
   });
 });

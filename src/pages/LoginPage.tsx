@@ -6,13 +6,13 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { useLogin } from "../../../hooks/useLogin";
-import { Button } from "../../UI/Button/Button";
-import { Input } from "../../UI/Input/Input";
+import { useLogin } from "@/hooks/useLogin";
+import { Button } from "@/components/UI/Button/Button";
+import { Input } from "@/components/UI/Input/Input";
 import type { FormEvent } from "react";
 
 /** Modal dialog for user login. Redirects to home on success, or closes if opened in-context. */
-export const LoginModal = () => {
+export const LoginPage = () => {
   const [open, setOpen] = useState(true);
   const navigate = useNavigate();
   const { login, loading, error } = useLogin();

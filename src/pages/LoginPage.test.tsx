@@ -3,44 +3,44 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { AuthProvider } from "@/context/AuthContext";
-import { LoginModal } from "./LoginModal";
+import { LoginPage } from "./LoginPage";
 import { http, HttpResponse, delay } from "msw";
 import { server } from "@/test/msw";
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 
-const renderLoginModal = () =>
+const renderLoginPage = () =>
   render(
     <MemoryRouter>
       <AuthProvider>
-        <LoginModal />
+        <LoginPage />
       </AuthProvider>
     </MemoryRouter>,
   );
 
-describe("LoginModal", () => {
+describe("LoginPage", () => {
   it("renders email and password fields", () => {
-    renderLoginModal();
+    renderLoginPage();
     expect(screen.getByPlaceholderText("Email")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Mot de passe")).toBeInTheDocument();
   });
 
   it("renders the submit button", () => {
-    renderLoginModal();
+    renderLoginPage();
     expect(
       screen.getByRole("button", { name: "Se connecter" }),
     ).toBeInTheDocument();
   });
 
   it("email field requires a valid email format", () => {
-    renderLoginModal();
+    renderLoginPage();
     const emailInput = screen.getByPlaceholderText("Email");
     expect(emailInput).toHaveAttribute("type", "email");
     expect(emailInput).toHaveAttribute("required");
   });
 
   it("password field is required", () => {
-    renderLoginModal();
+    renderLoginPage();
     expect(screen.getByPlaceholderText("Mot de passe")).toHaveAttribute(
       "required",
     );
@@ -55,7 +55,7 @@ describe("LoginModal", () => {
     );
 
     const user = userEvent.setup({ delay: null });
-    renderLoginModal();
+    renderLoginPage();
     await user.type(screen.getByPlaceholderText("Email"), "user@test.com");
     await user.type(screen.getByPlaceholderText("Mot de passe"), "password");
 
@@ -76,7 +76,7 @@ describe("LoginModal", () => {
     );
 
     const user = userEvent.setup({ delay: null });
-    renderLoginModal();
+    renderLoginPage();
 
     await user.type(screen.getByPlaceholderText("Email"), "user@test.com");
     await user.type(screen.getByPlaceholderText("Mot de passe"), "mauvais-mdp");
@@ -88,7 +88,7 @@ describe("LoginModal", () => {
   });
 
   it("has a link to the register page", () => {
-    renderLoginModal();
+    renderLoginPage();
     expect(
       screen.getByRole("link", { name: "Créez un compte ici" }),
     ).toHaveAttribute("href", "/register");

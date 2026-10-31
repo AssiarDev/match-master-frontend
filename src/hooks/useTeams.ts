@@ -17,7 +17,7 @@ interface RawTeamItem {
 /**
  * Fetches and deduplicates teams across all provided competitions.
  * Each team retains the ID of the first competition it was found in,
- * so it can be passed as selectedLeague when navigating to TeamsDetails.
+ * so it can be passed as selectedLeague when navigating to TeamPage.
  *
  * @param competitions - List of competitions to fetch teams from
  * @returns `{ teams, loading }`

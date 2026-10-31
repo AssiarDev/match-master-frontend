@@ -6,13 +6,13 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { useRegister } from "../../../hooks/useRegister";
-import { Button } from "../../UI/Button/Button";
-import { Input } from "../../UI/Input/Input";
+import { useRegister } from "@/hooks/useRegister";
+import { Button } from "@/components/UI/Button/Button";
+import { Input } from "@/components/UI/Input/Input";
 import type { FormEvent } from "react";
 
 /** Modal dialog for user registration. Validates password confirmation and redirects to login on success. */
-export const RegisterModal = () => {
+export const RegisterPage = () => {
   const [open, setOpen] = useState(true);
   const [consentChecked, setConsentChecked] = useState(false);
   const [areFieldsFilled, setAreFieldsFilled] = useState(false);

@@ -141,6 +141,13 @@ Les releases sont gérées automatiquement par le job CI au merge sur `main`, vi
 3. Définir une interface `XxxProps` pour les props
 4. Ne pas dupliquer la logique — utiliser ou créer un hook dédié
 
+## Ajouter une page
+
+1. Créer le fichier dans `src/pages/`, avec son test à côté : un fichier par route, directement dans le dossier
+2. Nommer le fichier et l'export avec le suffixe `Page` (`HomePage.tsx`, `HomePage`)
+3. Déclarer la route dans `App.tsx`, en important la page depuis `@/pages/<Page>`
+4. Garder dans `src/components/` tout ce qui n'est pas rendu directement par une route, y compris les sous-composants utilisés par une seule page
+
 ## Standards de code
 
 - TypeScript strict — pas de `any`

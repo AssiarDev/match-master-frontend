@@ -1,9 +1,9 @@
 import { useParams, useLocation } from "react-router-dom";
-import { useTeamDetails } from "../../hooks/useTeamDetails";
-import { TeamView } from "./TeamView";
+import { useTeamDetails } from "@/hooks/useTeamDetails";
+import { TeamView } from "@/components/Teams/TeamView";
 
 /** Fetches team details and standings from route params/state, then renders TeamView. */
-export const TeamsDetails = () => {
+export const TeamPage = () => {
   const { teamId } = useParams<{ teamId: string }>();
   const location = useLocation();
   const selectedLeague = location.state?.selectedLeague;

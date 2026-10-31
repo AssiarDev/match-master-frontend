@@ -61,12 +61,12 @@ src/
 ├── components/     # Composants React organisés par domaine
 │   ├── Competitions/
 │   ├── Favorite/
-│   ├── FavoriteModal/
 │   ├── Matchs/
 │   ├── Teams/
 │   └── ...
 ├── context/        # Contextes React (Auth)
 ├── hooks/          # Hooks personnalisés (fetch, favoris, matchs...)
+├── pages/          # Composants de page, un par route (HomePage, LivePage...)
 ├── types/          # Interfaces et types TypeScript
 └── utils/          # Fonctions utilitaires
 ```
