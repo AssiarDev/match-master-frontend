@@ -74,7 +74,7 @@ describe("useLogin", () => {
     });
 
     await waitFor(() => expect(result.current.loading).toBe(false));
-    expect(result.current.error).toBe("Echec tentative de connexion");
+    expect(result.current.error).toBe("Échec tentative de connexion");
   });
 
   it("calls onSuccess callback on successful login", async () => {

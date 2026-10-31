@@ -42,7 +42,7 @@ export const useLiveStream = (): UseLiveStreamResult => {
         const data: LiveMatch[] = JSON.parse(event.data);
         setMatches(data);
       } catch {
-        setError("Format de données attendu");
+        setError("Format de données inattendu");
       }
     };
 

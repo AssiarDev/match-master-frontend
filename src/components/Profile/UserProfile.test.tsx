@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import * as AuthContext from "@/context/AuthContext";
 import * as useLogoutModule from "@/hooks/useLogout";
 import * as useDeleteProfileModule from "@/hooks/useDeleteProfile";
@@ -19,6 +20,7 @@ const mockDeleteProfile = vi.fn();
 const mockUpdateUser = vi.fn();
 
 beforeEach(() => {
+  mockDeleteProfile.mockReset();
   vi.mocked(AuthContext.useAuth).mockReturnValue({
     user: { id: 1, username: "TestUser", createdAt: "2024-01-01" },
     isAuthenticated: true,
@@ -85,11 +87,65 @@ describe("UserProfile", () => {
     expect(mockLogout).toHaveBeenCalled();
   });
 
-  it("calls deleteProfile with the user id when clicking Supprimer mon compte", () => {
+  it("asks for confirmation instead of deleting when clicking Supprimer mon compte", () => {
     render(<UserProfile />);
     fireEvent.click(
       screen.getByRole("button", { name: "Supprimer mon compte" }),
     );
+    expect(mockDeleteProfile).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole("button", { name: "Confirmer" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Annuler" })).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Supprimer mon compte" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("calls deleteProfile with the user id when confirming the deletion", () => {
+    render(<UserProfile />);
+    fireEvent.click(
+      screen.getByRole("button", { name: "Supprimer mon compte" }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Confirmer" }));
     expect(mockDeleteProfile).toHaveBeenCalledWith(1);
+  });
+
+  it("does not delete the account and shows Supprimer mon compte again when cancelling", () => {
+    render(<UserProfile />);
+    fireEvent.click(
+      screen.getByRole("button", { name: "Supprimer mon compte" }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Annuler" }));
+    expect(mockDeleteProfile).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole("button", { name: "Supprimer mon compte" }),
+    ).toBeInTheDocument();
+  });
+
+  it("reopens the username modal after closing it with Escape", async () => {
+    const user = userEvent.setup({ delay: null });
+    render(<UserProfile />);
+    await user.click(screen.getAllByRole("button", { name: "Modifier" })[0]);
+    await user.keyboard("{Escape}");
+    expect(
+      screen.queryByText("Modifier votre nom d'utilisateur"),
+    ).not.toBeInTheDocument();
+    await user.click(screen.getAllByRole("button", { name: "Modifier" })[0]);
+    expect(
+      screen.getByText("Modifier votre nom d'utilisateur"),
+    ).toBeInTheDocument();
+  });
+
+  it("reopens the password modal after closing it with Escape", async () => {
+    const user = userEvent.setup({ delay: null });
+    render(<UserProfile />);
+    await user.click(screen.getAllByRole("button", { name: "Modifier" })[1]);
+    await user.keyboard("{Escape}");
+    expect(
+      screen.queryByText("Modifier votre mot de passe"),
+    ).not.toBeInTheDocument();
+    await user.click(screen.getAllByRole("button", { name: "Modifier" })[1]);
+    expect(screen.getByText("Modifier votre mot de passe")).toBeInTheDocument();
   });
 });

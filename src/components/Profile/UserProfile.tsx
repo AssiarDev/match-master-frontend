@@ -11,13 +11,14 @@ import { Button } from "../UI/Button/Button";
 
 const cardClass = "flex flex-col gap-4";
 
-/** User profile page: displays account info, notification/theme settings, logout, and account deletion. */
+/** User profile page: displays account info, notification/theme settings, logout, and account deletion. Deleting the account takes two clicks: "Supprimer mon compte" swaps in "Confirmer" and "Annuler" buttons, and only "Confirmer" deletes it. */
 export const UserProfile = () => {
   const { user } = useAuth();
   const logout = useLogout();
   const deleteProfile = useDeleteProfile();
   const [isUsernameOpen, setIsUsernameOpen] = useState(false);
   const [isPasswordOpen, setIsPasswordOpen] = useState(false);
+  const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
 
@@ -94,13 +95,30 @@ export const UserProfile = () => {
           Déconnexion
         </Button>
       </div>
-      <div className="flex justify-center">
-        <Button
-          variant="danger-outline"
-          onClick={() => deleteProfile(user?.id)}
-        >
-          Supprimer mon compte
-        </Button>
+      <div className="flex justify-center gap-3">
+        {isConfirmingDelete ? (
+          <>
+            <Button
+              variant="danger-outline"
+              onClick={() => deleteProfile(user?.id)}
+            >
+              Confirmer
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={() => setIsConfirmingDelete(false)}
+            >
+              Annuler
+            </Button>
+          </>
+        ) : (
+          <Button
+            variant="danger-outline"
+            onClick={() => setIsConfirmingDelete(true)}
+          >
+            Supprimer mon compte
+          </Button>
+        )}
       </div>
       {isUsernameOpen && (
         <EditUsernameModal onClose={() => setIsUsernameOpen(false)} />

@@ -69,7 +69,7 @@ describe("useLiveStream", () => {
         new MessageEvent("message", { data: "not valid json" }),
       );
     });
-    expect(result.current.error).toBe("Format de données attendu");
+    expect(result.current.error).toBe("Format de données inattendu");
   });
 
   it("sets connected=false and an error when the connection fails", () => {
