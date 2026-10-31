@@ -1,6 +1,6 @@
 ﻿import { useMemo } from "react";
 import { useLiveStreamContext } from "@/context/LiveStreamContext";
-import { LiveMatchCard } from "./LiveMatchCard";
+import { LiveMatchCard } from "@/components/LiveMatch/LiveMatchCard";
 import { INPLAY_STATES } from "@/utils/constants";
 import type { LiveMatch } from "@/types";
 
@@ -30,7 +30,7 @@ const groupByLeague = (matches: LiveMatch[]): Record<string, LeagueGroup> => {
   }, {});
 };
 
-export const Live = () => {
+export const LivePage = () => {
   const { matches, connected, error } = useLiveStreamContext();
   const activeMatches = useMemo(
     () =>

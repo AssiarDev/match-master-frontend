@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { NoMatch } from "./NoMatch";
+import { NotFoundPage } from "./NotFoundPage";
 
-describe("NoMatch", () => {
+describe("NotFoundPage", () => {
   it("displays the not found message", () => {
-    render(<NoMatch />);
+    render(<NotFoundPage />);
     expect(
       screen.getByRole("heading", { name: "Page non trouvée" }),
     ).toBeInTheDocument();

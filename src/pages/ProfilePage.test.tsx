@@ -5,7 +5,7 @@ import * as AuthContext from "@/context/AuthContext";
 import * as useLogoutModule from "@/hooks/useLogout";
 import * as useDeleteProfileModule from "@/hooks/useDeleteProfile";
 import * as useUpdateInfoUserModule from "@/hooks/useUpdateInfoUser";
-import { UserProfile } from "./UserProfile";
+import { ProfilePage } from "./ProfilePage";
 
 vi.mock("@/context/AuthContext", async (importOriginal) => {
   const actual = await importOriginal<typeof import("@/context/AuthContext")>();
@@ -40,33 +40,33 @@ beforeEach(() => {
   });
 });
 
-describe("UserProfile", () => {
+describe("ProfilePage", () => {
   it("displays the authenticated user's username", () => {
-    render(<UserProfile />);
+    render(<ProfilePage />);
     expect(screen.getByText("TestUser")).toBeInTheDocument();
   });
 
   it("displays the user's registration date", () => {
-    render(<UserProfile />);
+    render(<ProfilePage />);
     expect(screen.getByText("2024-01-01")).toBeInTheDocument();
   });
 
   it("does not show the username modal by default", () => {
-    render(<UserProfile />);
+    render(<ProfilePage />);
     expect(
       screen.queryByText("Modifier votre nom d'utilisateur"),
     ).not.toBeInTheDocument();
   });
 
   it("does not show the password modal by default", () => {
-    render(<UserProfile />);
+    render(<ProfilePage />);
     expect(
       screen.queryByText("Modifier votre mot de passe"),
     ).not.toBeInTheDocument();
   });
 
   it("opens the username modal when clicking Modifier for username", () => {
-    render(<UserProfile />);
+    render(<ProfilePage />);
     const modifierButtons = screen.getAllByRole("button", { name: "Modifier" });
     fireEvent.click(modifierButtons[0]);
     expect(
@@ -75,20 +75,20 @@ describe("UserProfile", () => {
   });
 
   it("opens the password modal when clicking Modifier for password", () => {
-    render(<UserProfile />);
+    render(<ProfilePage />);
     const modifierButtons = screen.getAllByRole("button", { name: "Modifier" });
     fireEvent.click(modifierButtons[1]);
     expect(screen.getByText("Modifier votre mot de passe")).toBeInTheDocument();
   });
 
   it("calls logout when clicking Déconnexion", () => {
-    render(<UserProfile />);
+    render(<ProfilePage />);
     fireEvent.click(screen.getByRole("button", { name: "Déconnexion" }));
     expect(mockLogout).toHaveBeenCalled();
   });
 
   it("asks for confirmation instead of deleting when clicking Supprimer mon compte", () => {
-    render(<UserProfile />);
+    render(<ProfilePage />);
     fireEvent.click(
       screen.getByRole("button", { name: "Supprimer mon compte" }),
     );
@@ -103,7 +103,7 @@ describe("UserProfile", () => {
   });
 
   it("calls deleteProfile with the user id when confirming the deletion", () => {
-    render(<UserProfile />);
+    render(<ProfilePage />);
     fireEvent.click(
       screen.getByRole("button", { name: "Supprimer mon compte" }),
     );
@@ -112,7 +112,7 @@ describe("UserProfile", () => {
   });
 
   it("does not delete the account and shows Supprimer mon compte again when cancelling", () => {
-    render(<UserProfile />);
+    render(<ProfilePage />);
     fireEvent.click(
       screen.getByRole("button", { name: "Supprimer mon compte" }),
     );
@@ -125,7 +125,7 @@ describe("UserProfile", () => {
 
   it("reopens the username modal after closing it with Escape", async () => {
     const user = userEvent.setup({ delay: null });
-    render(<UserProfile />);
+    render(<ProfilePage />);
     await user.click(screen.getAllByRole("button", { name: "Modifier" })[0]);
     await user.keyboard("{Escape}");
     expect(
@@ -139,7 +139,7 @@ describe("UserProfile", () => {
 
   it("reopens the password modal after closing it with Escape", async () => {
     const user = userEvent.setup({ delay: null });
-    render(<UserProfile />);
+    render(<ProfilePage />);
     await user.click(screen.getAllByRole("button", { name: "Modifier" })[1]);
     await user.keyboard("{Escape}");
     expect(

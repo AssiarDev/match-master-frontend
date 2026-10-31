@@ -1,19 +1,19 @@
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
-import { NoMatch } from "./components/NoMatch/NoMatch";
-import { MatchsDetails } from "./components/Matchs/MatchsDetails";
-import { TeamsDetails } from "./components/Teams/TeamsDetails";
-import { RegisterModal } from "./components/Forms/RegisterModal/RegisterModal";
+import { NotFoundPage } from "@/pages/NotFoundPage";
+import { HomePage } from "@/pages/HomePage";
+import { TeamPage } from "@/pages/TeamPage";
+import { RegisterPage } from "@/pages/RegisterPage";
 import { Footer } from "./components/Footer/Footer";
-import { Live } from "./components/LiveMatch/Live";
-import { Competitions } from "./components/Competitions/Competitions";
-import { CompetitionsDetails } from "./components/Competitions/CompetitionsDetails";
-import { LoginModal } from "./components/Forms/LoginModal/LoginModal";
-import { FavoriteModal } from "./components/Favorite/FavoriteModal/FavoriteModal";
+import { LivePage } from "@/pages/LivePage";
+import { CompetitionsPage } from "@/pages/CompetitionsPage";
+import { CompetitionPage } from "@/pages/CompetitionPage";
+import { LoginPage } from "@/pages/LoginPage";
+import { FavoritesPage } from "@/pages/FavoritesPage";
 import { Header } from "./components/Header/Header";
 import { MobileMenu } from "./components/MobileMenu/MobileMenu";
-import { UserProfile } from "./components/Profile/UserProfile";
-import { PrivacyPolicy } from "./components/Legal/PrivacyPolicy";
+import { ProfilePage } from "@/pages/ProfilePage";
+import { PrivacyPage } from "@/pages/PrivacyPage";
 import { CookieBanner } from "./components/CookieBanner/CookieBanner";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { BottomNav } from "./components/BottomNav/BottomNav";
@@ -38,22 +38,22 @@ function App() {
         <div className="flex flex-col flex-grow pb-16 md:pb-0">
           <main className="flex flex-grow overflow-y-auto">
             <Routes>
-              <Route path="/login" element={<LoginModal />} />
-              <Route path="/register" element={<RegisterModal />} />
-              <Route path="*" element={<NoMatch />} />
-              <Route path="/" element={<MatchsDetails />} />
-              <Route path="/teams/:teamId" element={<TeamsDetails />} />
-              <Route path="/live" element={<Live />} />
-              <Route path="/competitions" element={<Competitions />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/teams/:teamId" element={<TeamPage />} />
+              <Route path="/live" element={<LivePage />} />
+              <Route path="/competitions" element={<CompetitionsPage />} />
               <Route
                 path="/competition/:competitionId"
-                element={<CompetitionsDetails />}
+                element={<CompetitionPage />}
               />
               <Route element={<PrivateRoute />}>
-                <Route path="/favoriteUser" element={<FavoriteModal />} />
-                <Route path="/user-profile" element={<UserProfile />} />
+                <Route path="/favoriteUser" element={<FavoritesPage />} />
+                <Route path="/user-profile" element={<ProfilePage />} />
               </Route>
-              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
             </Routes>
           </main>
           <Footer />

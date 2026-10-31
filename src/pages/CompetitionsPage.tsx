@@ -1,8 +1,8 @@
-﻿import { useCompetitions } from "../../hooks/useCompetitions";
-import { CompetitionCard } from "./CompetitionCard";
+﻿import { useCompetitions } from "@/hooks/useCompetitions";
+import { CompetitionCard } from "@/components/Competitions/CompetitionCard";
 
 /** Displays the list of available competitions as a card list. */
-export const Competitions = () => {
+export const CompetitionsPage = () => {
   const { competitions, error } = useCompetitions();
 
   if (error) {

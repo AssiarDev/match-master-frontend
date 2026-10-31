@@ -5,15 +5,15 @@ import { http, HttpResponse } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import { AuthProvider } from "@/context/AuthContext";
 import { server } from "@/test/msw";
-import { RegisterModal } from "./RegisterModal";
+import { RegisterPage } from "./RegisterPage";
 
 const API = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 
-const renderRegisterModal = () =>
+const renderRegisterPage = () =>
   render(
     <MemoryRouter>
       <AuthProvider>
-        <RegisterModal />
+        <RegisterPage />
       </AuthProvider>
     </MemoryRouter>,
   );
@@ -46,9 +46,9 @@ const fillForm = async (
   }
 };
 
-describe("RegisterModal", () => {
+describe("RegisterPage", () => {
   it("renders all form fields", () => {
-    renderRegisterModal();
+    renderRegisterPage();
     expect(
       screen.getByPlaceholderText("Nom d'utilisateur"),
     ).toBeInTheDocument();
@@ -60,27 +60,27 @@ describe("RegisterModal", () => {
   });
 
   it("email field requires a valid email format", () => {
-    renderRegisterModal();
+    renderRegisterPage();
     const emailInput = screen.getByPlaceholderText("Email");
     expect(emailInput).toHaveAttribute("type", "email");
     expect(emailInput).toHaveAttribute("required");
   });
 
   it("submit button is disabled until consent is checked", () => {
-    renderRegisterModal();
+    renderRegisterPage();
     expect(screen.getByRole("button", { name: "S'inscrire" })).toBeDisabled();
   });
 
   it("submit button is enabled after filling all fields and checking consent", async () => {
     const user = userEvent.setup({ delay: null });
-    renderRegisterModal();
+    renderRegisterPage();
     await fillForm(user);
     expect(screen.getByRole("button", { name: "S'inscrire" })).toBeEnabled();
   });
 
   it("consent checkbox is disabled until all fields are filled", async () => {
     const user = userEvent.setup({ delay: null });
-    renderRegisterModal();
+    renderRegisterPage();
     expect(screen.getByRole("checkbox")).toBeDisabled();
     await fillForm(user, { acceptConsent: false });
     expect(screen.getByRole("checkbox")).toBeEnabled();
@@ -88,7 +88,7 @@ describe("RegisterModal", () => {
 
   it("shows error when passwords do not match", async () => {
     const user = userEvent.setup({ delay: null });
-    renderRegisterModal();
+    renderRegisterPage();
     await fillForm(user, { password: "Password1!", confirmPassword: "autre" });
     await user.click(screen.getByRole("button", { name: "S'inscrire" }));
 
@@ -106,7 +106,7 @@ describe("RegisterModal", () => {
       ),
     );
     const user = userEvent.setup({ delay: null });
-    renderRegisterModal();
+    renderRegisterPage();
     await fillForm(user, { password: "short", confirmPassword: "short" });
     await user.click(screen.getByRole("button", { name: "S'inscrire" }));
     await waitFor(() =>
@@ -124,7 +124,7 @@ describe("RegisterModal", () => {
       ),
     );
     const user = userEvent.setup({ delay: null });
-    renderRegisterModal();
+    renderRegisterPage();
     await fillForm(user, {
       password: "password1!",
       confirmPassword: "password1!",
@@ -147,7 +147,7 @@ describe("RegisterModal", () => {
       ),
     );
     const user = userEvent.setup({ delay: null });
-    renderRegisterModal();
+    renderRegisterPage();
     await fillForm(user, {
       password: "Password!",
       confirmPassword: "Password!",
@@ -168,7 +168,7 @@ describe("RegisterModal", () => {
       ),
     );
     const user = userEvent.setup({ delay: null });
-    renderRegisterModal();
+    renderRegisterPage();
     await fillForm(user, {
       password: "Password1",
       confirmPassword: "Password1",
@@ -182,7 +182,7 @@ describe("RegisterModal", () => {
   });
 
   it("has a link to the login page", () => {
-    renderRegisterModal();
+    renderRegisterPage();
     expect(
       screen.getByRole("link", { name: "Connectez-vous ici" }),
     ).toHaveAttribute("href", "/login");

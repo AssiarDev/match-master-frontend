@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { FavoriteModal } from "./FavoriteModal";
+import { FavoritesPage } from "./FavoritesPage";
 
 const mockNavigate = vi.fn();
 vi.mock("react-router-dom", async (importOriginal) => {
@@ -14,19 +14,19 @@ const mockDeleteFavorite = vi.fn();
 const mockRefreshLeagueFavorites = vi.fn();
 const mockDeleteLeagueFavorite = vi.fn();
 
-vi.mock("../../../context/FavoritesContext", () => ({
+vi.mock("@/context/FavoritesContext", () => ({
   useFavoritesContext: vi.fn(),
 }));
-vi.mock("../../../hooks/useDeleteFavorite", () => ({
+vi.mock("@/hooks/useDeleteFavorite", () => ({
   useDeleteFavorite: vi.fn(),
 }));
-vi.mock("../../../hooks/useDeleteLeagueFavorite", () => ({
+vi.mock("@/hooks/useDeleteLeagueFavorite", () => ({
   useDeleteLeagueFavorite: vi.fn(),
 }));
 
-import * as FavoritesContextModule from "../../../context/FavoritesContext";
-import * as useDeleteFavoriteModule from "../../../hooks/useDeleteFavorite";
-import * as useDeleteLeagueFavoriteModule from "../../../hooks/useDeleteLeagueFavorite";
+import * as FavoritesContextModule from "@/context/FavoritesContext";
+import * as useDeleteFavoriteModule from "@/hooks/useDeleteFavorite";
+import * as useDeleteLeagueFavoriteModule from "@/hooks/useDeleteLeagueFavorite";
 
 const setup = ({
   clubs = [{ id: 1, name: "PSG", emblem: "", leagueId: 5 }],
@@ -53,12 +53,12 @@ const setup = ({
 
   return render(
     <MemoryRouter>
-      <FavoriteModal />
+      <FavoritesPage />
     </MemoryRouter>,
   );
 };
 
-describe("FavoriteModal", () => {
+describe("FavoritesPage", () => {
   it("renders club favorites", () => {
     setup();
     expect(screen.getByText("PSG")).toBeInTheDocument();

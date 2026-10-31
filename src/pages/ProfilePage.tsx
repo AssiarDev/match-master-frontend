@@ -3,16 +3,16 @@ import { FiUser } from "react-icons/fi";
 import { useLogout } from "@/hooks/useLogout";
 import { useDeleteProfile } from "@/hooks/useDeleteProfile";
 import { useState } from "react";
-import { EditUsernameModal } from "../Forms/EditUsernameModal/EditUsernameModal";
-import { EditPasswordModal } from "../Forms/EditPasswordModal/EditPasswordModal";
-import { Toast } from "../Toast/Toast";
-import { Card } from "../UI/Card/Card";
-import { Button } from "../UI/Button/Button";
+import { EditUsernameModal } from "@/components/Forms/EditUsernameModal/EditUsernameModal";
+import { EditPasswordModal } from "@/components/Forms/EditPasswordModal/EditPasswordModal";
+import { Toast } from "@/components/Toast/Toast";
+import { Card } from "@/components/UI/Card/Card";
+import { Button } from "@/components/UI/Button/Button";
 
 const cardClass = "flex flex-col gap-4";
 
 /** User profile page: displays account info, notification/theme settings, logout, and account deletion. Deleting the account takes two clicks: "Supprimer mon compte" swaps in "Confirmer" and "Annuler" buttons, and only "Confirmer" deletes it. */
-export const UserProfile = () => {
+export const ProfilePage = () => {
   const { user } = useAuth();
   const logout = useLogout();
   const deleteProfile = useDeleteProfile();

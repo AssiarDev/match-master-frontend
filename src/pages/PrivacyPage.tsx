@@ -1,4 +1,4 @@
-﻿export const PrivacyPolicy = () => {
+﻿export const PrivacyPage = () => {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10 text-zinc-100">
       <h1 className="text-3xl font-bold text-amber-700 mb-8">

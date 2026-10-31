@@ -1,11 +1,11 @@
 ﻿import { useEffect, useState, useMemo } from "react";
-import { DatePickerCarousel } from "../DatePicker/DatePickerCaroussel";
-import { CompetitionGroup } from "../Competitions/CompetitionGroup";
-import { useMatchByDate } from "../../hooks/useMatchByDate";
-import { MatchSkeletonGrid } from "./MatchSkeleton";
+import { DatePickerCarousel } from "@/components/DatePicker/DatePickerCaroussel";
+import { CompetitionGroup } from "@/components/Competitions/CompetitionGroup";
+import { useMatchByDate } from "@/hooks/useMatchByDate";
+import { MatchSkeletonGrid } from "@/components/Matchs/MatchSkeleton";
 import { useLiveStreamContext } from "@/context/LiveStreamContext";
 import { useLocation } from "react-router";
-import { Toast } from "../Toast/Toast";
+import { Toast } from "@/components/Toast/Toast";
 import { INPLAY_STATES } from "@/utils/constants";
 
 /** Home page: date picker carousel + matches grouped by competition for the selected date.
@@ -13,7 +13,7 @@ import { INPLAY_STATES } from "@/utils/constants";
  * connection from LiveStreamContext (no second EventSource opened here).
  * Shows a toast on redirect messages.
  */
-export const MatchsDetails = () => {
+export const HomePage = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const { matchesByDate, loading, error } = useMatchByDate(selectedDate);
   const { matches: liveMatches } = useLiveStreamContext();
