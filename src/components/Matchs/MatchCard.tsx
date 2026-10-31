@@ -6,6 +6,7 @@ import {
   getMatchStatus,
   type MatchStatus,
 } from "../../utils/matchStatus";
+import { MATCH_TIME_ZONE } from "../../utils/constants";
 import { Card } from "../UI/Card/Card";
 
 const STATUS_CLASSES: Record<MatchStatus, string> = {
@@ -43,11 +44,13 @@ export const MatchCard = ({ item, leagueId }: MatchCardProps) => {
     weekday: "short",
     day: "2-digit",
     month: "short",
+    timeZone: MATCH_TIME_ZONE,
   });
 
   const formattedTime = startDate.toLocaleTimeString("fr-FR", {
     hour: "2-digit",
     minute: "2-digit",
+    timeZone: MATCH_TIME_ZONE,
   });
 
   const status = getMatchStatus(item.state_id);

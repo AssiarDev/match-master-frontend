@@ -2,10 +2,11 @@ import { describe, it, expect } from "vitest";
 import { groupMatchesByMonth } from "./groupMatchesByMonth";
 import type { Match } from "../types";
 
-const makeMatch = (id: number, starting_at: string): Match => ({
+const makeMatch = (id: number, startingAtUtc: string): Match => ({
   id,
-  starting_at,
-  starting_at_timestamp: 0,
+  starting_at: startingAtUtc,
+  starting_at_timestamp:
+    Date.parse(`${startingAtUtc.replace(" ", "T")}Z`) / 1000,
   state_id: 1,
 });
 
@@ -42,6 +43,24 @@ describe("groupMatchesByMonth", () => {
     ];
     const result = groupMatchesByMonth(matches);
     expect(Object.keys(result)).toHaveLength(2);
+  });
+
+  it("labels the months in French", () => {
+    const result = groupMatchesByMonth([makeMatch(1, "2025-02-10 20:00:00")]);
+    expect(Object.keys(result)).toEqual(["février 2025"]);
+  });
+
+  it("uses the Paris month for a match played just after midnight", () => {
+    const result = groupMatchesByMonth([makeMatch(1, "2025-01-31 23:30:00")]);
+    expect(Object.keys(result)).toEqual(["février 2025"]);
+  });
+
+  it("reads the timestamp, not starting_at", () => {
+    const match = {
+      ...makeMatch(1, "2025-03-10 20:00:00"),
+      starting_at: "2020-01-01 20:00:00",
+    };
+    expect(Object.keys(groupMatchesByMonth([match]))).toEqual(["mars 2025"]);
   });
 
   it("places each match in the correct group", () => {

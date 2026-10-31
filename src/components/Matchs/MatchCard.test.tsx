@@ -82,6 +82,12 @@ describe("MatchCard", () => {
     expect(screen.queryByText("3")).not.toBeInTheDocument();
   });
 
+  it("shows the day and time in Paris", async () => {
+    renderMatchCard({ ...baseMatch, starting_at_timestamp: 1786921200 });
+    await settle();
+    expect(screen.getByText(/17 août · 01:00/)).toBeInTheDocument();
+  });
+
   it("displays scores when match is finished", async () => {
     const finished: Match = {
       ...baseMatch,

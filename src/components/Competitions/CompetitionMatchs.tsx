@@ -13,8 +13,7 @@ export const CompetitionMatchs = () => {
 
   const sortedMatches: Match[] = matches
     ? [...matches].sort(
-        (a, b) =>
-          new Date(b.starting_at).getTime() - new Date(a.starting_at).getTime(),
+        (a, b) => b.starting_at_timestamp - a.starting_at_timestamp,
       )
     : [];
 

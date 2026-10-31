@@ -127,6 +127,9 @@ export const BRACKET_MAX_MATCHES = 8;
 
 // ── Match state labels ────────────────────────────────────────────────────────
 
+/** Time zone the app uses to decide the day and month of a match. */
+export const MATCH_TIME_ZONE = "Europe/Paris";
+
 export const STATE_LABELS: Partial<Record<MatchStateDeveloperName, string>> = {
   INPLAY_1ST_HALF: "1ère mi-temps",
   HT: "Mi-temps",
