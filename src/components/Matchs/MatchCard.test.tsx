@@ -59,13 +59,33 @@ describe("MatchCard", () => {
     expect(screen.getByText("Terminé")).toBeInTheDocument();
   });
 
-  it("shows 'Terminé' for state_id 6 and 7", async () => {
-    for (const state_id of [6, 7]) {
-      const { unmount } = renderMatchCard({ ...baseMatch, state_id });
-      await settle();
-      expect(screen.getByText("Terminé")).toBeInTheDocument();
-      unmount();
-    }
+  it.each([
+    [7, "Terminé"],
+    [8, "Terminé"],
+    [2, "En cours"],
+    [6, "En cours"],
+    [10, "Reporté"],
+    [12, "Annulé"],
+  ])("shows the status of state_id %i as '%s'", async (state_id, label) => {
+    renderMatchCard({ ...baseMatch, state_id });
+    await settle();
+    expect(screen.getByText(label)).toBeInTheDocument();
+  });
+
+  it("hides the score of a cancelled match", async () => {
+    renderMatchCard({
+      ...baseMatch,
+      state_id: 12,
+      scores: [{ score: { participant: "home", goals: 3 } }],
+    } as Match);
+    await settle();
+    expect(screen.queryByText("3")).not.toBeInTheDocument();
+  });
+
+  it("shows the day and time in Paris", async () => {
+    renderMatchCard({ ...baseMatch, starting_at_timestamp: 1786921200 });
+    await settle();
+    expect(screen.getByText(/17 août · 01:00/)).toBeInTheDocument();
   });
 
   it("displays scores when match is finished", async () => {

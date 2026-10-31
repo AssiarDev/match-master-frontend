@@ -72,13 +72,33 @@ describe("CompetitionMatchs", () => {
     mockHook().mockReturnValue({
       matches: [
         fakeMatch,
-        { ...fakeMatch, id: 2, starting_at: "2025-04-10 20:00:00" },
+        { ...fakeMatch, id: 2, starting_at_timestamp: 1744315200 },
       ],
       loading: false,
       error: null,
     });
     renderMatchs();
     expect(screen.getAllByTestId("month-group")).toHaveLength(2);
+  });
+
+  it("sorts matches by timestamp, most recent month first", () => {
+    mockHook().mockReturnValue({
+      matches: [
+        fakeMatch,
+        {
+          ...fakeMatch,
+          id: 2,
+          starting_at: "2020-01-01 20:00:00",
+          starting_at_timestamp: 1744315200,
+        },
+      ],
+      loading: false,
+      error: null,
+    });
+    renderMatchs();
+    expect(
+      screen.getAllByTestId("month-group").map((group) => group.textContent),
+    ).toEqual(["avril 2025", "mars 2025"]);
   });
 
   it("passes the competition id from location state to useMatches", () => {

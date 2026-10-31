@@ -1,5 +1,6 @@
 ﻿import type { Match, MatchParticipant } from "../../types";
-import { FINISHED_STATES, extractFinalScore } from "../../utils/matchUtils";
+import { extractFinalScore } from "../../utils/matchUtils";
+import { getMatchStatus } from "../../utils/matchStatus";
 import { BRACKET_CARD_H } from "../../utils/constants";
 
 const TeamRow = ({
@@ -48,7 +49,7 @@ export const BracketMatchCard = ({
 }) => {
   const home = match.participants?.find((p) => p.meta?.location === "home");
   const away = match.participants?.find((p) => p.meta?.location === "away");
-  const isFinished = FINISHED_STATES.has(Number(match.state_id));
+  const isFinished = getMatchStatus(match.state_id) === "finished";
   const { home: hs, away: as_ } = extractFinalScore(match.scores);
 
   return (
