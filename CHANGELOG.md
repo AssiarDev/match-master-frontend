@@ -1,6 +1,16 @@
 # Changelog
 
 - - -
+## [0.6.4](https://github.com/AssiarDev/match-master-frontend/compare/0b784609bbbe86970837f06dafa60c9356658f2b..0.6.4) - 2026-11-06
+#### Bug Fixes
+- **(matches)** use a single source of truth for dates and statuses (MM-51) (#15) - ([27c5237](https://github.com/AssiarDev/match-master-frontend/commit/27c5237d2faf80b1c199f23db58bdd7f14f316e5)) - Assiar
+#### Code Refactoring
+- **(pages)** move route components to src/pages (#14) - ([2773a64](https://github.com/AssiarDev/match-master-frontend/commit/2773a64ebb8d6feaf691d482aed78efa55b27c36)) - Assiar
+#### Miscellaneous Chores
+- enforce lf line endings with gitattributes - ([0b78460](https://github.com/AssiarDev/match-master-frontend/commit/0b784609bbbe86970837f06dafa60c9356658f2b)) - AssiarDev
+
+- - -
+
 ## [0.6.3](https://github.com/AssiarDev/match-master-frontend/compare/eefa2c42f70e9783bb584680c6fb868ab520bb2f..0.6.3) - 2026-10-31
 #### Bug Fixes
 - quick user-facing fixes (MM-47) (#13) - ([9a1f491](https://github.com/AssiarDev/match-master-frontend/commit/9a1f4912577b07ef916871f6a758e979b0be7c33)) - Assiar
