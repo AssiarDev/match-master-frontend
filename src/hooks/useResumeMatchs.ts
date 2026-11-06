@@ -2,9 +2,10 @@ import { useMemo } from "react";
 import type { Match, Stage } from "../types";
 import { useFetch } from "./useFetch";
 import { extractFixtures } from "@/utils/extractFixtures";
+import { getMatchStatus } from "@/utils/matchStatus";
 
 /**
- * Fetches the 5 most recent finished matches (state_id === 5) for a competition,
+ * Fetches the 5 most recent finished matches for a competition,
  * sorted by date descending.
  *
  * @param competitionId - ID of the competition
@@ -20,13 +21,9 @@ export const useResumeMatchs = (competitionId?: number | string) => {
   return useMemo<Match[]>(() => {
     if (!data) return [];
     const allFixtures = extractFixtures(data);
-    const FINISHED_STATES = [5, 6, 7, 12];
     return allFixtures
-      .filter((f) => FINISHED_STATES.includes(Number(f.state_id)))
-      .sort(
-        (a, b) =>
-          new Date(b.starting_at).getTime() - new Date(a.starting_at).getTime(),
-      )
+      .filter((f) => getMatchStatus(f.state_id) === "finished")
+      .sort((a, b) => b.starting_at_timestamp - a.starting_at_timestamp)
       .slice(0, 5);
   }, [data]);
 };

@@ -6,7 +6,7 @@ import { MatchSkeletonGrid } from "@/components/Matchs/MatchSkeleton";
 import { useLiveStreamContext } from "@/context/LiveStreamContext";
 import { useLocation } from "react-router";
 import { Toast } from "@/components/Toast/Toast";
-import { INPLAY_STATES } from "@/utils/constants";
+import { INPLAY_STATES, MATCH_TIME_ZONE } from "@/utils/constants";
 
 /** Home page: date picker carousel + matches grouped by competition for the selected date.
  * Live matches are automatically rendered as LiveMatchCard via the shared SSE
@@ -56,7 +56,7 @@ export const HomePage = () => {
     year: "numeric",
     month: "long",
     day: "numeric",
-    timeZone: "Europe/Paris",
+    timeZone: MATCH_TIME_ZONE,
   });
 
   return (

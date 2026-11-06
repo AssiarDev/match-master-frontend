@@ -1,36 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  FINISHED_STATES,
-  normalizeScores,
-  extractFinalScore,
-} from "./matchUtils";
-
-// ── FINISHED_STATES ────────────────────────────────────────────────────────────
-// Spec: a match is "finished" (displays "Terminé") when its state_id belongs
-// to {5=FT, 6=INPLAY_ET, 7=AET, 8=FT_PEN, 12=ABD}.
-// Regression: state_id 8 (FT_PEN) was missing, causing penalty-shootout matches
-// to be displayed as "À venir" even after the season ended.
-
-describe("FINISHED_STATES", () => {
-  it.each([
-    [5, "FT — full time"],
-    [6, "INPLAY_ET — extra time in progress (must not show À venir)"],
-    [7, "AET — finished after extra time"],
-    [8, "FT_PEN — finished on penalties (regression: was missing)"],
-    [12, "ABD — match abandoned"],
-  ])("state_id %i (%s) is classified as finished", (stateId) => {
-    expect(FINISHED_STATES.has(stateId)).toBe(true);
-  });
-
-  it.each([
-    [1, "NS — not started"],
-    [2, "INPLAY_1ST_HALF — first half in progress"],
-    [3, "HT — half time"],
-    [4, "INPLAY_2ND_HALF — second half in progress"],
-  ])("state_id %i (%s) is not classified as finished", (stateId) => {
-    expect(FINISHED_STATES.has(stateId)).toBe(false);
-  });
-});
+import { normalizeScores, extractFinalScore } from "./matchUtils";
 
 // ── normalizeScores ────────────────────────────────────────────────────────────
 // Spec: normalises the two score formats SportMonks may return.

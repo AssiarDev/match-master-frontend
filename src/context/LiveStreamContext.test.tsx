@@ -63,6 +63,27 @@ describe("LiveStreamContext", () => {
     expect(result.current.hasLiveMatches).toBe(true);
   });
 
+  it.each([
+    MatchStateDeveloperName.BREAK,
+    MatchStateDeveloperName.INPLAY_EXTRA_TIME_SECOND_HALF,
+  ])("counts a match in state %s as live", (developerName) => {
+    const { result } = renderHook(() => useLiveStreamContext(), {
+      wrapper: LiveStreamProvider,
+    });
+
+    act(() => {
+      fakeEs.onmessage!(
+        new MessageEvent("message", {
+          data: JSON.stringify([
+            { id: 1, state: { developer_name: developerName } },
+          ]),
+        }),
+      );
+    });
+
+    expect(result.current.hasLiveMatches).toBe(true);
+  });
+
   it("keeps hasLiveMatches=false when all matches have a non-INPLAY state", () => {
     const { result } = renderHook(() => useLiveStreamContext(), {
       wrapper: LiveStreamProvider,
